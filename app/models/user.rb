@@ -41,8 +41,7 @@ class User < ActiveRecord::Base
   validates :schedule, :presence => { :if => :schedule_required? }
   after_create :subscriber
 
-  has_attached_file :avatar,:whiny => false,:storage => :s3,:s3_credentials => "#{Rails.root}/config/s3.yml",:path => "uploaded_files/profile/:id/:style/:basename.:extension",:bucket => "Anchodemarca",:styles => {:original => "900x900>",:default => "280x190>",:other => "96x96>"}, :default_url => "/images/photo_icon.jpg" if Rails.env == 'production'
-  has_attached_file :avatar, :styles => {:medium => "300x300>", :thumb => "100x100>"}, :default_url => "/images/photo_icon.jpg" if Rails.env == 'development'
+  has_attached_file :avatar, :styles => {:medium => "300x300>", :thumb => "100x100>"}, :default_url => "/images/photo_icon.jpg"
 
   def subscriber
     Winner.create_subscriber(self).deliver
