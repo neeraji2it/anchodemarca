@@ -49,11 +49,11 @@ AnchoDeMarca::Application.configure do
   config.action_mailer.default_url_options = { :host => '23.92.65.129'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.sendgrid.net",
+    :address              => "smtp.gmail.com",
     :port                 => 587,
-    #:domain               => '107.155.72.173:80',
-    :user_name            => 'Ashok098',
-    :password             => 'ashok123',
+    #:domain               => 'baci.lindsaar.net',
+    :user_name            => 'anchodemarcaa@gmail.com',
+    :password             => 'ancho123',
     :authentication       => 'plain',
     :enable_starttls_auto => true
   }
