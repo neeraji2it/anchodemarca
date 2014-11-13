@@ -1,6 +1,6 @@
 AnchoDeMarca::Application.routes.draw do
   
-  devise_for :users,:controllers => {:sessions => 'sessions',:passwords => "passwords",:confirmations => "confirmations"}
+  devise_for :users,:controllers => {:sessions => 'sessions',:confirmations => "confirmations"}
   devise_scope :user do
     get "sign_out", :to => "devise/sessions#destroy",:as => "logout"
   end

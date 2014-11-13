@@ -1,0 +1,18 @@
+<div id="div-regForm">
+    <div class="form-title"><%= "¿Olvidó su contraseña?" %></div>
+
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post },:id=>"regForm") do |f| %>
+      <div id="error"><%= devise_error_messages! %></div>
+      <table>
+          <tr>
+              <td><%= f.label :email %></td>
+              <td><div class="input-container"><%= f.email_field :email %></div></td>
+          </tr>
+          <tr>
+              <td></td>
+              <td><%= f.submit "enviar",:class=>"greenButton" %></td>
+          </tr>
+      </table>
+    <% end %>
+    <div id="links"><%#= render :partial => "devise/shared/links" %></div>
+</div>
