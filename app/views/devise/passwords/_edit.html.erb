@@ -1,0 +1,25 @@
+<div class="iniciocontenidos"></div>
+<div id="div-regForm">
+  <div class="form-title"><%= "Cambiar su contraseña" %></div>
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put },:id=>"regForm") do |f| %>
+    <div id="error"><%= devise_error_messages! %></div>
+    <table>
+      <tr>
+        <td><%= f.hidden_field :reset_password_token %></td>
+      </tr>
+      <tr>
+        <td style="text-align: right;"><%= f.label :password, "Nueva contraseña:" %></td>
+        <td><div class="input-container"><%= f.password_field :password %></div></td>
+      </tr>
+      <tr>
+        <td style="text-align: right;"><%= f.label :password_confirmation, "Confirmar nueva contraseña:" %></td>
+        <td><div class="input-container"><%= f.password_field :password_confirmation %></div></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td style="text-align: right;"><%= f.submit "Cambiar mi contraseña",:class=>"greenButton" %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+<div class="fincontenidos"></div>

@@ -1,0 +1,118 @@
+<div id="course_form">
+  <h4>Course Creation</h4><br />
+  <%= form_for @course, :html => {:multipart => true} do |f| %>
+    <%= f.hidden_field :category_id, :value => @course.category_id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :categories, :value => @course.categories %>
+    <table style="margin-left: 0px;" style="line-height:30px;" cellpadding="10%">
+      <tr>
+        <td>Course Title:</td>
+        <td><%= f.text_field :title %></td>
+        <td><%= validation_error(@course.errors["title"])%></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><%= f.text_area :description, :cols => 25, :rows => 4%></td>
+        <td><%= validation_error(@course.errors["description"])%></td>
+      </tr>
+      <tr>
+        <td>Hours:</td>
+        <td><%= f.text_field :course_hours %></td>
+        <td><%= validation_error(@course.errors["course_hours"])%></td>
+      </tr>
+      <tr>
+        <td>Start Date:</td>
+        <td><%= f.text_field :from_date, :value => (@course.from_date ? @course.from_date.strftime("%Y-%m-%d") : " "), :readonly => true  %></td>
+        <td><%= validation_error(@course.errors["from_date"])%></td>
+      </tr>
+      <tr>
+        <td>End Date:</td>
+        <td><%= f.text_field :to_date, :value => (@course.to_date ? @course.to_date.strftime("%Y-%m-%d") : " "), :readonly => true %></td>
+        <td><%= validation_error(@course.errors["to_date"])%></td>
+      </tr>
+      <tr>
+        <td>Course Type:</td>
+        <td>
+          <%= f.radio_button(:course_type, "Free")%>&nbsp;Free
+          <%= f.radio_button(:course_type, "Paid", :checked => false)%>&nbsp;Paid
+        <td><%= validation_error(@course.errors["course_type"])%></td>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div id="paid_form" style="display:none">
+            Amount:
+            <%= f.text_field :price,  :size => "6", :maxlength => 6,:style => "width:67px;", :onkeyup => "price_validate(this,6)" %>
+          </div>
+        </td>
+        <td><%= validation_error(@course.errors["price"])%> </td>
+      </tr>
+
+      <tr>
+        <td>Images:</td>
+        <td>
+          <%= f.fields_for :images do |picture| %>
+            <%= picture.file_field :image %></td>
+          <td>
+            <%= validation_error(@course.errors["images.image_content_type"]) %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= @course.new_record? ? "" : (image_tag(@course.images.first.image.url(:original), :width => '40', :height => '32'))%></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= @course.new_record? ? (f.submit "Create", :class => 'classname', :style => 'background-color: #692555;') : (f.submit "Update", :class => 'classname', :style => 'background-color: #692555;') %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+<script>
+  $(":radio[name='course[course_type]']").change(function() {
+    var newVal = $(":radio[name='course[course_type]']:checked").val();
+    if (newVal == "Free") {
+      $("#course_price").val('');
+      $("#paid_form").hide();
+    } else {
+      $("#paid_form").show();
+    }
+  });
+
+  $("#course_from_date").datetimepicker({
+    showOn: 'button',
+    buttonImage: '/images/cal.jpeg',
+    buttonImageOnly: true,
+    showTimepicker: false,
+    dateFormat: 'yy-mm-dd',
+    minDate: 0
+  })
+
+  $("#course_to_date").datetimepicker({
+    showOn: 'button',
+    buttonImage: '/images/cal.jpeg',
+    buttonImageOnly: true,
+    showTimepicker: false,
+    dateFormat: 'yy-mm-dd',
+    minDate: 0
+  })
+
+  function price_validate(which) {
+    var val = which.value;
+    val = val.replace(/[^0-9]/g, "");  // strip non-digits
+    which.value = val;
+    if (val.length == 6) {  // field completed
+      document.getElementById("course_price").focus()
+    }
+  }
+
+  $(document).ready(function() {
+    $("input[type='submit']").attr("disabled", false);
+    $("form").submit(function() {
+      $("input[type='submit']").attr("disabled", true).val("Please wait...");
+      return true;
+    });
+  });
+</script>

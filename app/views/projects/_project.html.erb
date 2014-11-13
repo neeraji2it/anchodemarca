@@ -1,0 +1,78 @@
+<div id="projects">
+  <div class="iniciocontenidos"></div>
+  <%= render :partial => 'lists' %>
+  <div class="fincontenidos"></div>
+  <div class="iniciocontenidos"></div>
+  <div class="contents">
+    <table border="0" style="margin-left:0px;">
+      <tbody>
+        <%= render :partial => 'winner' %>
+        <tr>
+          <td style="position:relative; width: 240px;">
+            <div class="about_col" style="margin-right:-50px;">
+              <br />
+              Actividad Reciente
+              <br />
+              Proyectos Posteados: <%= Project.count %>
+              <br />
+              Ultimo Proyecto: <%= Project.last.created_at.strftime("%d-%m-%Y") %>
+              <br />
+              Comentarios dados: <%= @project.comments.count %>
+              <br />
+              Me gusta: <%= current_user.received_likes.count %>
+              <br />
+              Me han recomendado: <%= @project.project_recommenders.count %>
+              <br />
+              Miembros desde: <%= @project.created_at.strftime("%d-%m-%Y") %>
+              <br />
+              <br />
+              <br />
+              <% if current_user.role == 'client' %>
+                <%= link_to image_tag("/images/eliminar_proyecto.png"), project_path(@project), :method => :delete, :confirm => 'Are you Sure' %>
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <div class="proyect_view">
+              <div class="proyect_piece_detail_view_content" style="background: transparent; float: left;position: relative;left: 25px;">
+                <div class="postproyectimage">
+                  <h4><%= (@project.images.first.image_file_name.split(".").first).capitalize %></h4>
+                  <hr />
+                  <div class="midSec">
+                    <%= image_tag(@project.images.first.image.url(:original), :width => "400", :height => "320", :style=> 'margin:2px 3px;') %>
+                  </div>
+                </div>
+                <div class="postproyectbase">
+                  <h4>Bases del Concurso </h4>
+                  <hr />
+                  <br />
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                  <br />
+                  <br />
+                  <%= image_tag("/images/participar.png") %>
+                  <%= link_to image_tag("/images/recomendar.png"), project_recommender_constant_path(@project), :method => 'post', :remote => true %>
+                </div>
+                <br /><br />
+                <div class="postproyectdescription">
+                  <br /><br /><%= @project.description %>
+                  <p style="text-align:right; color:#C85F00"> Condiciones Del Concurso</p>
+                </div>
+              </div>
+              <div class="coments_piece_space">
+                <p>
+                  <b><div id="project_comments_count"><%= @project.comments.count %></div>Comentarios</b>
+                </p>
+                <hr />
+                <div class="coment">
+                  <%= render :partial => 'comments/show' %>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="fincontenidos"></div>
+  <hr />
+</div>

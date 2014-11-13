@@ -1,0 +1,75 @@
+#create_project{
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+    position: relative;
+    top: -14px;
+}
+
+#img_show{
+    float: left;
+    left: 115px;
+    position: relative;
+    top: 2px;
+    border-radius: 3px;
+}
+
+.help-inline{
+    display: none;
+}
+
+#login1 a{
+    text-decoration: none;
+    color: green;
+    border: 1px solid grey;
+    background-color: yellow;
+    padding: 2px 3px;
+}
+
+#Picture{
+    border:3px solid #B3B3B3;
+    margin:30px auto 40px auto;
+    background-color: #E2E3E4;;
+    height: 85px;
+    width: 500px;
+    padding-top: 10px;
+}
+
+
+#category_form{
+    border:3px solid #eeeeee;
+    padding-right: 60px;
+    background: #C8C8AA;
+    color:#203360;
+    margin:30px auto 40px auto;
+    width:500px;
+}
+
+#category_form input {
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    width:200px;
+    font-size:14px;
+}
+
+.ui-datepicker-trigger{
+    margin: -4px 7px;
+}
+
+form.rating_ballot input#rating_submit { display: none; }
+form.rating_ballot input.rating_button { display: none; }
+
+form.rating_ballot label.rating { cursor: pointer; display: table-cell; height: 17px; width: 17px;}
+form.rating_ballot label.rating span { display: none; }
+form.rating_ballot label.rating { background-image: url(/images/star.gif);background-position: 17px 0px;}
+form.rating_ballot label.rating.bright { background-image: url(/images/star.gif);background-position: 17px 32px;}
+form.rating_ballot label.rating.glow { background-image: url(../images/star.gif);background-position: 17px 15px; }
+
+.current-rating-rated {
+    background-image: url(/images/star.png);
+    position: absolute;
+    height: 10px;
+    text-indent: -9000px;
+}

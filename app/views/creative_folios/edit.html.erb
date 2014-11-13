@@ -1,0 +1,5 @@
+<div id="bid_form" style="background-color: white;border: 1px solid gray;float: left; position: relative;left: 210px;width: 45%;top: -10px;">
+  <%= form_for @folio, :url=> creative_folio_path(@folio),:html => {:multipart => true, :method => 'put'} do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f} %>
+  <% end %>
+</div>

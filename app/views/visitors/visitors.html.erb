@@ -1,0 +1,22 @@
+<div class="iniciocontenidos"></div>
+<div class="contents" style="padding: 0 10px;">
+  <table>
+    <tr>
+      <td>
+        <%= image_tag(current_user.avatar.url(:original) , :style=>"width:120px;height: 120px; margin:1px;border-radius: 10px;") %>
+      </td>
+      <td style="margin-left: 20px; width:300px;">
+        <h4 style="margin:0px; padding:0px;"><%= current_user.user_name %> / <%= current_user.surname%></h4>
+        <%= current_user.city.city%> , <%= current_user.country.country %>
+        <br/>
+      </td>
+      <td>
+        Acerca de mi <br />
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<%= render :partial => 'project' %>
+<%= render :partial => 'course' %>

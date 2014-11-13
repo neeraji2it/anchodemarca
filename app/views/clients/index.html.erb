@@ -1,0 +1,32 @@
+<div class="bar_proyect_client"> </div>
+<div class="contents">
+  <div class="content_left"><br />
+    <div class="seccioneshomefiltros"><br />
+      <label>OPORTUNIDADES POR</label><br />
+      <div class="input-container"><%= select_tag :view, options_for_select([["Seleccionar", ""],["Cliente","client"],["Proyectos sociales", "Social"],["Empresa","task"],["Presupuesto","budget"],["Fecha de expiracion","expiration date"]]), :onchange=>"select_file_type(this.value)" %><br /><br />
+        <div id="client-category">
+          <%= select_tag :category, options_for_select(["Seleccionar",""]) %>
+        </div>
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">MARCAS REGISTERADAS</label><br />
+        <% i = Project.count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS REALIZADOS</label><br />
+        <% i = Project.where(" end_date <= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS EN TRATAMIENTO</label><br />
+        <% i = Project.where(" end_date >= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS SOCIALES REALIZADOS</label><br />
+        <% i = Project.where(" payment = 0 ").count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS SOCIALES DISPONIBLES</label><br />
+        <% i = Project.where(" payment = 0 and end_date >= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
+        <%= number_with_delimiter(i) %>
+      </div>
+    </div>
+  </div>
+  <div id="client_views" style="position: relative;float: left;left: 20px;"></div>
+  <div id="client_categories" style="position: relative;float: left;left: 20px;"></div>
+  <%= render :partial => 'index' %>
+</div>
+<div class="fincontenidos"></div>

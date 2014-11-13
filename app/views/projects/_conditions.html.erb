@@ -1,0 +1,27 @@
+<% if current_user.role == 'client' %>
+  <% if bid.status.present? %>
+    <%= "<b>#{bid.status}</b>".html_safe %>
+  <% else %>
+    <% if @winner.present? and @second.present? and @third.present? %>
+    <% elsif @winner.present? and @second.present? %>
+      <%= link_to_function "third", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+    <% elsif @winner.present? and @third.present? %>
+      <%= link_to_function "second", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+    <% elsif @second.present? and @third.present? %>
+      <%= link_to_function "winner", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+    <% elsif @winner.present? %>
+      <%= link_to_function "third", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+      <%= link_to_function "second", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+    <% elsif @second.present? %>
+      <%= link_to_function "third", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+      <%= link_to_function "winner", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+    <% elsif @third.present? %>
+      <%= link_to_function "winner", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+      <%= link_to_function "second", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+    <% else %>
+      <%= link_to_function "winner", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+      <%= link_to_function "second", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+      <%= link_to_function "third", "bid_status(this,#{bid.id})", :style => 'color: black;font-weight: bold;text-decoration: underline;' %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,13 @@
+<% if params[:id] == 'client' %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""]]+@photos.select("DISTINCT image_file_name").map{|c| [c.image_file_name]}, params[:categories]), :onChange => "client_logos(this)" %>
+<% elsif params[:id] == "Social" %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""]]+Project.where("end_date > '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}' and payment = '0'").select("DISTINCT categories").collect{|c| [c.categories.to_s.upcase, c.categories]}, params[:categories]), :onChange => "social_categories(this)" %>
+<% elsif params[:id] == "task" %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "client_categories(this)" %>
+<% elsif params[:id] == "budget" %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""],["1-100","100"],["101-500","500"],["Todos","all"]], params[:categories]), :onChange => "client_budget(this)" %>
+<% elsif params[:id] == "expiration date" %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""],["Disponible","available"],["Proximo mes","next month"],["Por expirar","expired"]]), :onChange => "client_date(this)" %>
+<% end %>
+
+

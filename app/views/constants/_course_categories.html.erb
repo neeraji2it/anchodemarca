@@ -1,0 +1,54 @@
+<script type="text/javascript" src="/javascripts/jcarousel/jquery.jcarousel.js"></script>
+<script type="text/javascript" src="/javascripts/jcarousel/jquery.jcarousel.min.js"></script>
+<div class="slide_content">
+  <% if @courses.present? %>
+    <ul class="jcarousel-skin-tango think" id="client_slide">
+      <% for course in @courses %>
+        <li>
+          <div class="slide_contpreview">
+            <div class="slide_contpreview_ima">
+              <% if course.images.present? %>
+                <%= image_tag(course.images.first.image.url(:original),:width => '200px;',:height => '150px;') %>
+              <% else %>
+                <%= image_tag(("/images/images.jpeg"), :width => '200px', :height => '150px') %>
+              <% end %>
+            </div>
+            <div class="slide_contpreview_text">
+              <table>
+                <tr>
+                  <td colspan="2">TT:&nbsp;<%= course.user.name%></td>
+                  <td><%= course.title %></td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <%= image_tag(("/images/star.png"), :border => 'none', :height => '12px;', :width => '12px;')%>
+                    <%= course.user.post_class %>, en <%= course.user.total %>
+                  </td>
+                  <td><%= course.categories%></td>
+                </tr>
+                <tr>
+                  <td><%= image_tag('/images/views.png') %>
+                    <%= course.user.sent_likes.count %></td><!--views of this piece -->
+                  <td><%= image_tag('/images/coment.png') %>
+                    <%= course.comments.count %></td><!-- coments to piece -->
+                  <td><%= image_tag('/images/like.png') %>
+                    <%= course.project_likes.count %></td><!-- likes to Piece -->
+                </tr>
+                <tr>
+                  <td colspan="3"> No to Intesates</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <span style="color: red;float: left;font-size: 20px;left: 170px;position: relative;top: 70px;">No courses</span>
+  <% end %>
+</div>
+<script>
+  jQuery(document).ready(function() {
+    jQuery('.think').jcarousel({scroll: 1});
+  });
+</script>

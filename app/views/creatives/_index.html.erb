@@ -1,0 +1,45 @@
+<div id="creative_index">
+  <div class="content_right">
+    <div class="slide_contents">
+      <% if @bids.present? %>
+        <% for bid in @bids %>
+          <div class="slide_contpreview">
+            <div class="slide_contpreview_ima">
+              <%= image_tag(bid.images.first.image.url(:original),:width => '200px;',:height => '150px;') %>
+            </div>
+            <div class="slide_contpreview_text">
+              <table>
+                <tr>
+                  <td colspan="2">CR:&nbsp;<%= bid.project.user.name%></td>
+                  <td><%= (bid.images.first.image_file_name.split('.').first.capitalize)%></td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <%= image_tag(("/images/star.png"), :border => 'none', :height => '12px;', :width => '12px;')%>
+                    <%= bid.ratings.present? ? (bid.average_rating.round(2)) : (bid.average_rating) %>
+                  </td>
+                  <td width="100px;"><%= bid.project.categories%></td>
+                </tr>
+                <tr>
+                  <td><%= image_tag('/images/views.png') %>
+                    <%= bid.bid_count %></td><!--views of this piece -->
+                  <td><%= image_tag('/images/coment.png') %>
+                    <%= bid.comments.count %></td>
+                  <td>
+                    <%= image_tag('/images/like.png') %>
+                    <%= bid.project_likes.count %>
+                  </td><!-- coments to piece -->
+                </tr>
+              </table>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <%= image_tag("/images/slidecreativo.png") %>
+      <% end %>
+    </div>
+  </div>
+  <% if @bids.present? %>
+    <%= will_paginate @bids, :param_name => 'creative_page', :page_links => false, :previous_label => 'Primero', :next_label => "Ultimo"  %>
+  <% end %>
+</div>

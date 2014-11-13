@@ -1,0 +1,26 @@
+<script type="text/javascript" src="/javascripts/jcarousel/jquery.jcarousel.js"></script>
+<script type="text/javascript" src="/javascripts/jcarousel/jquery.jcarousel.min.js"></script>
+<div class="slide_content">
+  <% if @photos.present? %>
+    <ul class="jcarousel-skin-tango think" id="client_slide">
+      <% for photo in @photos %>
+        <li>
+          <div class="slide_contpreview">
+            <div class="slide_contpreview_ima">
+              <%= image_tag(photo.image.url(:original),:width => '200px;',:height => '150px;') %>
+            </div>
+            <div class="slide_contpreview_text">
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <span style="color: red;float: left;font-size: 20px;left: 170px;position: relative;top: 70px;">No Logos</span>
+  <% end %>
+</div>
+<script>
+  jQuery(document).ready(function() {
+    jQuery('.think').jcarousel({scroll: 1});
+  });
+</script>

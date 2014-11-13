@@ -1,0 +1,135 @@
+<div class="iniciocontenidos"></div>
+<div class="contents" style="padding: 0 10px;">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <%= image_tag(@user.avatar.url(:original) , :style=>"width:120px;height: 120px; margin:1px;border-radius: 5px;") %>
+        </td>
+        <td style="margin-left: 20px; width:300px;">
+          <h4 style="margin:0px; padding:0px;"><%= @user.user_name %>  / <%= @user.surname %></h4>
+          Diseñadora Grafica/Publicista
+          <br />
+          <%= @user.city.city%> , <%= @user.country.country %>
+          <br />
+          <% if current_user.role == 'visitor'  %>
+            <%= link_to image_tag("/images/recomendar.png"), recommender_constant_path(@user),:remote => true, :method => :post%>
+          <% else %>
+            <%= image_tag("/images/recomendar.png") %>
+          <% end %>
+        </td>
+        <td>
+          <table style="margin-left: 200px;">
+            <tbody>
+              <tr>
+                <td>
+                  <%= image_tag('/images/views.png') %>
+                  <%= @user.user_views.count %>
+                </td>
+                <td>
+                  <% if !current_user %>
+                    <%=link_to image_tag('/images/like.png'), like_constant_path(@user), :remote => true, :method => :post %>
+                  <% else %>
+                    <%= image_tag('/images/like.png') %>
+                  <% end %>
+                  <%= @user.sent_likes.count %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <%= link_to_function image_tag('/images/coment.png'), "comment_path('#{@user.id}')" %>
+                  <%= @user.received_comments.count %>
+                </td>
+                <td>
+                  <%= image_tag('/images/cop.png') %>
+                  3
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <%= image_tag('/images/star.png') %>
+                  <%= @user.post_class %>, en <%= @user.total %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<div class="barracursosposteados"></div>
+<div class="contents">
+  <table border="0" width="100%">
+    <tbody>
+      <tr>
+        <td style="position:relative; width: 240px;">
+          <br/>
+          Mis campos de accion
+          <br/>
+          Fotografia: 20
+          <br/>
+          Ilustracion: 15
+          <br/>
+          Animacion: 12
+          <br/>
+          <br/>
+          <hr/>
+          <br/>
+          Actividad Reciente
+          <br/>
+          Imagenes Portafolio: 47
+          <br/>
+          Me gusta: 41
+          <br/>
+          Animacion: 12
+          <br/>
+        </td>
+        <td>
+          <% if @courses.present? %>
+            <% for course in @courses %>
+              <% if course.images.present? %>
+                <div class="slide_contpreview">
+                  <div class="slide_contpreview_ima">
+                    <%= image_tag(course.images.first.image.url(:original), :style => 'width: 200px; height :150px;') %>
+                  </div>
+                  <div class="slide_contpreview_text">
+                    <table>
+                      <tr>
+                        <td colspan="2">TT: <%= course.user.name %></td>
+                        <td><%= course.title%></td><!-- Tutorial name-->
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <%= image_tag(("/images/star.png"), :border => 'none', :height => '12px;', :width => '12px;')%>
+                          <%= course.user.post_class %>, en <%= course.user.total %>
+                        </td>
+                        <td width="100px;"><%= course.categories%></td>
+                      </tr>
+                      <tr>
+                        <td><%= image_tag('/images/views.png') %>
+                          <%= course.user.sent_likes.count %></td><!--views of this piece -->
+                        <td><%= image_tag('/images/coment.png') %>
+                          <%= course.comments.count %></td><!-- coments to piece -->
+                        <td><%= image_tag('/images/like.png') %>
+                          <%= course.project_likes.count %></td><!-- likes to Piece -->
+                      </tr>
+                      <tr>
+                        <td colspan="3"> No to Intesates</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= image_tag("/images/slideportafolio.png") %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<hr/>

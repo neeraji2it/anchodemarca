@@ -1,0 +1,344 @@
+#login_form{
+    margin: 0 auto;
+    text-align: left;
+    width: 800px;
+}
+
+#signup_form{
+    margin: 0 auto;
+    text-align: left;
+    width: 800px;
+}
+
+Form styles
+
+#regForm input{
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    width:200px;
+    font-size:14px;
+}
+
+#ajax_loader_big_div{
+    display:none;
+    height:auto;
+    left:50%;
+    position:fixed;
+    top:35%;
+    z-index:4;
+}
+
+#login{
+    background: url("/images/lbloginback.png") repeat scroll 0 0 transparent;
+    display: block;
+    height: 228px;
+    left: 552.5px;
+    padding-left: 10px;
+    padding-right: 0;
+    top: 187px;
+    width: 245px;
+}
+
+h3 {
+    color:#575756;
+    font-size:20px;
+    margin-left:75px;
+}
+
+label {
+    color:#575756;
+    font-family:Tahoma, Geneva, sans-serif;
+    font-weight:bold;
+    margin-bottom:0;
+    margin-left:120px;
+    margin-right:0;
+    margin-top:0;
+}
+
+#project_form tr, #course_form tr {
+    color:#575756;
+    font-family:Tahoma, Geneva, sans-serif;
+    font-weight:bold;
+    margin-bottom:0;
+    margin-left:120px;
+    margin-right:0;
+    margin-top:0;
+}
+
+#new_login tr td label {
+    color: #F2F2F2;
+    margin-bottom: 0;
+    margin-left: -145px;
+    margin-right: 0;
+    margin-top: 0;
+}
+
+#new_login tr td input[type=email],#new_login tr td input[type=password]{
+    background-image: url("/images/inputlogin.png");
+    width:194px;
+    height: 21px;
+    margin-left: 1px;
+    border:none;
+}
+
+.input-container input[type=text], input[type=password], input[type=email],input[type=file], #calendar{
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    margin-left: 120px;
+    width:281px;
+    height: 26px;
+    font-size:14px;
+    border-radius: 5px;
+}
+
+.input-container input[type=radio], input[type=checkbox]{
+    margin-top:2px;
+    margin-left: 120px
+}
+
+em{
+
+}
+
+
+
+.input-container textarea {
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    margin-left: 120px;
+    font-size:14px;
+    border-radius: 5px;
+    resize :none;
+}
+
+#project_form label, #course_form label{
+    margin-left: 0px;
+}
+
+.input-container select {
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    margin-left:  120px;
+    width:180px;
+    height: 26px;
+    font-size:14px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+#seachclient select,#searchcreative select,#searchcursos select,#creative_folio_technique {
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    margin-left:  30px;
+    width:165px;
+    left: -30px;
+    position: relative;
+    height: 26px;
+    font-size:14px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+#seachclient, #searchcreative, #searchcursos{
+    display: none;
+    left: 125px;
+    position: relative;
+    width: 83%;
+}
+
+#seachclient{
+    display: block;
+}
+
+#search_all{
+    position:relative;
+    float: left;
+    top: 20px;
+    left: 110px;
+}
+
+.input-containers select{
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    position: relative;
+    right: -120px;
+    width: 80px;
+    height: 26px;
+    font-size:14px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.must_valid{
+    color: red;
+    font-size: 14px;
+}
+
+#project_form select, #course_form select{
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    margin-left:  0px;
+    width:180px;
+    height: 26px;
+    font-size:14px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+#project_form .form_error,#course_form .form_error{
+    color: red;
+    margin-left: 30px;
+    width: 560px;
+}
+
+.edit_user .form_error, .new_user .form_error{
+    margin-left: 120px;
+    width: 280px;
+}
+#project_form td{
+    width: 170px;
+}
+
+
+#project_form tr td input[type=text], #course_form tr td input[type=text]{
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    width:195px;
+    height: 26px;
+    font-size:14px;
+    border-radius: 5px;
+}
+
+#project_form tr td input[type=file],#course_form tr td input[type=file],#bid_form tr td input[type=file]{
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    margin-left: 0px;
+    width:195px;
+    height: 26px;
+    font-size:14px;
+    border-radius: 5px;
+}
+
+#bid-Proposal{
+    float: left;
+    position: relative;
+    left: 266px;
+    top: -17px;
+}
+#Proposal {
+    color: #186161;
+    float: left;
+    font-size: 20px;
+    margin-top: 2px;
+    position: relative;
+    text-decoration: underline;
+    top: 8px;
+}
+
+#project_form tr td select,#course_form tr td select {
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    width:90px;
+    height: 26px;
+    font-size:14px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+#project_form tr td textarea, #course_form  tr td textarea{
+    padding:3px;
+    color:#333333;
+    border:1px solid #96A6C5;
+    margin-top:2px;
+    font-size:14px;
+    border-radius: 5px;
+    resize :none;
+
+}
+
+#Registered{
+    background-image: url("/images/backregister.png");
+    width: 335px;
+    height: 396px;
+    margin-right:44px;
+    float: right;
+}
+
+
+#div-regForm,.registered{
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #E2E3E4;
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    float: left;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -6px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    width: 967px;
+    -moz-border-radius : 5px;
+}
+
+
+.form-title,
+.form-sub-title{
+    font-size:20px;
+    font-family:"Lucida Grande",Tahoma,Verdana,Arial,sans-serif;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.form-sub-title{
+    font-weight:normal;
+    padding:6px 0 15px 0;
+}
+
+
+
+#regForm1 td label{
+    color: white;
+}
+
+#greenButton{
+    background-image: url("/images/entrar_login.png");
+    width: 53px;
+    height: 25px;
+    border: none;
+}
+
+#links a{
+    color: white;
+}
+
+#error{
+    font-size: 12px;
+    color: red;
+}

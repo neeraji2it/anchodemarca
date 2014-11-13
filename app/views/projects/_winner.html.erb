@@ -1,0 +1,42 @@
+<tr>
+  <td colspan="2">
+    <h4>Propuestas de Creativos<span style="float: right;font-size: 12px;left: 29px;position: relative;top: 58px;"><% if @bids.exists? %><%= will_paginate @bids, :param_name => 'bid_links',:page_links => false, :previous_label => 'Primero', :next_label => "Ultimo"  %><% end %></span></h4>
+    <hr />
+    <a>
+      <% if @bids.exists? %>
+        <% for bid in @bids %>
+          <div class="slide_contpreview" style=<%= bid.status == 'winner' ? "background-color:gold;" : '' %>>
+            <div class="slide_contpreview_ima">
+              &nbsp;<%= link_to image_tag(bid.images.first.image.url(:original), :style => 'width: 200px; height :150px;margin-top:-18px;'), visitor_count_constant_path(bid), :method => 'post' %>
+            </div>
+            <div class="slide_contpreview_text">
+              <table>
+                <tbody>
+                  <tr>
+                    <td colspan="2"><%= bid.user.name%></td>
+                    <td style="text-transform:capitalize;"><%= bid.images.first.image_file_name.split('.').first %></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><%= link_to image_tag("/images/like.png"), like_proposal_constant_path(bid), :method => 'post', :remote => true %>&nbsp;<%= bid.project_likes.count %></td>
+                    <td><%= image_tag("/images/coment.png")%>&nbsp;<%= bid.comments.count %></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">Vence:&nbsp;<%= bid.created_at.strftime('%d/%m/%Y')%></td>
+                    <% @winner = Bid.where("status = 'winner' and project_id = '#{bid.project_id}'") %>
+                    <% @second = Bid.where("status = 'second place' and project_id = '#{bid.project_id}'") %>
+                    <% @third = Bid.where("status = 'third place' and project_id = '#{bid.project_id}'") %>
+                    <td>
+                      <%= render :partial => '/projects/conditions', :locals => {:bid => bid} %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <% end %><hr />
+      <% else %>
+        <span style="color: #575763;font-size: 20px;">No hay propuestas para este proyecto</span><hr />
+      <% end %>
+    </a>
+  </td>
+</tr>

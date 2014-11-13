@@ -1,0 +1,34 @@
+<script type="text/javascript" src="/javascripts/jcarousel/jquery.jcarousel.js"></script>
+<script type="text/javascript" src="/javascripts/jcarousel/jquery.jcarousel.min.js"></script>
+<div class="slide_content">
+  <% if @users.present? %>
+    <ul class="jcarousel-skin-tango" id="creative_slide">
+      <% for user in @users %>
+        <li>
+          <div class="slide_contpreview">
+            <div class="slide_contpreview_ima">
+              <%= image_tag(user.avatar.url(:original),:width => '200px;',:height => '150px;') %>
+            </div>
+            <div class="slide_contpreview_text">
+              <table>
+                <tbody>
+                  <tr>
+                    <td colspan="2"><%= user.email %></td>
+                    <td colspan="2"><%= user.company_name %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <span style="color: red;float: left;font-size: 20px;left: 170px;position: relative;top: 70px;">No Reputation Users.</span>
+  <% end %>
+</div>
+<script>
+  jQuery(document).ready(function() {
+    jQuery('#creative_slide').jcarousel({scroll: 3});
+  });
+</script>

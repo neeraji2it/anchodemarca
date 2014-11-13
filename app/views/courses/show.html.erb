@@ -1,0 +1,114 @@
+<div class="content">
+  <!--view profile -->
+  <div class="iniciocontenidos"></div>
+  <div class="contents" style="padding: 0 10px;">
+    <table>
+      <tbody><tr>
+          <td><%= image_tag(current_user.avatar.url(:original) , :style=>"width:120px;height: 120px; margin:1px;border-radius: 10px;") %></td>
+          <td style="margin-left: 20px; width:300px;">
+            <h4 style="margin:0px; padding:0px;"><%= current_user.user_name%> / <%= current_user.surname %></h4>
+            Diseñadora Grafica/Publicista
+            <br/>
+            <%= current_user.city.city%> , <%= current_user.country.country %>
+            <br/>
+            <%= image_tag("/images/recomendar_tutor.png") %>
+          </td>
+          <td>
+            <div class="rankingbar">
+              <table style="margin-left: 200px;">
+                <tbody><tr>
+                    <!--Ranking to piece specific -->
+                    <td><%= image_tag("/images/views.png") %>&nbsp;<%= current_user.user_views.count %></td>
+                    <td><%= image_tag("/images/like.png") %>&nbsp;<%= current_user.sent_likes.count %></td>
+                    <td><% if current_user.received_comments.present? %>
+                        <%= link_to_function image_tag('/images/coment.png'), "show_comment('#{current_user.id}')" %>
+                      <% else %>
+                        <%= image_tag('/images/coment.png') %>
+                      <% end %>
+                      <%= current_user.received_comments.count %></td>
+                  </tr>
+                </tbody></table>
+            </div>
+
+          </td>
+        </tr>
+      </tbody></table>
+  </div>
+  <div class="fincontenidos"></div>
+  <!-- end view profile-->
+  <!--sections -->
+  <div class="barracursosposteados"></div>
+  <div class="contents">
+    <table border="0" width="100%">
+      <tbody>
+        <tr>
+          <td>
+            <div class="about_col">
+              <br />
+              Actividad Reciente
+              <br />
+              Proyectos Posteados: 47
+              <br />
+              Ultimo Proyecto: 41
+              <br />
+              Comentarios dados: <%= @course.comments.count %>
+              <br />
+              Me gusta: <%= current_user.received_likes.count %>
+              <br />
+              Me han recomendado: <%= current_user.received_recommenders.count %>
+              <br />
+              Miembros desde: <%= @course.created_at.strftime("%d-%m-%Y") %>
+              <br />
+              <br />
+              <br />
+              <% if current_user.role == 'tutor' %>
+                <%=link_to image_tag("/images/eliminar_curso.png"), course_path(@course), :confirm => "Are you Sure", :method => :delete %>
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <div class="proyect_view">
+              <div class="proyect_piece_detail_view_content" style="background: transparent;float: left;left: -120px;top:30px;position: relative;">
+                <div class="postproyectimage">
+                  <% if @course.images.present? %>
+                    <h4><%= (@course.images.first.image_file_name.split(".").first) %></h4>
+                    <%= image_tag(@course.images.first.image.url(:original), :width => '400px', :height => '320px') %>
+                  <% else %>
+                    <%= image_tag(("/images/images.jpeg"), :width => '400px', :height => '320px') %>
+                  <% end %>
+                </div>
+                <div class="postproyectbase">
+                  <h4>Bases del Curso </h4><hr/>
+                  <br/>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.<br/> <br/>
+                  <% if current_user.role == 'visitor' %>
+                    <%= link_to image_tag("/images/participar_curso.png"), participate_course_constant_path(@course), :method => 'post', :remote => true %>
+                  <% else %>
+                    <%= image_tag("/images/participar_curso.png") %>
+                  <% end %>
+                  <%=link_to image_tag("/images/recomendar_tutor.png"), course_recommender_constant_path(@course), :method => 'post', :remote => true %>
+                </div>  <br/>
+                <div class="postproyectdescription">
+                  <h4>Descripción / Criterios para el curso </h4><hr/>
+                  <%= @course.description %>
+                  <p style="text-align:right; color:#C85F00"> Condiciones Del Curso</p>
+                </div>
+              </div>
+              <div class="coments_piece_space">
+                <p><b><div id="comments_count"><%= @course.comments.count %> &nbsp;Comentarios</div></b> </p>
+                <hr/>
+                <div class="coment" style="margin-left:20px;">
+                  <p><%= render :partial => "course_comments/form" %></p><hr/>
+                </div>
+                <div class="coment" id="course_comment">
+                  <%= render :partial => "course_comments/index" %>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="fincontenidos"></div>
+<hr />

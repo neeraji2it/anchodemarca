@@ -1,0 +1,20 @@
+<div class="slide_content">
+  <table border="1">
+    <tr>
+      <th>Surname</th>
+      <th>Email</th>
+      <th>Role</th>
+    </tr>
+    <% if @users.present? %>
+      <% for user in @users %>
+        <tr>
+          <td><%= user.surname %></td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <span style="color: red;float: left;font-size: 20px;left: 170px;position: relative;top: 70px;">No Users</span>
+    <% end %>
+  </table>
+</div>

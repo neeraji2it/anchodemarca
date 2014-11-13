@@ -1,0 +1,102 @@
+<div class="iniciocontenidos"></div>
+<div class="contents" style="padding: 0 10px;">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <%= image_tag(current_user.avatar.url(:original) , :style=>"width:120px;height: 120px; margin:1px;border-radius: 10px;") %>
+        </td>
+        <td style="margin-left: 20px; width:300px;">
+          <h4 style="margin:0px; padding:0px;"><%= current_user.user_name%> / <%= current_user.surname %></h4>
+          <%= current_user.city.city%> , <%= current_user.country.country %>
+          <br />
+          <%= image_tag("/images/recomendar.png") %>
+        </td>
+        <td>
+          <table style="margin-left: 200px;">
+            <tbody>
+              <tr>
+                <td>
+                  <%= image_tag('/images/views.png') %>
+                  <%= current_user.user_views.count %>
+                </td>
+                <td>
+                  <%= image_tag('/images/like.png') %>
+                  <%= current_user.sent_likes.count %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <% if current_user.received_comments.present? %>
+                    <%= link_to_function image_tag('/images/coment.png'), "show_comment('#{current_user.id}')" %>
+                  <% else %>
+                    <%= image_tag('/images/coment.png') %>
+                  <% end %>
+                  <%= current_user.received_comments.count %>
+                </td>
+                <td>
+                  <%= image_tag('/images/cop.png') %>
+                  3
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <%= image_tag('/images/star.png') %>
+                  53,45 en 260
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<div class="barraproyectosposteados"></div>
+<div class="contents">
+  <table border="0" width="100%">
+    <tbody>
+      <tr>
+        <td>
+          <% if @projects.present? %>
+            <% for project in @projects %>
+              <% if project.images.present? %>
+                <div class="slide_contpreview">
+                  <div class="slide_contpreview_ima">
+                    <%= link_to image_tag(project.images.first.image.url(:original), :style => 'width: 200px; height :150px;'), client_projects_project_path(project) %>
+                  </div>
+                  <div class="slide_contpreview_text">
+                    <table>
+                      <tr>
+                        <td colspan="2">CL: <%= project.user.surname %></td>
+                        <td><%= project.categories %></td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">Propuestas: <%= project.bids.count %></td>
+                        <td><%= image_tag("/images/like.png", :height => '12', :width => '10') %>&nbsp;&nbsp;<%= project.bids.count %></td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">Vence: <%= project.end_date.strftime("%d/%m/%Y")%></td>
+                        <td><%= project.payment == 0 ? "SOCIAL" : (number_to_currency(project.payment))%></td>
+                        <td><%= link_to "Edit", edit_project_path(project), :style => 'color: black;font-weight: bold;' %></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= image_tag("/images/slideportafolio.png") %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<hr />
+<% if @projects.present? %>
+  <%= will_paginate @projects, :param_name => 'client_page',:page_links => false, :previous_label => 'Primero', :next_label => "Ultimo" %>
+<% end %>
+

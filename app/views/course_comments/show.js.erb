@@ -1,0 +1,2 @@
+$("#comments_count").html('<%= @course.comments.count %>');
+$("#course_comment").html('<%= escape_javascript render :partial => "/course_comments/index" %>');

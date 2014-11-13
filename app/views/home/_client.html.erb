@@ -1,0 +1,41 @@
+<div id="client_pages">
+  <div class="slide_content">
+    <% if @projects.present? %>
+      <ul class="jcarousel-skin-tango" id="client_slide">
+        <% for project in @projects %>
+          <li>
+            <div class="slide_contpreview">
+              <div class="slide_contpreview_ima">
+                <%= image_tag(project.images.first.image.url(:original),:width => '200px;',:height => '150px;') %>
+              </div>
+              <div class="slide_contpreview_text">
+                <table>
+                  <tr>
+                    <td colspan="2">CL: <%= project.user.surname %></td>
+                    <td><%= project.topic %></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">Propuestas: <%= project.bids.count %></td>
+                    <td><%= image_tag("/images/like.png", :height => '12', :width => '10') %>&nbsp;&nbsp;<%= project.bids.count %></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">Vence: <%= project.end_date.strftime("%d/%m/%Y")%></td>
+                    <td><%= project.payment == 0 ? "SOCIAL" : (number_to_currency(project.payment))%></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <%= image_tag("/images/slidecliente.png") %>
+    <% end %>
+  </div>
+</div>
+<script>
+  jQuery(document).ready(function() {
+    jQuery('#client_slide').jcarousel({scroll: 1});
+  });
+</script>
+

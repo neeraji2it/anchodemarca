@@ -1,0 +1,187 @@
+<h3>Basic Information</h3>
+<%= f.label :name,"Name<span style=color:red;>*</span>".html_safe %>
+<div class="input-container"><%= f.text_field :name %></div>
+<%= validation_error(@user.errors['name']) %><br />
+
+<%= f.label :surname,"Surname<span style=color:red;>*</span>".html_safe%>
+<div class="input-container"><%= f.text_field :surname %></div>
+<%= validation_error(@user.errors['surname']) %><br />
+
+<%= f.label :user_name,"User Name<span style=color:red;>*</span>".html_safe %>
+<div class="input-container"><%= f.text_field :user_name %></div>
+<%= validation_error(@user.errors['user_name']) %><br />
+
+<% if params[:controller] == 'users' and (params[:action] == 'creative' or params[:action] == 'client' or params[:action] == 'tutor' or params[:action] == 'visitor' or params[:action] == 'create_creative' or params[:action] == 'create_tutor' or params[:action] == 'create_visitor' or params[:action] == 'create_client') %>
+  <%= f.label :email,"Email<span style=color:red;>*</span>".html_safe %>
+  <div class="input-container"><%= f.email_field :email %></div>
+  <%= validation_error(@user.errors['email']) %><br />
+  <%= f.label :password,"Password<span style=color:red;>*</span>".html_safe %>
+  <div class="input-container"><%= f.password_field :password %></div>
+  <%= validation_error(@user.errors['password']) %><br />
+
+  <%= f.label :password_confirmation,"Confirm Password<span style=color:red;>*</span>".html_safe %>
+  <div class="input-container"><%= f.password_field :password_confirmation %></div>
+  <%= validation_error(@user.errors['password_confirmation']) %><br />
+<% end %>
+
+<%= f.label :date_of_birth, "Date Of Birth<span style=color:red;>*</span>".html_safe%>
+<br /><div class="input-containers"><%= f.date_select :date_of_birth, {:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'], :start_year => Time.now.year - 72, :end_year => Time.now.year} %></div>
+<%= validation_error(@user.errors['date_of_birth']) %><br />
+
+<% if params[:controller] == 'users' && params[:action] == 'client' or params[:action] == 'create_client' or params[:controller] == 'clients' %>
+  <%= f.label :document_type, "Document Type<span style=color:red;>*</span>".html_safe%>
+  <div class="input-container">
+    <%= f.select :document_type, options_for_select(CLIENT_DOCUMENT_TYPES, :selected => f.object.document_type) %>
+  </div>
+<% elsif params[:controller] == 'users' && params[:action] == 'creative' or params[:action] == 'tutor' or params[:action] == 'visitor' or params[:action] == 'create_visitor' or params[:action] == 'create_creative' or params[:action] == 'create_tutor' or params[:controller] == 'creatives' or params[:controller] == 'tutors' or params[:controller] == 'visitors'%>
+  <%= f.label :document_type, "Document Type<span style=color:red;>*</span>".html_safe%>
+  <div class="input-container">
+    <%= f.select :document_type, options_for_select(CREATIVE_DOCUMENT_TYPES, :selected => f.object.document_type) %>
+  </div>
+<% end %>
+<%= validation_error(@user.errors['document_type']) %><br />
+
+<%= f.label :document_num, "Document Number<span style=color:red;>*</span>".html_safe%>
+<div class="input-container"><%= f.text_field :document_num %></div>
+<%= validation_error(@user.errors['document_num']) %><br />
+
+<%= f.label :Country, "Country<span style=color:red;>*</span>".html_safe%>
+<% if @user.new_record? %>
+  <div class="input-container"><%= f.select :country_id, options_for_select(Country.find(:all).collect{|country| [country.country, country.id]}) %></div>
+<% else %>
+  <div class="input-container"><%= f.select :country_id, options_for_select(Country.find(:all).collect{|country| [country.country, country.id]}, :selected => current_user.country_id) %></div>
+<% end %>
+<%= validation_error(@user.errors['country_id']) %><br />
+
+<%= f.label :city, "City<span style=color:red;>*</span>".html_safe%>
+<div class="input-container" id="city_id_container">
+  <% if @user.new_record? %>
+    <%= f.select :city_id,options_for_select(City.where("id = '#{1}'").collect{|city| [city.city, city.id]}) %>
+  <% else %>
+    <%= f.select :city_id, options_for_select(City.find(:all).collect{|city| [city.city, city.id]}, :selected => current_user.city_id) %>
+  <% end %>
+</div>
+<%= validation_error(@user.errors['city_id']) %><br />
+
+<%= f.label :phone , "Cell Phone<span style=color:red;>*</span>".html_safe %><br />
+<div class="input-container"><%= f.text_field :phone %></div>
+<%= validation_error(@user.errors['phone']) %><br />
+
+<%= f.label :sex, "Sex<span style=color:red;>*</span>".html_safe%>
+<br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:sex, "Male") %></span><em style="position:relative;float: right;right: 385px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Male</em>
+<span style="float:right;position: relative;right: 305px;"><%= f.radio_button(:sex, "Female") %></span><em style="position:relative;float: right;right: 225px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Female</em><br />
+<%= validation_error(@user.errors['sex']) %><br />
+
+<%= f.label :avatar, "Profile Picture:"%>
+<div class="input-container" id="img_preview">
+  <%= image_tag(@user.avatar.url(:original),:width => '30px', :height => '30px',:hidden => true, :id => 'img_show1')%>
+  <%= image_tag(@user.avatar.url(:original),:width => '30px', :height => '30px', :id => 'img_show')%></div>
+<div class="input-container"><%= f.file_field :avatar, :id => 'small_img', :onChange => 'readURL(this)' %>
+  <br /><em id="error_img" style="font-size: 11px;margin-left: 120px;color: red;">nota: Imagen debe estar en el formato &nbsp; "jpg","jpeg","gif","png","bmp","tiff" </em>
+</div>
+
+<% if params[:controller] == 'users' or params[:controller] == 'creatives'or params[:controller] == 'tutors'and (params[:action] == 'creative' or params[:action] == 'tutor' or params[:action] == 'create_creative' or params[:action] == 'create_tutor'  or params[:action] == 'edit' or params[:action] == 'update_tutor' or params[:action] == 'update_creative' or params[:action] == 'update_visitor') %>
+  <h3>Academic Information</h3>
+
+  <%= f.label :occupation, "Occupation<span style=color:red;>*</span>".html_safe%>
+  <div class="input-container"><%= f.select :occupation,%w(student employee independent unemployed) %></div>
+  <%= validation_error(@user.errors['occupation']) %><br />
+
+  <%= f.label :currently_studying, "Currently Studying<span style=color:red;>*</span>".html_safe%>
+  <div class="input-container"><%= f.select :currently_studying, %w(Yes No) %></div><br />
+
+  <%= f.label :retrived_title, "Retrived Title<span style=color:red;>*</span>".html_safe%>
+  <div class="input-container"><%= f.select :retrived_title, options_for_select(RETRIVED_TITLE, :selected => f.object.retrived_title)%></div>
+  <%= validation_error(@user.errors['retrived_title']) %><br />
+
+  <% if params[:controller] == 'users' or params[:controller] == 'tutors'and (params[:action] == 'tutor' or params[:action] == 'create_tutor' or params[:action] == 'edit' or params[:action] == 'update_tutor' or  params[:action] == 'update_visitor') %>
+
+    <%= f.label :current_occupation, "Title of Class:"%>
+    <div class="input-container"><%= f.text_field :current_occupation %></div><br />
+
+    <%= f.label :class_description, "Class Description:"%>
+    <div class="input-container"><%= f.text_area :class_description, :cols => 25, :rows => 3 %></div><br />
+  <% end %>
+<% end %>
+<% if params[:controller] == 'users' or params[:controller] == 'creatives' and (params[:action] == 'creative' or params[:action] == 'create_creative' or params[:action] == 'edit' or params[:action] == 'update_creative') %>
+  <%= f.label :skills, "Select Your Skills<span style=color:red;>*</span>".html_safe%>
+  <%  [ "Disenadores", "Desarrolladores","Testers","Otros"].each do |category| %><br/>
+    <% if @user.skills.to_s.split(", ").include?(category) or (params[:user] && params[:user][:skills] && params[:user][:skills].include?(category)) %>
+      <%= check_box_tag("user[skills][]", "#{category}", true) %>
+      <%= category %>
+    <% else %>
+      <%= check_box_tag("user[skills][]", "#{category}") %>
+      <%= category %>
+    <% end %>
+  <% end %><br />
+  <%= validation_error(@user.errors['skills']) %><br />
+
+<% elsif params[:controller] == 'users' or params[:controller] == 'tutors' and (params[:action] == 'tutor' or params[:action] == 'create_tutor' or params[:action] == 'edit' or params[:action] == 'update_tutor') %>
+
+  <%= f.label :schedule, "Schedule<span style=color:red;>*</span>".html_safe %>
+  <div class="input-container"><%= f.text_field :schedule %></div>
+  <%= validation_error(@user.errors['schedule']) %><br />
+
+  <div class="input-container"><%= f.check_box :laboral_disposition %></div>
+  <em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-20px;right: 212px;">I have laboral Disposition<span style=color:red;>*</span></em>
+  <%= validation_error(@user.errors["laboral_disposition"]) %><br />
+
+<% elsif params[:controller] == 'users' or params[:controller] == 'clients' and (params[:action] == 'client' or params[:action] == 'create_client' or params[:action] == 'edit' or params[:action] == 'update_client') %>
+  <h3>Labour Information</h3>
+  <%= f.label :company_name, "Company Name<span style=color:red;>*</span>".html_safe%>
+  <div class="input-container"><%= f.text_field :company_name %></div>
+  <%= validation_error(@user.errors['company_name']) %><br />
+
+  <%= f.label :position, "Position<span style=color:red;>*</span>".html_safe%>
+  <div class="input-container"><%= f.text_field :position%></div>
+  <%= validation_error(@user.errors['position']) %><br />
+<% end %>
+
+<% if params[:controller] == 'users' or params[:controller] == 'creatives' or params[:controller] == 'tutors' and (params[:action] == 'creative' or params[:action] == 'tutor' or params[:action] == 'create_creative' or params[:action] == 'create_tutor' or params[:action] == 'edit' or params[:action] == 'update_creative' or params[:action] == 'update_tutor') %>
+
+  <%= f.label :creative_am, "Working a creative in AM<span style=color:red;>*</span>".html_safe%>
+  <br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:creative_am, "Yes") %></span><em style="position:relative;float: right;right: 395px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Yes</em>
+  <span style="float:right;position: relative;right: 305px;"><%= f.radio_button(:creative_am, "No") %></span><em style="position:relative;float: right;right: 260px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">No</em><br />
+  <%= validation_error(@user.errors['creative_am']) %><br />
+
+  <%= f.label :participate_in_trining, "Participe in education / workshops<span style=color:red;>*</span>".html_safe%>
+  <br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:participate_in_trining, "Yes") %></span><em style="position:relative;float: right;right: 395px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Yes</em>
+  <span style="float:right;position: relative;right: 305px;"><%= f.radio_button(:participate_in_trining, "No") %></span><em style="position:relative;float: right;right: 260px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">No</em><br />
+  <%= validation_error(@user.errors['participate_in_trining']) %><br />
+
+  <%= f.label :invite_private_calls, "Invited to private calls<span style=color:red;>*</span>".html_safe%>
+  <br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:invite_private_calls, "Yes") %></span><em style="position:relative;float: right;right: 395px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Yes</em>
+  <span style="float:right;position: relative;right: 305px;"><%= f.radio_button(:invite_private_calls, "No") %></span><em style="position:relative;float: right;right: 260px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">No</em><br />
+  <%= validation_error(@user.errors['invite_private_calls']) %><br />
+
+  <%= f.label :outstanding_releave, "My  identity will be outsanding if I win<span style=color:red;>*</span>".html_safe%>
+  <br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:outstanding_releave, "Yes") %></span><em style="position:relative;float: right;right: 395px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Yes</em>
+  <span style="float:right;position: relative;right: 305px;"><%= f.radio_button(:outstanding_releave, "No") %></span><em style="position:relative;float: right;right: 260px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">No</em><br />
+  <%= validation_error(@user.errors['outstanding_releave']) %><br />
+
+  <div class="input-container"><%= f.check_box :formal_duites %></div>
+  <em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: 30px;">Formal duties, but have flexible working hours<span style=color:red;>*</span></em>
+  <%= validation_error(@user.errors["formal_duites"]) %><br />
+<% end %>
+
+<%= f.label :text_accept, "Terms and conditions<span style=color:red;>*</span>".html_safe%>
+<div class="input-container"><%= f.text_area :text_accept, :cols => 25, :rows => 3 %></div>
+<%= validation_error(@user.errors["text_accept"]) %><br />
+
+<div class="input-container"><%= f.check_box :receive_news %></div>
+<em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: 135px;">I want receive newsletter from AM<span style=color:red;>*</span></em>
+<%= validation_error(@user.errors["receive_news"]) %><br />
+
+<div class="input-container"><%= f.check_box :i_accept %></div>
+<em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: 170px;">I Accept Terms And Conditions<span style=color:red;>*</span></em>
+<%= validation_error(@user.errors["i_accept"]) %><br />
+<button type="submit" value="Save" name="commit" style="background: none; border: none; margin: 2px 115px;"><%=  image_tag("/images/buttonregister.png", :border=>'0', :width=>"191", :height=>"38") %></button>
+<script>
+  $(document).ready(function() {
+    $("input[type='submit']").attr("disabled", false);
+    $("form").submit(function() {
+      $("input[type='submit']").attr("disabled", true).val("Please wait...");
+      return true;
+    });
+  });
+</script>

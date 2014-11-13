@@ -1,0 +1,54 @@
+<div id="tutor_pages">
+  <div class="slide_content">
+    <% if @tutors.present? %>
+      <ul class="jcarousel-skin-tango" id="tutor_slide">
+        <% for course in @tutors %>
+          <li>
+            <div class="slide_contpreview">
+              <div class="slide_contpreview_ima">
+                <% if course.images.present? %>
+                  <%= image_tag(course.images.first.image.url(:original),:width => '200px;',:height => '150px;') %>
+                <% else %>
+                  <%= image_tag(("/images/images.jpeg"), :width => '200px', :height => '150px') %>
+                <% end %>
+              </div>
+              <div class="slide_contpreview_text">
+                <table>
+                  <tr>
+                    <td colspan="2">TT: <%= course.user.name %></td>
+                    <td><%= course.title %></td><!-- Tutorial name-->
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <%= image_tag(("/images/star.png"), :border => 'none', :height => '12px;', :width => '12px;')%>
+                      <%= course.user.post_class %>, en <%= course.user.total %>
+                    </td>
+                    <td width="100px;"><%= course.categories%></td>
+                  </tr>
+                  <tr>
+                    <td><%= image_tag('/images/views.png') %>
+                      <%= course.user.sent_likes.count %></td><!--views of this piece -->
+                    <td><%= image_tag('/images/coment.png') %>
+                      <%= course.comments.count %></td><!-- coments to piece -->
+                    <td><%= image_tag('/images/like.png') %>
+                      <%= course.project_likes.count %></td><!-- likes to Piece -->
+                  </tr>
+                  <tr>
+                    <td colspan="3"> No to Intesates</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <%= image_tag("/images/slideformacion.png") %>
+    <% end %>
+  </div>
+</div>
+<script>
+  jQuery(document).ready(function() {
+    jQuery('#tutor_slide').jcarousel({scroll: 1});
+  });
+</script>

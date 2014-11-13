@@ -1,0 +1,24 @@
+<div id="project_comment_new">
+  <%= form_for @comment, :url => project_bid_comments_path(@bid.project_id,@bid), :remote => true do |f| %>
+    <table style="margin-left: 0px;">
+      <tr>
+        <td>Comentario:</td>
+        <td><%= f.text_area :comment, :cols => 20, :rows => 1 %></td>
+        <td><%= validation_error(@comment.errors["comment"]) %></td>
+      </tr>
+      <tr></tr>
+      <td></td>
+      <td><%= f.submit "Comentario", :class => 'classname' %></td>
+    </table>
+  <% end %>
+</div>
+<script>
+  $(document).ready(function() {
+    $("input[type='submit']").attr("disabled", false);
+    $('#comment_comment').val('');
+    $("form").submit(function() {
+      $("input[type='submit']").attr("disabled", true).val("Please wait...");
+      return true;
+    });
+  });
+</script>

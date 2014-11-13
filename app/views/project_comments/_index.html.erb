@@ -1,0 +1,9 @@
+<div id="project_comment">
+  <% for comment in @comments %>
+    <%= image_tag(comment.user.avatar.url(:original), :width => '20px;', :height => '20px;')%>&nbsp;<em style="color: green;font-size: 15px;text-decoration: underline;"><%= comment.user.email%> </em><br />
+    <%= comment.comment %>
+    <span style="color: #CF7D0E;float: right;"><%= time_ago_in_words(comment.created_at) %></span><br /><br />
+    <br /><hr />
+  <% end %>
+  <%= will_paginate @comments, :param_name => 'comment_page', :page_links => false, :previous_label => 'Primero', :next_label => 'Ultimo' %>
+</div>

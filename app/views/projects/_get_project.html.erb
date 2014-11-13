@@ -1,0 +1,109 @@
+<div id="project_form">
+  <%= form_for @project, :html => {:multipart => true,:autocomplete => "off"} do |f|  %>
+    <%= f.hidden_field :category_id, :value => @project.category_id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :categories, :value => @project.categories %>
+    <table width="100%">
+      <tr>
+        <td>Topic:</td>
+        <td><%= f.text_field :topic %>
+          <%= validation_error(@project.errors['topic'])%></td>
+      </tr>
+      <tr>
+        <td>Payment:</td>
+        <td><%= f.text_field :payment,  :size => "6", :maxlength => 6,:style => "width:67px;", :onkeyup => "payment_validate(this,6)" %></td>
+      </tr>
+      <tr>
+        <td>Start Date:</td>
+        <td><%= f.text_field :start_date, :value => (@project.start_date ? @project.start_date.strftime("%Y-%m-%d %H:%M") : "")%>
+          <%= validation_error(@project.errors['start_date'])%></td>
+      </tr>
+      <tr>
+        <td>End Date:</td>
+        <td><%= f.text_field :end_date, :value => (@project.end_date ? @project.end_date.strftime("%Y-%m-%d %H:%M") : " "), :readonly => true %>
+          <%= validation_error(@project.errors['end_date'])%></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><%= f.text_area :description,:cols => 30,:rows => 4 %>
+          <%= validation_error(@project.errors['description'])%></td>
+      </tr>
+      <tr>
+        <td>Community:</td>
+        <td><%= f.text_field :community %>
+          <%= validation_error(@project.errors['community'])%></td>
+      </tr>
+      <tr>
+        <td valign="top">Images:</td>
+        <td>
+          <br />
+          <%= f.fields_for :images do |builder| %>
+            <%= builder.file_field :image  %>
+            <%= validation_error(@project.errors["images.image_content_type"]) %>
+            <%= validation_error(@project.errors["images.image"]) %>
+          <%end%>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= !@project.new_record? ? (image_tag(@project.images.first.image.url(:original), :width => "40", :height => "32", :style=> 'margin:2px 3px;')) : " "%></td>
+      </tr>
+      <tr>
+        <td>Allow Vote for creative pieces:</td>
+        <td><%= f.select :allow_vote,%w(yes no) %></td>
+      </tr>
+      <tr>
+        <td>Allow other customers to view the project:</td>
+        <td><%= f.select :allow_customers,%w(yes no) %></td>
+      </tr>
+      <tr>
+        <td>Allow creative comments, visitors, tutors and clients on the pieces:</td>
+        <td><%= f.select :creative_comment_pieces,%w(yes no) %></td>
+      </tr>
+      <tr>
+        <td>Allow creative comments, visitors, tutors and clients on the project:</td>
+        <td><%= f.select :creative_comment_project,%w(yes no) %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= @project.new_record? ? (f.submit "Create",:class =>"classname", :style => 'background-color: #D08411;') : (f.submit "Update",:class =>"classname", :style => 'background-color: #D08411;') %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+<script>
+  function payment_validate(which) {
+    var val = which.value;
+    val = val.replace(/[^0-9]/g, "");  // strip non-digits
+    which.value = val;
+    if (val.length == 6) {  // field completed
+      document.getElementById("project_payment").focus()
+    }
+  }
+
+  $(document).ready(function() {
+    $("input[type='submit']").attr("disabled", false);
+    $("form").submit(function() {
+      $("input[type='submit']").attr("disabled", true).val("Please wait...");
+      return true;
+    });
+  });
+
+  $("#project_start_date").datetimepicker({
+    showOn: 'button',
+    buttonImage: '/images/cal.jpeg',
+    buttonImageOnly: true,
+    showTimepicker: true,
+    dateFormat: 'yy-mm-dd',
+    minDate: 0
+  })
+
+  $("#project_end_date").datetimepicker({
+    showOn: 'button',
+    buttonImage: '/images/cal.jpeg',
+    buttonImageOnly: true,
+    showTimepicker: true,
+    dateFormat: 'yy-mm-dd',
+    minDate: 0
+  })
+</script>

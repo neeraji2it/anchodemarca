@@ -1,0 +1,30 @@
+<div class="iniciocontenidos"></div>
+<div class="contents">
+  <%= form_tag search_searches_path, :method => :get do %>
+    <%= text_field_tag :query %>
+    <%= submit_tag "BUSCAR", :class => 'classname' %>
+  <% end %>
+  <br />
+  <% if @users && params[:query] %>
+    <table border="1" width="100%">
+      <tr style="color: green;">
+        <td><%= t("title.name") %></td>
+        <td><%= t("title.email") %></td>
+        <td><%= t("title.role") %></td>
+        <td><%= t("title.surname") %></td>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user.name, user_view_constant_path(user),:method => :post, :style => 'color:green;' %>
+          </td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+          <td><%= user.surname %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
+<div class="fincontenidos"></div>
+<hr></hr>

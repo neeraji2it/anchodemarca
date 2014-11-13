@@ -1,0 +1,29 @@
+<div id="creative_pages">
+  <div class="slide_content">
+    <ul class="jcarousel-skin-tango thin" id="creative_slide">
+      <% if @users.present? %>
+        <% for user in @users %>
+          <li><div class="slide_contpreview">
+              <div class="slide_contpreview_ima">
+                <%= image_tag(user.avatar.url(:original),:width => '200px;',:height => '150px;') %>
+              </div>
+              <div class="slide_contpreview_text">
+                <table>
+                  <tr>
+                    <td colspan="2">CL:&nbsp;<%= user.name%></td>
+                    <td><%= user.email %></td>
+                  </tr>
+                </table>
+              </div>
+            </div></li>
+        <% end %></ul>
+    <% else %>
+      <span style="color: red;float: left;font-size: 20px;left: 170px;position: relative;top: 70px;">No Users</span>
+    <% end %>
+  </div>
+</div>
+<script>
+  jQuery(document).ready(function() {
+    jQuery('.thin').jcarousel({scroll: 1});
+  });
+</script>

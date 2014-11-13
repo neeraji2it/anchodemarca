@@ -1,0 +1,27 @@
+<div id="UserComment">
+  <div style="margin: -12px -6px;float :right;">
+    <%=image_tag("close icon.jpeg",:width => 16,:height => 16, :style => "cursor: pointer;margin : -14px -9px -2px 0px;", :border =>0, :onclick => "hide_popup();")%>
+  </div>
+  <%= form_for @user_comment, :url => user_user_comments_path(@user),:remote => true do |f| %>
+    <table>
+      <tr>
+        <td valign="top">Comment:</td>
+        <td><%= f.text_area :comment, :cols => 25, :rows => 3 %>
+          <%= validation_error(@user_comment.errors['comment'])%></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit "Comment"%></td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+<script>
+  $(document).ready(function() {
+    $("input[type='submit']").attr("disabled", false);
+    $("form").submit(function() {
+      $("input[type='submit']").attr("disabled", true).val("Please wait...");
+      return true;
+    });
+  });
+</script>

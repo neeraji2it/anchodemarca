@@ -1,0 +1,25 @@
+<div id="course_comment_new">
+  <%= form_for @comment, :url => project_project_comments_path(@project), :remote => true do |f| %>
+    <table>
+      <tr>
+        <td>Comentario</td>
+        <td><%= f.text_area :comment, :cols => 25, :rows => 3 %></td>
+        <td><%= validation_error(@comment.errors["comment"])%></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit "Comentario", :class => 'classname', :style => 'background-color: #692555;' %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+<script>
+  $(document).ready(function() {
+    $("input[type='submit']").attr("disabled", false);
+    $('#comment_comment').val('');
+    $("form").submit(function() {
+      $("input[type='submit']").attr("disabled", true).val("Please wait...");
+      return true;
+    });
+  });
+</script>

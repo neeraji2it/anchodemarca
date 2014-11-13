@@ -1,0 +1,15 @@
+category
+<div id="category_form">
+  <%= form_for @category do |f| %>
+    <table>
+      <tr>
+        <td>Category:</td>
+        <td><%= f.text_field :category %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit 'Create',:class => "greenButton" %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>

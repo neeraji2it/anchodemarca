@@ -1,0 +1,76 @@
+<div id="project_bids">
+  <div class="contents">
+    <table border="0" width="100%">
+      <tbody>
+        <tr>
+          <td style="position:relative; width: 240px;margin-left: 0px;">
+            <br />
+            About Me
+            <br /><br />
+            <%= current_user.text_accept %>
+            <hr />
+            <br />
+            Mis campos de accion
+            <br />
+            Fotografia:<%= CreativeFolio.where("technique = 'Photography'").count%>
+            <br />
+            Ilustracion: <%= CreativeFolio.where("technique = 'Illustration'").count%>
+            <br />
+            Animacion: <%= CreativeFolio.where("technique = 'Animation'").count%>
+            <br />
+            <br />
+            <hr />
+            <br />
+            Actividad Reciente
+            <br />
+            Imagenes Portafolio: <%= CreativeFolio.count %>
+            <br />
+            <% if CreativeFolio.exists? %>
+              Ultima Imagen: <%= CreativeFolio.last.created_at.strftime("%d-%m-%Y") %>
+            <% else %>
+              Ultima Imagen: 04-07-2012
+            <% end %>
+            <br />
+            Me gusta: <%= current_user.received_likes.count %>
+            <br />
+            Me han Recommendado: <%= current_user.sent_recommenders.count %>
+            <br />
+            He Recommendado: <%= current_user.received_recommenders.count %>
+            <br />
+            Miembro desde : <%= current_user.created_at.strftime("%d-%m-%Y") %>
+            <br />
+            <br />
+          </td>
+          <td>
+            <% if @folios.present? %>
+              <% for bid in @folios %>
+                <div class="slide_contpreview">
+                  <div class="slide_contpreview_ima">
+                    <%= image_tag(bid.folio.url(:original), :style => 'width: 200px; height :150px;') %>
+                  </div>
+                  <div class="slide_contpreview_text">
+                    <table>
+                      <tr>
+                        <td colspan="2">CR:&nbsp;<%= bid.title %></td>
+                        <td><%= bid.technique %></td><!-- Tutorial name-->
+                      </tr>
+                      <tr>
+                        <td><%= link_to "Edit", edit_creative_folio_path(bid), :style => 'color:black;' %></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <span style="color: #575763;font-size: 20px;left: 125px;position: relative;text-align: center;top: 180px;">Todavia no puedes subir disenos a tu portafolio.</span>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="fincontenidos"></div>
+  <% if @folios.present? %>
+    <%= will_paginate @folios, :param_name => 'project_bids', :page_links => false, :previous_label => 'Primero', :next_label => "Ultimo"  %>
+  <% end %>
+</div>

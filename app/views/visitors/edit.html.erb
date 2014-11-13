@@ -1,0 +1,9 @@
+<div class="iniciocontenidos"></div>
+<div class="contents">
+  <div class="contleft">
+    <%= form_for(current_user, :url => update_visitor_visitor_path(current_user), :html => { :multipart => true },:id=>"regForm") do |f| %>
+      <%= render :partial => 'users/form',:locals => {:f => f} %>
+    <% end %>
+  </div>
+</div>
+<div class="fincontenidos"></div>

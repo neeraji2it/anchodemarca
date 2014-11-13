@@ -1,0 +1,28 @@
+<div id="register">
+  <table>
+    <tr>
+      <td></td>
+      <td><%= link_to image_tag("/images/bot-cliente.png"),client_users_path,:id => 'my-link' %></td>
+      <td></td>
+      <td><%= link_to image_tag("/images/bot-creativo.png"),creative_users_path,:id => 'my-link' %></td>
+      <td></td>
+      <td><%= link_to image_tag("/images/bot-formacion.png"),tutor_users_path,:id => 'my-link' %></td>
+      <td></td>
+      <td><%#= link_to image_tag("/images/bot-cliente.png"),visitor_role_visitors_path,:method => 'put',:remote => true %></td>
+    </tr>
+  </table>
+</div>
+<%= link_to_function "Close It", :onclick => "hide_popup();"%>
+<style>
+  #register a{
+    color: green;
+    text-align: center;
+  }
+</style>
+<script>
+  $(document).ready(function() {
+    $("#my-link").click(function() {
+      $("#div-regForm").hide();
+    });
+  });
+</script>

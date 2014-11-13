@@ -1,0 +1,100 @@
+<div id="projects">
+  <div class="iniciocontenidos"></div>
+  <%= render :partial => '/projects/lists' %>
+  <div class="fincontenidos"></div>
+  <div class="iniciocontenidos"></div>
+  <div class="contents">
+    <table border="0" style="margin-left:0px;">
+      <tbody>
+        <tr>
+          <td colspan="2">
+            <h4>Propuestas de subidas para este proyecto<span style="float: right;font-size: 12px;left: 29px;position: relative;top: 58px;"><% if @bids.exists? %><%= will_paginate @bids, :param_name => 'bid_links',:page_links => false, :previous_label => 'Primero', :next_label => "Ultimo"  %><% end %></span></h4>
+            <hr />
+            <a>
+              <% if @bids.exists? %>
+                <% for bid in @bids %>
+                  <div class="slide_contpreview" style=<%= bid.status == 'winner' ? "background-color:gold;" : '' %>>
+                    <div class="slide_contpreview_ima">
+                      &nbsp;<%= link_to image_tag(bid.images.first.image.url(:original), :style => 'width: 200px; height :150px;margin-top:-17px;'), visitor_count_constant_path(bid), :method => 'post' %>
+                    </div>
+                    <div class="slide_contpreview_text">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td colspan="2"><%= bid.user.name%></td>
+                            <td style="text-transform:capitalize;"><%= bid.images.first.image_file_name.split('.').first %></td>
+                          </tr>
+                          <tr>
+                            <td width="100px;" colspan="2">
+                              <% if bid.status == 'winner' %>
+                                <span style="color: green">Congratulations to winner, <em style="color: blue"><%= bid.user.name %>!</em></span>
+                              <% else %>
+                                <b style="text-transform:capitalize;color: black;"><%= bid.status %></b>
+                              <% end %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2">Vence:&nbsp;<%= bid.created_at.strftime('%d/%m/%Y')%></td>
+                            <td><%= image_tag("/images/coment.png") %>&nbsp;<%= bid.comments.count %></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                <% end %><hr />
+              <% else %>
+                <span style="color: #575763;font-size: 20px;">No proposals for this Project</span><hr />
+              <% end %>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="proyect_view">
+              <div class="proyect_piece_detail_view_content" style="background: transparent; float: left;position: relative;left: 25px;">
+                <div class="postproyectimage">
+                  <h4><%= (@project.images.first.image_file_name.split(".").first).capitalize %></h4>
+                  <hr />
+                  <div class="midSec">
+                    <%= image_tag(@project.images.first.image.url(:original), :width => "400", :height => "320", :style=> 'margin:2px 3px;') %>
+                  </div>
+                </div>
+                <div class="postproyectbase">
+                  <% if current_user.role == 'creative' %>
+                    <% if !@project.bids.find_by_status('Winner').present? %>
+                      <h4><%= link_to "Sube Propuestas", new_project_bid_path(@project), :remote => true,:id => 'Proposal'%></h4>
+                      <br /><div id="proposal-info" style="position: relative;right: 255px;top: 18px;">
+
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <h4>Bases del Concurso</h4>
+                    <hr />
+                    <b><%= @project.project_recommenders.count %>&nbsp; Recommenders</b>
+                    <br /><br />
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                    <br />
+                    <br />
+                    <%= link_to image_tag("/images/recomendar.png"), project_recommender_constant_path(@project), :method => 'post', :remote => true %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="coments_piece_space">
+              <p><b><div id="comments_count"><%= @project.comments.count %> &nbsp;Comentarios</div></b> </p>
+              <hr/>
+              <div class="coment" style="margin-left:20px;">
+                <p><%= render :partial => "project_comments/form" %></p><hr/>
+              </div>
+              <div class="coment" id="course_comment">
+                <%= render :partial => "project_comments/index" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="fincontenidos"></div>
+  <hr />
+</div>

@@ -1,0 +1,76 @@
+<div id="project_images">
+  <div class="contents">
+    <table border="0" width="100%">
+      <tbody>
+        <tr>
+          <td style="position:relative; width: 240px;">
+            <br />
+            He participado en:
+            <br />
+            Fotografia:<%= Project.where("categories = 'Photography'").count%>
+            <br />
+            Ilustracion: <%= Project.where("categories = 'Illustration'").count%>
+            <br />
+            Animacion: <%= Project.where("categories = 'Animation'").count%>
+            <br />
+            <br />
+            <hr />
+            <br />
+            Actividad Reciente
+            <br />
+            Proyectos Presentados: 47
+            <br />
+            Piezas Posteadas: 52
+            <br />
+            Proyectos Sociales: 8
+            <br />
+            <% if @projects.present? %>
+              Ultima Proyectos : <%= Project.last.created_at.strftime("%d-%m-%Y") %>
+            <% else %>
+              Ultima Proyectos : 12-12-2005
+            <% end %>
+            <br />
+          </td>
+          <td>
+            <% if @projects.present? %>
+              <% for project in @projects %>
+                <% if project.images.present? %>
+                  <div class="slide_contpreview">
+                    <div class="slide_contpreview_ima">
+                      <%= link_to image_tag(project.images.first.image.url(:original), :style => 'width: 200px; height :150px;'), project_path(project) %>
+                    </div>
+                    <div class="slide_contpreview_text">
+                      <table>
+                        <tr>
+                          <td colspan="2">CL: <%= project.user.surname %></td>
+                          <td><%= project.categories %></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">Propuestas: <%= project.bids.count %></td>
+                          <td><%= image_tag("/images/like.png", :height => '12', :width => '10') %>&nbsp;&nbsp;<%= project.bids.count %></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">Vence: <%= project.end_date.strftime("%d/%m/%Y")%></td>
+                          <td><%= project.payment == 0 ? "SOCIAL" : (number_to_currency(project.payment))%></td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= image_tag("/images/slideportafolio.png") %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="fincontenidos"></div>
+  <hr />
+  <div style="margin: -30px 0px;">
+    <% if @projects.present? %>
+      <%= will_paginate @projects, :param_name => 'project_images', :page_links => false, :previous_label => 'Primero', :next_label => "Ultimo"  %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div style="margin: -12px -6px;float :right;">
+  <%=image_tag("close.jpeg",:width => 35,:height => 35, :style => "cursor: pointer;margin : -2px -9px -2px 0px;", :border =>0, :onclick => "hide_popup();")%>
+</div>
+<div><%=image_tag("coment.png",:width => 18,:height => 20, :style => "float:left;")%></div>
+<b style="float: left;">Comments:</b><br />
+<div style="float: left;">
+  <% @count = 1 %>
+  <% for comment in @user_comments %>
+    <br /><span style="float: left;"><%= @count %>.&nbsp;<b><%= comment.comment %></b>&nbsp;<i style="color:#126885;">commented by</i>&nbsp;<em style="color: green;"><%= comment.user.email%></em></span>
+      <% @count += 1 %>
+    <% end %>
+</div>

@@ -1,0 +1,6 @@
+<% for image in @project.images %>
+  <div style="float:left;" id="project_image_<%= image.id %>">
+    <span><%= image_tag(image.image.url(:original), :width => "90", :height => "90") %></span>
+    <%= link_to image_tag("closeX.gif"), project_image_path(@project,image), :remote => true, :method => 'DELETE' ,:confirm => 'are you sure?' %>&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+<% end %>

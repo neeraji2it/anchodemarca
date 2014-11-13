@@ -1,0 +1,55 @@
+#overlay{
+    display: none;
+    background-color:#000000;
+    height:500px;
+    left:0;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index: 1000;
+    width: 100000px;
+    height: 941px;
+    opacity: 0.5;
+}
+
+#popup_box {
+    background-color: #454545;
+    display: none;
+    font-size: 12px;
+    height: 404px;
+    left: 212.5px;
+    text-align: center;
+    top: 99px;
+    padding: 15px;
+    position: absolute;
+    width: 925px;
+    z-index: 1001;
+    background-repeat: repeat;
+    -moz-border-radius :10px;
+}
+
+#popup_box1 {
+    background-color: #FFFFFF;
+    display: none;
+    font-size: 12px;
+    height: auto;
+    left: 55%;
+    margin: -220px 0 0 -250px;
+    padding: 15px;
+    position: absolute;
+    top: 60%;
+    width: auto;
+    z-index: 1001;
+    background-repeat: repeat;
+    border: 3px solid grey;
+}
+
+.classname {
+    background-color:#155C5C;
+    border-radius:6px;
+    border:1px solid;
+    color:#ffffff;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+}

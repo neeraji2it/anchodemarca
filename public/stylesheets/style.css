@@ -1,0 +1,521 @@
+body{
+    background:#F2F2F2 url(/images/bannerback.jpg) repeat-x;
+    margin-top: 0px;
+    font-family:Arial, Helvetica, sans-serif
+}
+h1{
+
+    font-size:20px;
+    font-family:Verdana, Geneva, sans-serif;
+}
+h2{
+    color:#827777;
+    font-size:32px;
+    font-family:Verdana, Geneva, sans-serif;
+}
+h3 {
+    color:#575756;
+    font-size:20px;
+    margin-left:75px;
+}
+h4{
+    color:#575756;
+    font-size:20px;
+    margin: 0px;
+}
+
+select{
+    width: 150px;
+}
+/*****************Content divs*/
+.content{
+    background:Transparent;
+    margin:auto;
+    width:987px;
+}
+.contleft{
+    width:60%;
+    display:inline-table;
+}
+.contright{
+    width:30%;
+    display:inline-table;
+    vertical-align:top;
+}
+.otherregister{
+    background:url(/images/backregister.png);
+    width:335px;
+    height:336px;
+    padding: 30px 0px;
+    text-align: center;
+}
+/*********end content divs*/
+#banner{
+    background:url(/images/banner.jpg) repeat-x;
+    margin:auto;
+    width:1000px;
+    height:140px;
+    padding-top:0px;
+}
+.menubanner{
+    width:1000px;
+    height:25px;
+    padding-left:0;
+    padding-top:30px;
+    text-align:center;
+}
+.menubanneritem{
+    width:100px;
+    height:25px;
+    display:inline;
+    margin-left:50px;
+    color:#575756;
+    font: Helvetica;
+    font-size:14px;
+    font-weight:bold;
+}
+.menubanneritem a{
+    color: #575756 !important;
+}
+.barspace{
+    margin: 10px 0 0 0;
+}
+.menusupgris{
+    background:url(/images/menusupgris.jpg) no-repeat;
+    width:100%;
+    height: 72px;
+    margin: 10px 0 10px 0;
+    padding: 20px 0 0 10px;
+}
+.menusupgrisitem{
+    width:200px;
+    margin-left:30px;
+    display:inline;
+    color:#FFF;
+    font-size:16px;
+}
+.menugrislogin{
+    float: right;
+    height: 33px;
+    margin-right: 30px;
+    margin-top: 7px;
+    padding: 0px 0 0 20px;
+    width: 240px;
+}
+.menugrisaccountcreative{
+    background: url(/images/login-creative-on.png);
+    float: right;
+    height: 38px;
+    margin-right: 30px;
+    padding: 16px 10px 0 20px;
+    width: 238px;
+}
+.menugrisaccountclient{
+    background: url(/images/login-client-on.png);
+    float: right;
+    height: 36px;
+    margin-right: 35px;
+    padding: 16px 10px 0 20px;
+    width: 232px;
+}
+.menugrisaccounttutor{
+    background: url(/images/login-tutor-on.png);
+    float: right;
+    height: 36px;
+    margin-right: 35px;
+    padding: 16px 10px 0 20px;
+    width: 232px;
+}
+
+.menugrisaccountvisitor{
+    background: url(/images/viewer-active.png);
+    float: right;
+    height: 32px;
+    margin-right: 35px;
+    padding: 16px 10px 0 20px;
+    width: 235px;
+}
+.contents{
+    background: #E2E3E4;
+    width:965px;
+    margin:auto;
+    padding: 10px 10px;
+    float:left;
+    height: auto;
+}
+
+.contentss{
+    background: #E2E3E4;
+    width:965px;
+    margin:auto;
+    padding: 10px 10px;
+    float:left;
+    position: relative;
+    top: -5px;
+}
+.iniciocontenidos{
+    background:url(/images/iniciocontent.png) no-repeat;
+    height:12px;
+    margin: 0 0px;
+    float:left;
+    width:986px;
+}
+
+.ultimosproyectos{
+    background:url(/images/last_proyects.png) no-repeat;
+    height:45px;
+    width:986px;
+    float:left;
+}
+
+.cursosam{
+    background:url(/images/formacion_am.png) no-repeat;
+    height:45px;
+    width:986px;
+    float:left;
+}
+
+.fincontenidos{
+    background:url(/images/fincontent.png) no-repeat;
+    height:12px;
+    margin: -6px 0px 20px 0px;
+    float:left;
+    width:986px;
+}
+/*******************bar profile*/
+.rankingbar{
+    float:left;
+    padding: 25px 20px 0 20px;
+}
+.rankingbar td{
+    padding-right:20px;
+}
+
+/*******************sections home*/
+.seccionbarracliente{
+    background:url(/images/barraclientes.png) no-repeat;
+    height:60px ;
+    float:left;
+    width:986px;
+}
+.seccionbarracreativo{
+    background:url(/images/barracreativos.png) no-repeat;
+    height:60px ;
+    float:left;
+    width:986px;
+}
+.seccionbarraformacion{
+    background:url(/images/barraformacion.png) no-repeat;
+    height:60px;
+    float:left;
+    width:986px;
+}
+.seccioneshomefiltros{
+    width:150px;
+    height:300px;
+    display:inline;
+}
+.seccioneshomeslides{
+    width:750px;
+    height:300px;
+    display:inline;
+}
+.news
+{
+    width:100%;
+    height: 200px;
+    padding: 20px;
+    width: 95%;	
+    float:left;
+}
+.newscols{
+    width:47%;
+    display:inline-block;
+    margin: 0 10px
+}
+
+.ancho-icons{
+    display: inline-block;
+    left: 30px;
+    position: relative;
+    width: 17%;
+}
+.footer{
+    background:transparent;
+    height:50px;
+    float:left;
+}
+
+/*******************section to register*/
+.menuregistro{
+    z-index: 1001;
+    text-decoration: none;
+}
+.menuregistro img {
+    border: 0px;
+}
+.menuregistro span {
+    position: absolute;
+    text-decoration: none;
+    visibility: hidden;
+    border: 0px;
+    top:0px;
+    left:0px;
+}
+.menuregistro:hover span {
+    visibility: visible;
+    overflow:visible;
+    z-index: 1002;
+}
+/********************Styles to forms*/
+form{
+    margin: -6px;
+    padding: 0px;
+}
+.barraportafolio{
+    background:url(/images/portafolio.png) no-repeat;
+    height:45px;
+    width:986px;
+    float:left;
+}
+.barraproyectos{
+    background:url(/images/proyectosam.png) no-repeat;
+    height:45px;
+    width:986px;
+    float:left;
+}
+.postproyectimage{
+    height:320px;
+    width:400px;
+    float:left;
+    text-align:left;
+}
+.postproyectbase{
+    height:350px;
+    width:280px;
+    float:right;
+    text-align:left;
+}
+.postproyectdescription{
+    margin-bottom:20px;
+    width:700px;
+    float:left;
+    text-align:left;
+}
+/* client section*/
+.barraproyectosposteados{
+    background:url(/images/proyectosposteados.png) no-repeat;
+    height:45px;
+    width:986px;
+    float:left;
+}
+.barramisproyectosposteados{
+    background:url(/images/misproyectosposteados.png) no-repeat;
+    height:45px;
+    width:986px;
+    float:left;
+}
+.coments_piece_space{
+    float: left;
+    width:600px;
+}
+.coment{
+    float:left;
+    width:550px;
+}
+/*tutor section*/
+.barracursosposteados{
+    background:url(/images/cursos_posteados.png) no-repeat;
+    height:45px;
+    width:986px;
+    float:left;
+}
+
+/***********************************************************END SECTIONS FOR USERS****************************************/
+tr{
+    vertical-align:top;
+}
+td{
+    vertical-align:top;
+}
+/* portafolio_proyect_view */
+.proyect_view{
+    width:450px;
+}
+.proyect_piece_view_content{
+    width: 427px;
+    background: #FFF;
+    margin:auto;
+    text-align:center;
+    padding: 20px 0 20px 0;
+}
+.about_col{
+    width: 200px;
+    margin-right:50px;
+    padding-top:40px;
+}
+.proyect_piece_view_notes{
+    text-align: right;
+    margin-top:20px;
+    margin-right:20px;
+}
+.other_proyects_col{
+    width:250px;
+    background:#fff;
+    float:right;
+    padding: 30px 0;
+    margin-bottom:1px;
+}
+.other_proyects_view{
+    width: 220px;
+    float:right;
+}
+.proyect_piece_detail_view_content{
+    width: 700px;
+    background: #FFF;
+    margin:auto;
+    text-align:center;
+    padding: 20px 0 20px 0;
+    float:left;
+}
+
+/*section to contents general*/
+.content_left{
+    float: left;
+    position: relative;
+    top: -30px;
+}
+.content_right{
+    float: right;
+    position: relative;
+    top: 142px;
+    height: 265px;
+}
+.bar_proyect_client{
+    background: url(/images/bar_proyectos_cliente.png) no-repeat;
+    height:45px;
+}
+.bar_proyect_creative{
+    background: url(/images/bar_proyectos_creativo.png) no-repeat;
+    height:45px;
+}
+.bar_proyect_tutor{
+    background: url(/images/bar_cursos.png) no-repeat;
+    height:45px;
+}
+
+/*section searchs*/
+.searchmenu{
+    text-align: center;
+}
+
+/* menu desplegable*/
+.menu {
+    height: 70px;
+    /*color:#F00;*/
+}
+.menu li {
+    float: left;
+    margin-left: -40px;
+    margin-top: -10px;
+    list-style:none;
+}
+
+.menu ul li ul {
+    display: none;
+    background: #9B9B99;
+    opacity: 0.9;
+    padding: 10px 0;
+    position: absolute; /* Muy importante */
+    width: 115px;
+}
+
+.menu ul li:hover ul {
+    display: block;
+}
+.menu ul li ul li {
+    display: block;
+    float: none;
+    position: relative;
+    color: #f00;
+    padding: 0 10px;
+    line-height: 30px;
+}
+.menu ul li ul li a{
+    color: #FFFFFF;
+    line-height: 35px;
+    margin-left: 45px;
+}
+.menu ul li ul li a:hover{
+    color: #FFF;
+}
+.menu ul li ul span {
+    background: url('flecha.png');
+    margin: -20px 50px;
+    width: 20px;
+    height: 10px;
+    position: absolute;
+}
+/********************** styles to slide in home ***************************/
+.slide_content,.slide_contents{
+    width:750px;
+    background: transparent;
+    height:270px;
+    display:inline;
+    float:right;
+    position: relative;
+    left: -37px;
+    top: -14px;
+}
+.slide_contents{
+    top: -140px;
+    left: 0px;
+}
+.slide_flechas{
+    width: 30px;
+    display:inline;
+}
+.slide_flechas_izq{
+    background: url("/images/right_row.png") no-repeat;
+    float:left;
+    width:15px;
+    height: 30px;
+    margin-top:120px;
+}
+.slide_flechas_der{
+    background: url("/images/left_row.png") no-repeat;
+    float:right;
+    height: 30px;
+    width:15px;
+    margin-top:120px;
+}
+.slide_contpreview{
+    background: url("/images/content.png");
+    height:240px;
+    width:210px;
+    padding-bottom:10px;
+    padding-left:15px;
+    padding-right:10px;
+    padding-top:10px;
+    display:inline-block;
+}
+.slide_contpreview_text table{
+    color:#4D4D4D;
+    font:Verdana;
+    font-size: 10px;
+    margin:0px;
+    width: 100%;
+    height:100%;
+
+}
+.slide_contpreview_ima{
+    border: 1px solid #555;
+    height:150px;
+    width:200px;
+    background: #ddd;
+}
+.slide_contpreview_text{
+    border: 0px solid #00F;
+    height:90px;
+    width:200px;
+}

@@ -1,0 +1,28 @@
+<div id="project_form">
+  <label for="project_type" style="font-size:18px;color: #414141;">Category:</label>
+  <%= select_tag :project_category_id, options_for_select([["Seleccionar",""]]+Category.find_all_by_parent_id(nil).collect{|category| [category.category, category.id]},:selected => (params[:project] ? params[:project][:category_id] : '')), :onchange => "project_category(this)"%>
+</div>
+<br /><br /><br />
+<div id="project_form_div">
+  <% if params[:project] %>
+    <%= render :partial => "get_project" %>
+  <% end %>
+</div>
+
+<script>
+  function project_category(s) {
+    if (jQuery(s).val() != '') {
+      $.ajax({
+        url: '/projects/' + jQuery(s).val() + '/get_project',
+        success: function(data) {
+          $('#project_form_div').html(data);
+        }
+      });
+    }
+  }
+</script>
+<style>
+  #project_form .form_error{
+    margin-left: 1px;
+  }
+</style>

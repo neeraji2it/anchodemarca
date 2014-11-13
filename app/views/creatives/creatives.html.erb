@@ -1,0 +1,61 @@
+<div class="iniciocontenidos"></div>
+<div class="contents" style="padding: 0 10px;">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <%= image_tag(current_user.avatar.url(:original) , :style=>"width:120px;height: 120px; margin:1px;border-radius: 10px;") %>
+        </td>
+        <td style="margin-left: 20px; width:300px;">
+          <h4 style="margin:0px; padding:0px;"><%= current_user.user_name%> / <%= current_user.surname %></h4>
+          <%= current_user.skills.html_safe %>
+          <br />
+          <%= current_user.city.city%> , <%= current_user.country.country %>
+          <br />
+          <%= image_tag("/images/recomendar.png") %>
+        </td>
+        <td>
+          <table style="margin-left: 200px;">
+            <tbody>
+              <tr>
+                <td>
+                  <%= image_tag('/images/views.png') %>
+                  <%= current_user.user_views.count %>
+                </td>
+                <td>
+                  <%= image_tag('/images/like.png') %>
+                  <%= current_user.sent_likes.count %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <% if current_user.received_comments.present? %>
+                    <%= link_to_function image_tag('/images/coment.png'), "show_comment('#{current_user.id}')" %>
+                  <% else %>
+                    <%= image_tag('/images/coment.png') %>
+                  <% end %>
+                  <%= current_user.received_comments.count %>
+                </td>
+                <td>
+                  <%= image_tag('/images/cop.png') %>
+                  3
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <%= image_tag('/images/star.png') %>
+                  <%= current_user.post_work %>, en <%= current_user.total %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<div class="barraportafolio"></div>
+<%= render :partial => 'project_bids' %>
+<div class="barraproyectos"></div>
+<%= render :partial => 'project_images' %>

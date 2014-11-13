@@ -1,0 +1,7 @@
+<div class="iniciocontenidos"></div>
+<div class="contents">
+  <%= form_for @project, :html => {:multipart => true} do |f| %>
+    <%= render :partial => 'form',:locals => {:f => f} %>
+  <% end %>
+</div>
+<div class="fincontenidos"></div>

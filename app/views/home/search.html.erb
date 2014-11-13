@@ -1,0 +1,144 @@
+<div class="iniciocontenidos"></div>
+<div class="contents">
+  <div class="searchmenu">
+    <div id="registros" class="window" style="text-align: center;">
+      <br />
+      <%=image_tag("/images/registrarsecomo.png") %>
+      <br />
+      <br />
+      <div id="search_login">
+        <%= link_to_function image_tag('/images/buscar-clientes-on.png',:class=>"sign-in"),'',  :id => "client_on",:style => "display :none;" %>
+        <%= link_to_function image_tag('/images/buscar-clientes-on.png',:class=>"sign-in"),'',  :id => "client_off" %>
+        <%= link_to_function image_tag('/images/buscar-creativos-off.png'), "", :id => "creative_off" %>
+        <%= link_to_function image_tag('/images/buscar-creativos-on.png'), "", :id => "creative_on",:style => "display :none;" %>
+        <%= link_to_function image_tag('/images/buscar-cursos-off.png'), "", :id => "tutor_off" %>
+        <%= link_to_function image_tag('/images/buscar-cursos-on.png'), "", :id => "tutor_on",:style => "display :none;" %>
+      </div>
+    </div>
+  </div>
+  <div id="seachclient">
+    <table>
+      <tr>
+        <td>Empresa:</td>
+        <td>Disciplina:</td>
+        <td>Presupuesto:</td>
+        <td>Fecha:</td>
+      </tr>
+      <tr>
+        <td>
+          <%= select_tag :categories, options_for_select([["Select",""]]+User.select("DISTINCT company_name").where(:role => 'client').collect{|c| [c.company_name.to_s.upcase, c.company_name]}, params[:categories]), :onChange => "client_company(this)" %>
+        </td>
+        <td>
+          <%= select_tag :categories, options_for_select([["Select",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "client_categories(this)" %>
+        </td>
+        <td>
+          <%= select_tag :categories, options_for_select([["Select",""],["1-100","100"],["101-500","500"],["All","all"]], params[:categories]), :onChange => "client_budget(this)" %>
+        </td>
+        <td>
+          <%= select_tag :categories, options_for_select([["Select",""],["Available","available"],["Next Month","next month"],["Expired","expired"]]), :onChange => "client_date(this)" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="searchcreative">
+    <table>
+      <tr>
+        <td>Creative:</td>
+        <td>Disciplina:</td>
+        <td>Popularidad:</td>
+        <td>Reputation:</td>
+      </tr>
+      <tr>
+        <td>
+          <%= select_tag :categories, options_for_select([["Select",""]]+User.where(:role => 'creative').collect{|c| [c.surname.to_s.upcase, c.surname]}, params[:categories]), :onChange => "creative_views(this)" %>
+        </td>
+        <td>
+          <%= select_tag :categories, options_for_select([["Select",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "creative_categories(this)" %>
+        </td>
+        <td>
+          <%= select_tag :categories, options_for_select(TOP, params[:categories]), :onChange => "creative_likes(this)" %>
+        </td>
+        <td>
+          <%= select_tag :categories, options_for_select(TOP, params[:categories]), :onChange => "creative_reputation(this)" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="searchcursos">
+    <table>
+      <tr>
+        <td>Tutor:</td>
+        <td>Tema:</td>
+        <td>Popularidad:</td>
+        <td>Reputation:</td>
+      </tr>
+      <tr>
+        <td>
+          <%= select_tag :categories, options_for_select([["Select",""]]+User.where(:role => 'tutor').collect{|c| [c.surname.to_s.upcase, c.surname]}, params[:categories]), :onChange => "tutor_views(this)"  %>
+        </td>
+        <td>
+          <%= select_tag :categories, options_for_select([["Select",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "tutor_categories(this)" %>
+        </td>
+        <td>
+          <%= select_tag :categories, options_for_select([["Select",""]]) %>
+        </td>
+        <td>
+          <%= select_tag :categories, options_for_select(TOP, params[:categories]), :onChange => "tutor_reputation(this)" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="search_all">
+
+  </div>
+</div>
+<div class="fincontenidos"></div>
+<script>
+  $('#client_off').hover(function() {
+    $('#client_off').hide();
+    $('#client_on').show();
+    $('#tutor_off').show();
+    $('#tutor_on').hide();
+    $('#creative_on').hide();
+    $('#creative_off').show();
+  });
+
+  $('#client_on').click(function() {
+    $('#client_on').show();
+    $('#seachclient').show();
+    $('#searchcreative').hide();
+    $('#searchcursos').hide();
+  })
+
+  $('#creative_on').click(function() {
+    $('#creative_on').show();
+    $('#seachclient').hide();
+    $('#searchcreative').show();
+    $('#searchcursos').hide();
+  })
+
+  $('#tutor_on').click(function() {
+    $('#tutor_on').show();
+    $('#seachclient').hide();
+    $('#searchcreative').hide();
+    $('#searchcursos').show();
+  })
+
+  $('#creative_off').hover(function() {
+    $('#client_off').show();
+    $('#client_on').hide();
+    $('#tutor_off').show();
+    $('#tutor_on').hide();
+    $('#creative_on').show();
+    $('#creative_off').hide();
+  });
+
+  $('#tutor_off').hover(function() {
+    $('#tutor_off').hide();
+    $('#tutor_on').show();
+    $('#client_off').show();
+    $('#client_on').hide();
+    $('#creative_on').hide();
+    $('#creative_off').show();
+  });
+</script>

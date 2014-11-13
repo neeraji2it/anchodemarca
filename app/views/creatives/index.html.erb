@@ -1,0 +1,28 @@
+<div class="bar_proyect_creative"> </div>
+<div class="contents">
+  <div class="content_left"><br />
+    <div class="seccioneshomefiltros"><br />
+      <label>PERFILES POR</label><br />
+      <div class="input-container"><%= select_tag :view, options_for_select([["Seleccionar", ""],["Empresa","task"],["Reputacion","reputation"],["Preferidos","likes"],["Popularidad","views"]]), :onchange=>"select_type(this.value)" %><br /><br />
+        <div id="creative-category">
+          <%= select_tag :category, options_for_select(["Seleccionar",""]) %>
+        </div>
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">CREATIVES REGISTERADAS</label><br />
+        <% i = User.where("role = 'creative'").count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">PIEZAS POSTEADAS</label><br />
+        <% i = Bid.count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">PIEZAS CONCURSANDO</label><br />
+        <% i = Bid.count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">PIEZAS PROYECTOS SOCIALES</label><br />
+        <%= number_with_delimiter(count) %>
+      </div>
+    </div>
+  </div>
+  <div id="creative_views"></div>
+  <div id="creative_categories"></div>
+  <%= render :partial => 'index' %>
+</div>
+<div class="fincontenidos"></div>

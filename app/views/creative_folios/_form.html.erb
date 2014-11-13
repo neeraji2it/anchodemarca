@@ -1,0 +1,51 @@
+<table cellspacing="4" cellpadding="0" style="margin-left: 0px;">
+  <tr>
+    <td>Title:<span style=color:red;>*</span></td>
+    <td>
+      <div class="input-container"><%= f.text_field :title, :style => "margin-left: 0px;" %></div>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= validation_error(@folio.errors['title']) %></td>
+  </tr>
+  <tr>
+    <td>Technique:<span style=color:red;>*</span></td>
+    <td>
+      <div class="input-container"><%= f.select :technique, options_for_select([["Seleccionar",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, :selected => f.object.technique)  %></div>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= validation_error(@folio.errors['technique']) %></td>
+  </tr>
+  <tr>
+    <td>Upload Porta Folio:<span style=color:red;>*</span></td>
+    <td>
+      <%= f.file_field :folio %>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= @folio.new_record? ? " " : (image_tag(@folio.folio.url(:original), :width => '40', :height => '32')) %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= validation_error(@folio.errors["folio"])%></td>
+  </tr>
+  <tr><td></td><td style="float: left;position: relative;top: -6px;">(<em style="font-size: 10px;">Only allow Designs:</em>&nbsp;<span style="color: red;font-size: 10px;">'png', 'jpg', 'jpeg','gif'</span>)</td></tr>
+  <tr>
+    <td></td>
+    <td><%= f.submit "Subir Portafolio", :class => 'classname'%></td>
+    <td></td>
+  </tr>
+</table>
+<script>
+  $(document).ready(function() {
+    $("input[type='submit']").attr("disabled", false);
+    $("form").submit(function() {
+      $("input[type='submit']").attr("disabled", true).val("Please wait...");
+      return true;
+    });
+  });
+</script>

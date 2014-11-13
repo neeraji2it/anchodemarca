@@ -1,0 +1,10 @@
+<% if params[:id] == 'task' %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "creative_categories(this)" %>
+<% elsif params[:id] == "reputation" %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""],["Top 10","top"],["Todos","all"]], params[:categories]), :onChange => "creative_reputation(this)" %>
+<% elsif params[:id] == "likes" %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""],["Top 10","top"],["Todos","all"]]) %>
+<% elsif params[:id] == "views" %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""],["Top 10","top"],["Todos","all"]], params[:categories]), :onChange => "creative_views(this)" %>
+<% end %>
+

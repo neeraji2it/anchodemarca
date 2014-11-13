@@ -1,0 +1,186 @@
+<div class="iniciocontenidos"></div>
+<div class="contents" style="padding: 0 10px;">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <%= image_tag(@user.avatar.url(:original) , :style=>"width:120px;height: 120px; margin:1px;border-radius: 10px;") %>
+        </td>
+        <td style="margin-left: 20px; width:300px;">
+          <h4 style="margin:0px; padding:0px;"><%= @user.user_name%> / <%= @user.surname %></h4>
+          <%= @user.skills %>
+          <br />
+          <%= @user.city.city%> , <%= @user.country.country %>
+          <br />
+          <% if current_user.role == 'client' or current_user.role == 'visitor'  %>
+            <%= link_to image_tag("/images/recomendar.png"), recommender_constant_path(@user),:remote => true, :method => :post%>
+          <% else %>
+            <%= image_tag("/images/recomendar.png") %>
+          <% end %>
+        </td>
+        <td>
+          <table style="margin-left: 200px;">
+            <tbody>
+              <tr>
+                <td>
+                  <%= image_tag('/images/views.png') %>
+                  <%= @user.user_views.count %>
+                </td>
+                <td>
+                  <%=link_to image_tag('/images/like.png'), like_constant_path(@user), :remote => true, :method => :post %>
+                  <%= @user.sent_likes.count %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <%=link_to_function image_tag('/images/coment.png'), "comment_path('#{@user.id}')" %>
+                  <%= @user.received_comments.count %>
+                </td>
+                <td>
+                  <%= image_tag('/images/cop.png') %>
+                  3
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <%= image_tag('/images/star.png') %>
+                  53,45 en 260
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<div class="barraportafolio"></div>
+<div class="contents">
+  <table border="0" width="100%">
+    <tbody>
+      <tr>
+        <td style="position:relative; width: 240px;">
+          <br />
+          Mis campos de accion
+          <br />
+          Fotografia:<%= Project.where("categories = 'Photography'").count%>
+          <br />
+          Ilustracion: <%= Project.where("categories = 'Illustration'").count%>
+          <br />
+          Animacion: <%= Project.where("categories = 'Animation'").count%>
+          <br />
+          <br />
+          <hr />
+          <br />
+          Actividad Reciente
+          <br />
+          Imagenes Portafolio: <%= Bid.count %>
+          <br />
+          Ultima Imagen: <%= Bid.last.created_at.strftime("%d-%m-%Y") if Bid.exists? %>
+          <br />
+          Me gusta: <%= @user.received_likes.count %>
+          <br />
+          Me han Recommendado: <%= @user.sent_recommenders.count %>
+          <br />
+          He Recommendado: <%= @user.received_recommenders.count %>
+          <br />
+          Miembro desde : <%= @user.created_at.strftime("%d-%m-%Y") %>
+          <br />
+        </td>
+        <td>
+          <% if @folios.present? %>
+            <% for bid in @folios %>
+              <div class="slide_contpreview">
+                <div class="slide_contpreview_ima">
+                  <%= image_tag(bid.folio.url(:original), :style => 'width: 200px; height :150px;') %>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <span style="color: #575763;font-size: 20px;left: 125px;position: relative;text-align: center;top: 180px;">You haven't added any designs to your folio yet.</span>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<div class="barraproyectos"></div>
+<div class="contents">
+  <table border="0" width="100%">
+    <tbody>
+      <tr>
+        <td style="position:relative; width: 240px;">
+          <br />
+          He participado en:
+          <br />
+          Fotografia:<%= Project.where("categories = 'Photography'").count%>
+          <br />
+          Ilustracion: <%= Project.where("categories = 'Illustration'").count%>
+          <br />
+          Animacion: <%= Project.where("categories = 'Animation'").count%>
+          <br />
+          <br />
+          <hr />
+          <br />
+          Actividad Reciente
+          <br />
+          Proyectos Presentados: 47
+          <br />
+          Piezas Posteadas: 52
+          <br />
+          Proyectos Sociales: 8
+          <br />
+          Ultima Proyectos : <%= Project.exists? ? (Project.last.created_at.strftime("%d-%m-%Y")) : "2013-10-12" %>
+          <br />
+        </td>
+        <td>
+          <% if @projects.present? %>
+            <% for project in @projects %>
+              <% if project.images.present? %>
+                <div class="slide_contpreview">
+                  <div class="slide_contpreview_ima">
+                    <%= image_tag(project.images.first.image.url(:original), :style => 'width: 200px; height :150px;') %>
+                  </div>
+                  <div class="slide_contpreview_text">
+                    <table>
+                      <tr>
+                        <td colspan="2">CR:&nbsp;<%= project.user.name%></td>
+                        <td><%= project.topic %></td><!-- Tutorial name-->
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <%= image_tag(("/images/star.png"), :border => 'none', :height => '12px;', :width => '12px;')%>
+                          <%= project.user.post_work %>, en <%= project.user.total %>
+                        </td>
+                        <td><%= project.categories%></td>
+                      </tr>
+                      <tr>
+                        <td>No Propouse:
+                          <%= project.bids.count %>&nbsp;</td><!--views of this piece -->
+                        <td><%= image_tag('/images/coment.png') %>
+                          <%= project.comments.count %>&nbsp;</td><!-- coments to piece -->
+                      </tr>
+                      <tr>
+                        <% if project.payment == 0 %>
+                          <td colspan="3" style="color: green;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Social Project</td>
+                        <% else %>
+                          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$<%= project.payment %>.00</td>
+                        <% end %>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= image_tag("/images/slideportafolio.png") %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<hr />

@@ -1,0 +1,32 @@
+<div class="bar_proyect_tutor"> </div>
+<div class="contents">
+  <div class="content_left"><br />
+    <div class="seccioneshomefiltros"><br />
+      <div class="input-container"><%= select_tag :view, options_for_select([["Seleccionar", ""],["Temas de Interes","topic"],["Nombre del Docente","name"],["Reputacion","reputation"],["Fecha","date"]]), :onchange=>"file_type(this.value)" %><br /><br />
+        <div id="tutor-category">
+          <%= select_tag :category, options_for_select(["Seleccionar",""]) %>
+        </div>
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">TUTORS REGISTERADAS</label><br />
+        <% i = User.where("role = 'tutor'").count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS GRATUITOS</label><br />
+        <% i = Course.where("course_type = 'Free'").count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS VIGENTES</label><br />
+        <% i = Course.count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS REALIZADOS</label><br />
+        <% i = Course.count %>
+        <%= number_with_delimiter(i) %><br />
+        <label style="float: left;font-size: 10px;position: relative;top: 6px;">ESTUDIANTES ATENDIDOS</label><br />
+        <% i = Participate.count %>
+        <%= number_with_delimiter(i) %><br />
+      </div>
+    </div>
+  </div>
+  <div id="tutor_views" style="position: relative;float: left;left: 20px;"></div>
+  <div id="tutor_categories" style="position: relative;float: left;left: 20px;"></div>
+  <%= render :partial => 'index' %>
+</div>
+<div class="fincontenidos"></div>
+<hr />

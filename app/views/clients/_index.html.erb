@@ -1,0 +1,36 @@
+<div id="client_index">
+  <div class="content_right">
+    <div class="slide_contents">
+      <% if @projects.present? %>
+        <% for project in @projects %>
+          <div class="slide_contpreview">
+            <div class="slide_contpreview_ima">
+              <%= image_tag(project.images.first.image.url(:original),:width => '200px;',:height => '150px;') %>
+            </div>
+            <div class="slide_contpreview_text">
+              <table>
+                <tr>
+                  <td colspan="2">CL: <%= project.user.surname %></td>
+                  <td><%= project.topic %></td>
+                </tr>
+                <tr>
+                  <td colspan="2">Propuestas: <%= project.bids.count %></td>
+                  <td><%= image_tag("/images/like.png", :height => '12', :width => '10') %>&nbsp;&nbsp;<%= project.bids.count %></td>
+                </tr>
+                <tr>
+                  <td colspan="2">Vence: <%= project.end_date.strftime("%d/%m/%Y")%></td>
+                  <td><%= project.payment == 0 ? "SOCIAL" : (number_to_currency(project.payment))%></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <%= image_tag("/images/slidecliente.png") %>
+      <% end %>
+    </div>
+  </div>
+  <% if @projects.exists? %>
+    <%= will_paginate @projects, :param_name => 'client_page', :page_links => false, :previous_label => 'Primero', :next_label => "Ultimo"  %>
+  <% end %>
+</div>

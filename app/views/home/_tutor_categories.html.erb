@@ -1,0 +1,11 @@
+<% if params[:id] == 'topic' %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "tutor_categories(this)" %>
+<% elsif params[:id] == "name" %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""]]+User.where(:role => 'tutor').collect{|c| [c.surname.to_s.upcase, c.surname]}, params[:categories]), :onChange => "tutor_views(this)"  %>
+<% elsif params[:id] == "reputation" %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""],["Top 10","top"],["Todos","all"]]) %>
+<% elsif params[:id] == "date" %>
+  <%= select_tag :categories, options_for_select([["Seleccionar",""],["Disponible","available"],["Proximo mes","next month"],["Por expirar","expired"]]), :onChange => "tutor_course(this)" %>
+<% end %>
+
+

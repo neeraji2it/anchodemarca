@@ -1,0 +1,145 @@
+<div class="iniciocontenidos"></div>
+<div class="contents" style="padding: 0 10px;">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <%= image_tag(current_user.avatar.url(:original) , :style=>"width:120px;height: 120px; margin:1px;border-radius: 10px;") %>
+        </td>
+        <td style="margin-left: 20px; width:300px;">
+          <h4 style="margin:0px; padding:0px;"><%= current_user.user_name%> / <%= current_user.surname %></h4>
+          Diseñadora Grafica/Publicista
+          <br />
+          <% if !current_user.country_id.blank? and !current_user.city_id.blank? %>
+            <%= current_user.city.city%> , <%= current_user.country.country %>
+          <% end %>
+          <br />
+          <%= image_tag("/images/recomendar_tutor.png") %>
+        </td>
+        <td>
+          <table style="margin-left: 200px;">
+            <tbody>
+              <tr>
+                <td>
+                  <%= image_tag("/images/views.png") %>
+                  <%= current_user.user_views.count %>
+                </td>
+                <td>
+                  <%= image_tag("/images/like.png") %>
+                  <%= current_user.sent_likes.count %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <% if current_user.received_comments.present? %>
+                    <%= link_to_function image_tag('/images/coment.png'), "show_comment('#{current_user.id}')" %>
+                  <% else %>
+                    <%= image_tag('/images/coment.png') %>
+                  <% end %>
+                  <%= current_user.received_comments.count %>
+                </td>
+                <td>
+                  <%= image_tag("/images/cop.png") %>
+                  3
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <%= image_tag("/images/star.png") %>
+                  <%= current_user.post_class %>, en <%= current_user.total %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<div class="barracursosposteados"></div>
+<div class="contents">
+  <table border="0" width="100%">
+    <tbody>
+      <tr>
+        <td style="position:relative; width: 240px;">
+          <br />
+          Mis campos de accion
+          <br />
+          Fotografia:<%= Course.where("categories = 'Photography'").count%>
+          <br />
+          Ilustracion: <%= Course.where("categories = 'Illustration'").count%>
+          <br />
+          Animacion: <%= Course.where("categories = 'Animation'").count%>
+          <br />
+          <br />
+          <hr />
+          <br />
+          Actividad Reciente
+          <br />
+          Cursos Posteados: <%= Course.where("user_id = '#{current_user.id}'").count %>
+          <br />
+          <% if Course.exists? %>
+            Ultimo Curso: <%= Course.last.created_at.strftime("%d-%m-%Y") %>
+          <% else %>
+            Ultimo Curso: 12-04-2012
+          <% end %>
+          <br />
+          Comentarios dador: <%= Comment.where("commentable_id IS NOT NULL").count %>
+          <br />
+          Me han Recomendado: <%= current_user.received_recommenders.count %>
+          <br />
+        </td>
+        <td>
+          <% if @courses.present? %>
+            <% for course in @courses %>
+              <div class="slide_contpreview">
+                <div class="slide_contpreview_ima">
+                  <% if course.images.present? %>
+                    <%= link_to image_tag(course.images.first.image.url(:original), :style => 'width: 200px; height :150px;'), course_path(course) %>
+                  <% else %>
+                    <%= link_to image_tag(("/images/images.jpeg"), :width => '200px', :height => '150px'), course_path(course) %>
+                  <% end %>
+                </div>
+                <div class="slide_contpreview_text">
+                  <table>
+                    <tr>
+                      <td colspan="2">TT: <%= course.user.name %></td>
+                      <td><%= course.title %></td><!-- Tutorial name-->
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <%= image_tag(("/images/star.png"), :border => 'none', :height => '12px;', :width => '12px;')%>
+                        <%= course.user.post_class %>, en <%= course.user.total %>
+                      </td>
+                      <td><%= course.categories %></td>
+                    </tr>
+                    <tr>
+                      <td><%= image_tag('/images/views.png') %>
+                        <%= course.user.sent_likes.count %></td><!--views of this piece -->
+                      <td><%= image_tag('/images/coment.png') %>
+                        <%= course.comments.count %></td><!-- coments to piece -->
+                      <td><%= image_tag('/images/like.png') %>
+                        <%= course.project_likes.count %></td><!-- likes to Piece -->
+                    </tr>
+                    <tr>
+                      <td colspan="2"> No to Intesates</td>
+                      <td><%= link_to "Edit", edit_course_path(course), :style => 'color: black;'%></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <%= image_tag("/images/slideportafolio.png") %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="fincontenidos"></div>
+<hr />
+<% if @courses.present? %>
+  <%= will_paginate @courses, :param_name => 'tutor_page',:page_links => false, :previous_label => 'Primero', :next_label => "Ultimo" %>
+<% end %>

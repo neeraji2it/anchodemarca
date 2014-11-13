@@ -1,0 +1,43 @@
+<script type="text/javascript" src="/javascripts/jcarousel/jquery.jcarousel.js"></script>
+<script type="text/javascript" src="/javascripts/jcarousel/jquery.jcarousel.min.js"></script>
+<div class="slide_content">
+  <% if @projects.present? %>
+    <ul class="jcarousel-skin-tango" id="client_slide">
+      <% for project in @projects %>
+        <% if project.images.present? %>
+          <li>
+            <div class="slide_contpreview">
+              <div class="slide_contpreview_ima">
+                <%= image_tag(project.images.first.image.url(:original), :style => 'width: 200px; height :150px;') %>
+              </div>
+              <div class="slide_contpreview_text">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td colspan="2">CL:&nbsp;<%= project.user.name%></td>
+                      <td><%= project.topic%></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">No Propouse:&nbsp;<%=project.bids.count %></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">Vence:&nbsp;<%=project.created_at.strftime('%d/%m/%Y')%></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% else %>
+    <span style="color: red;float: left;font-size: 20px;left: 170px;position: relative;top: 70px;">No Projects</span>
+  <% end %>
+</div>
+<script>
+  jQuery(document).ready(function() {
+    jQuery('#client_slide').jcarousel({scroll: 1});
+  });
+</script>
