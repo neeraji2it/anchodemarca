@@ -10,7 +10,7 @@ class PasswordsController < Devise::PasswordsController
       end
     else
       render :update do |page|
-        page << "$('#error3').html('Invalid Email');"
+        page.alert('Invalid Email')
       end
     end
   end

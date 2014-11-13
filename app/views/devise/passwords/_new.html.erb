@@ -1,7 +1,7 @@
 <div id="div-regForm">
   <div class="form-title"><%= "¿Olvidó su contraseña?" %></div>
 
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post },:id=>"regForm") do |f| %>
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post },:id=>"regForm", :remote => true) do |f| %>
     <div id="error"><%= devise_error_messages! %></div>
     <table>
       <tr>

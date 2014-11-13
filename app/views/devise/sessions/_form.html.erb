@@ -1,106 +1,53 @@
 <div id="login_form1">
-  <div style="float: right;position: relative;right: 14px;top: -6px;">
-    <%=link_to image_tag('/images/close button.png'), " ", :class => "close" , :style => "cursor: pointer;margin : -14px -21px;"%>
-  </div>
-  <div id="error" style="display :none;color :red; font-size: 14px;position: relative;z-index: 1001;">Invalid Email/Password</div>
-  <div id="error1" style="display :none;color :red;font-size: 14px;position: relative;z-index: 1001;">You need to sign in or sign up before continuing. </div>
-  <%= form_for(resource, :as => resource_name, :url => user_session_path,:remote => true) do |f| %>
-    <table id="new_login">
-      <tr>
-        <td>
-          <br /><%= image_tag("/images/ingresar.png") %>   <!-- title to login-->
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><%= f.label :email,"Email:" %></td>
-      </tr>
-      <tr>
-        <td><%= f.email_field :email %></td>
-      </tr>
-      <tr>
-        <td style="float: left;left: 120px;position: relative;"><%= f.label :password,"Contrasena:" %></td>
-      </tr>
-      <tr>
-        <td><%= f.password_field :password %></td>
-      </tr>
-      <tr>
-        <td><%= f.submit "",:id=>"greenButton"%><%= link_to_function "¿Olvidó su contraseña?", "password()" %><br /></td>
-      </tr>
-      <tr>
-        <td style="color :white;">
-      <%= "¿Eres nuevo?"%> <u><%= link_to "Registrar", '#registro', :name => 'modal' %></u>
-      </td>
-      </tr>
-    </table>
-  <% end %>
-  <script>
-    $(document).ajaxError(function(e, XHR, options) {
-      val1 = $('#user_email').val();
-      val2 = $('#user_password').val();
-      if (XHR.status == 401) {
-        if (val1 != '' || val2 != '') {
-          $("#error1").hide();
-          $("#error").show();
-        } else {
-          $("#error").hide();
-          $("#error1").show();
-        }
-      }
-    });
-
-    function password() {
-      $("#login_form1").hide();
-      $("#div-regForm1").show();
-    }
-
-    function confirmations() {
-      $("#login_form1").hide();
-      $("#div-regForm1").hide();
-      $("#confirmation_email").show();
-    }
-
-
-  </script>
-</div>
-<div id="div-regForm1" style="display :none;">
-  <div style="margin: -5px 17px;float :right;">
-    <%=link_to image_tag('/images/close button.png'), " ", :class => "close" , :style => "cursor: pointer;margin : -14px -21px;"%>
-  </div>
-  <br /><div class="form-title" style="color :white;width: 230px;"><%= "¿Olvidó su contraseña?" %></div>
-  <div id="error3" style="color :red; font-size: 14px;position: absolute;z-index: 1001;"></div><br/>
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post,:remote => true }) do |f| %>
-    <table  id="new_login">
-      <tr>
-        <td><%= f.label :email %></td>
-      </tr>
-      <tr>
-        <td><%= f.email_field :email %></td>
-      </tr>
-      <tr>
-        <td><%= f.submit "",:id=>"greenButton"%></td>
-      </tr>
-    </table>
-  <% end %>
-</div>
-
-<div id="confirmation_email" style="display :none;">
-  <%= params[:message].to_s.html_safe %>
-  <br /><div class="form-title" style="color :white;width: 230px;">Resend confirmation instructions</div>
-  <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post,:remote => true }) do |f| %>
-    <div id="confirmation_error" style="position: absolute; color: red; text-align: center; width: 100%; left: 0pt; top: 68px; font-weight: bold;">
+    <div style="float: right;position: relative;right: 14px;top: -6px;">
+        <%=link_to image_tag('/images/close button.png'), " ", :class => "close" , :style => "cursor: pointer;margin : -14px -21px;"%>
     </div>
-    <table  id="new_login">
-      <tr>
-        <td><%= f.label :email %></td>
-      </tr>
-      <tr>
-        <td><%= f.email_field :email %></td>
-      </tr>
-      <tr>
-        <td><%= f.submit "",:id=>"greenButton"%></td>
-      </tr>
-    </table>
-  <% end %>
+    <div id="error" style="display :none;color :red; font-size: 14px;position: relative;z-index: 1001;">Invalid Email/Password</div>
+    <div id="error1" style="display :none;color :red;font-size: 14px;position: relative;z-index: 1001;">You need to sign in or sign up before continuing. </div>
+    <%= form_for(resource, :as => resource_name, :url => user_session_path,:remote => true) do |f| %>
+      <table id="new_login">
+          <tr>
+              <td>
+                  <br /><%= image_tag("/images/ingresar.png") %>   <!-- title to login-->
+              </td>
+              <td></td>
+          </tr>
+          <tr>
+              <td><%= f.label :email,"Email:" %></td>
+          </tr>
+          <tr>
+              <td><%= f.email_field :email %></td>
+          </tr>
+          <tr>
+              <td style="float: left;left: 120px;position: relative;"><%= f.label :password,"Contrasena:" %></td>
+          </tr>
+          <tr>
+              <td><%= f.password_field :password %></td>
+          </tr>
+          <tr>
+              <td><%= f.submit "",:id=>"greenButton"%><%= link_to "¿Olvidó su contraseña?", new_user_password_path() %><br /></td>
+          </tr>
+          <tr>
+              <td style="color :white;">
+          <%= "¿Eres nuevo?"%> <u><%= link_to "Registrar", '#registro', :name => 'modal' %></u>
+          </td>
+          </tr>
+      </table>
+    <% end %>
+    <script>
+      $(document).ajaxError(function (e, XHR, options) {
+          val1 = $('#user_email').val();
+          val2 = $('#user_password').val();
+          if (XHR.status == 401) {
+              if (val1 != '' || val2 != '') {
+                  $("#error1").hide();
+                  $("#error").show();
+              } else {
+                  $("#error").hide();
+                  $("#error1").show();
+              }
+          }
+      });
+    </script>
 </div>
 
