@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable, :confirmable,:token_authenticatable
+    :recoverable, :rememberable, :trackable, :validatable,:token_authenticatable
   belongs_to :country
   belongs_to :city
   has_many :creative_folios, :dependent => :destroy
@@ -39,13 +39,13 @@ class User < ActiveRecord::Base
   validates :skills, :presence => { :if => :layout_work_required? }
   validates :company_name,:position, :presence => { :if => :company_name_required? }
   validates :schedule, :presence => { :if => :schedule_required? }
-#  after_create :subscriber
+  after_create :subscriber
 
   has_attached_file :avatar, :styles => {:medium => "300x300>", :thumb => "100x100>"}, :default_url => "/images/photo_icon.jpg"
 
-#  def subscriber
-#    Winner.create_subscriber(self).deliver
-#  end
+  def subscriber
+    Winner.create_subscriber(self).deliver
+  end
 
   #  define_index do
   #    indexes name

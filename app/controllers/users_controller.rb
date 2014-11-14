@@ -14,8 +14,8 @@ class UsersController < ApplicationController
           :subscription => 5,
           :total => 5
         })
-      flash[:notice] = "Usted recibira un correo electronico con instrucciones sobre como confirmar su cuenta en unos pocos minutos."
-      redirect_to root_path
+      sign_in(@user)
+      redirect_to after_sign_in_path_for(@user)
     else
       @countries = Country.all
       render :action => 'client'
@@ -35,8 +35,8 @@ class UsersController < ApplicationController
           :subscription => 5,
           :total => 5
         })
-      flash[:notice] = "Usted recibira un correo electronico con instrucciones sobre como confirmar su cuenta en unos pocos minutos."
-      redirect_to root_path
+      sign_in(@user)
+      redirect_to after_sign_in_path_for(@user)
     else
       @countries = Country.all
       render :action => 'creative'
@@ -56,8 +56,8 @@ class UsersController < ApplicationController
           :subscription => 5,
           :total => 5
         })
-      flash[:notice] = "Usted recibira un correo electronico con instrucciones sobre como confirmar su cuenta en unos pocos minutos."
-      redirect_to root_path
+      sign_in(@user)
+      redirect_to after_sign_in_path_for(@user)
     else
       @countries = Country.all
       render :action => 'tutor'
@@ -77,8 +77,8 @@ class UsersController < ApplicationController
           :subscription => 2,
           :total => 2
         })
-      flash[:notice] = "Usted recibira un correo electronico con instrucciones sobre como confirmar su cuenta en unos pocos minutos."
-      redirect_to root_path
+      sign_in(@user)
+      redirect_to after_sign_in_path_for(@user)
     else
       @countries = Country.all
       render :action => 'visitor'

@@ -1,6 +1,6 @@
 class Winner < ActionMailer::Base
-  default :from => "from@example.com"
-
+  default :from => "info@anchodemarca.org"
+  
   def winner_proposal(bid)
     @bid = bid
     mail( :to       => bid.user.email,

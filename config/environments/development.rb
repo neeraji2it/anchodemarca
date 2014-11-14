@@ -16,7 +16,7 @@ AnchoDeMarca::Application.configure do
   #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -27,11 +27,11 @@ AnchoDeMarca::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
+    :address              => "smtp.sendgrid.net",
     :port                 => 587,
-    #:domain               => 'baci.lindsaar.net',
-    :user_name            => 'anchodemarcaa@gmail.com',
-    :password             => 'ancho123',
+    #:domain               => '107.155.72.173:80',
+    :user_name            => 'Ashok098',
+    :password             => 'ashok123',
     :authentication       => 'plain',
     :enable_starttls_auto => true
   }
