@@ -13,7 +13,7 @@ set :application, "anchodemarca"
 set :scm, :git
 set (:repository) { "#{gitrepo}" }
 set (:deploy_to) { "#{deploydir}" }
-set :scm_user, "neeraj"
+set :scm_user, "shivraj"
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
