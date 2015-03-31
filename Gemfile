@@ -12,7 +12,7 @@ gem 'devise', '1.4.5'
 gem 'date_validator'
 gem "paperclip", "~> 2.3"
 gem 'will_paginate', '>= 3.0.pre'
-gem 'rmagick', '2.12.2'
+#gem 'rmagick', '2.12.2'
 gem 'thinking-sphinx', :git => 'git://github.com/pat/thinking-sphinx.git'
 gem 'remotipart', '~> 1.0'
 gem 'sendgrid'
