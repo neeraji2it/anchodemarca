@@ -1,45 +1,58 @@
-#deploy.rb
-set :stages, %w(production)
-set :default_stage, "production"
-require 'capistrano/ext/multistage'
-require 'bundler/capistrano'
+# config valid only for Capistrano 3.1
+lock '3.2.1'
 
-role (:web) {"#{domain}"}
-role (:app) {"#{domain}"}
-role (:db) { ["#{domain}", {:primary => true}] }
+set :application, 'AnchoDemarca'
+set :repo_url, 'git@github.com:neeraji2it/anchodemarca.git'
 
-# Set the deploy branch to the current branch
-set :application, "anchodemarca"
-set :scm, :git
-set (:repository) { "#{gitrepo}" }
-set (:deploy_to) { "#{deploydir}" }
-set :scm_user, "shivraj"
-ssh_options[:forward_agent] = true
-default_run_options[:pty] = true
+# Default branch is :master
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
-desc "Symlinks database.yml, mailer.yml file from shared directory into the latest release"
-task :symlink_shared, :roles => [:app, :db] do
-  run "ln -s #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
-  run "ln -s #{shared_path}/system #{latest_release}/system"
-end
+# Default deploy_to directory is /var/www/my_app
+ set :deploy_to, '/var/www/ancho.com/public_html'
 
-after 'deploy:finalize_update', :symlink_shared
+# Default value for :scm is :git
+ set :scm, :git
+
+# Default value for :format is :pretty
+# set :format, :pretty
+
+# Default value for :log_level is :debug
+# set :log_level, :debug
+
+# Default value for :pty is false
+# set :pty, true
+
+# Default value for :linked_files is []
+ set :linked_files, %w{config/database.yml}
+
+# Default value for linked_dirs is []
+ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+
+# Default value for keep_releases is 5
+ set :keep_releases, 3
 
 namespace :deploy do
-  desc "Reload the database with seed data"
-  task :seed do
-    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
-  end
-end
 
-namespace :deploy do
-  desc "Restart Application"
-  task :restart, :roles => :app do
-    run "touch #{current_path}/tmp/restart.txt"
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+       execute :touch, release_path.join('tmp/restart.txt')
+    end
   end
 
-  [:start, :stop].each do |t|
-    desc "#{t} task is a no-op with mod_rails"
-    task t, :roles => :app do ; end
+  after :publishing, :restart
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
   end
+
 end
