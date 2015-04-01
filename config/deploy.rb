@@ -14,6 +14,7 @@ set :scm, :git
 set (:repository) { "#{gitrepo}" }
 set (:deploy_to) { "#{deploydir}" }
 set :scm_user, "shivraj"
+set :keep_releases, 2
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
@@ -23,7 +24,7 @@ task :symlink_shared, :roles => [:app, :db] do
   run "ln -s #{shared_path}/system #{latest_release}/system"
 end
 
-after 'deploy:finalize_update', :symlink_shared
+after 'deploy:finalize_update', 'deploy:cleanup', :symlink_shared
 
 namespace :deploy do
   desc "Reload the database with seed data"
