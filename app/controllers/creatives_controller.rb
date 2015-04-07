@@ -2,7 +2,7 @@ class CreativesController < ApplicationController
   before_filter :is_login?, :except => ["index","views","likes"]
 
   def index
-    @bids = Bid.joins("left join projects on bids.project_id = projects.id").where("projects.end_date > '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").order("'created_at desc'").paginate :page => params[:creative_page], :per_page => 3
+    @bids = CreativeFolio.where("title is not null").order('created_at desc').order("'created_at desc'").paginate :page => params[:creative_page], :per_page => 3
   end
 
   def creatives

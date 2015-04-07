@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @projects = Project.where("end_date > '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").order('created_at asc')
-    @creatives = Bid.joins("left join projects on bids.project_id = projects.id").where("projects.end_date > '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").order('created_at desc')
+    @creatives = CreativeFolio.where("title is not null").order('created_at desc')
     @tutors = Course.where("to_date > '#{Time.now.strftime("%Y-%m-%d")}'").order('created_at asc')
   end
 
