@@ -73,3 +73,7 @@ form.rating_ballot label.rating.glow { background-image: url(../images/star.gif)
     height: 10px;
     text-indent: -9000px;
 }
+
+#no_projects{
+    color: red; position: relative; font-size: 30px; left: 300px; top: 140px;
+}
