@@ -28,17 +28,17 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name,:user_name,:post_work,:total,:subscription,:post_class,:recommenations, :surname,:email, :password, :password_confirmation, :remember_me, :date_of_birth, :document_type,:document_num,:country_id,:city_id,:avatar,:company_name,:position,:text_accept,:i_accept,:receive_news,:retrived_title,:currently_studying,:occupation,:current_occupation,:creative_am,:participate_in_trining,:formal_duites,:invite_private_calls,:outstanding_releave,:skills,:laboral_disposition,:schedule,:sex,:phone
   validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"new error message here" 
-  validates :name, :surname,:document_type,:user_name,:country_id,:city_id,:text_accept,:date_of_birth,:sex, :presence => true
+  validates :name, :surname,:document_type,:user_name,:country_id,:city_id,:text_accept,:date_of_birth,:sex, :presence => { message: "no puede estar en blanco" }
   validates :phone, :length => {:minimum => 10, :maximum => 15}, :format => { :with => /\A\S[0-9\+\/\(\)\s\-]*\z/i }, :allow_nil  => true
   validates_numericality_of :document_num, :presence => true, :only_integer => true
-  validates_acceptance_of :i_accept
-  validates_acceptance_of :receive_news
-  validates_acceptance_of :formal_duites, :presence => { :if => :creative_am_required? }
-  validates_acceptance_of :laboral_disposition, :presence => { :if => :schedule_required? }
-  validates :retrived_title,:currently_studying, :occupation,:creative_am,:participate_in_trining,:invite_private_calls,:outstanding_releave, :presence => { :if => :retrived_title_required? }
-  validates :skills, :presence => { :if => :layout_work_required? }
-  validates :company_name,:position, :presence => { :if => :company_name_required? }
-  validates :schedule, :presence => { :if => :schedule_required? }
+  validates_acceptance_of :i_accept, presence => {message: "no puede estar en blanco"}
+  validates_acceptance_of :receive_news, presence => {message: "no puede estar en blanco"}
+  validates_acceptance_of :formal_duites, :presence => { :if => :creative_am_required?, message: "no puede estar en blanco" }
+  validates_acceptance_of :laboral_disposition, :presence => { :if => :schedule_required?, message: "no puede estar en blanco" }
+  validates :retrived_title,:currently_studying, :occupation,:creative_am,:participate_in_trining,:invite_private_calls,:outstanding_releave, :presence => { :if => :retrived_title_required?, message: "no puede estar en blanco" }
+  validates :skills, :presence => { :if => :layout_work_required?, message: "no puede estar en blanco" }
+  validates :company_name,:position, :presence => { :if => :company_name_required?, message: "no puede estar en blanco" }
+  validates :schedule, :presence => { :if => :schedule_required?, message: "no puede estar en blanco" }
   after_create :subscriber
 
   has_attached_file :avatar, :styles => {:medium => "300x300>", :thumb => "100x100>"}, :default_url => "/images/photo_icon.jpg"
