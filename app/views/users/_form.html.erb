@@ -68,8 +68,8 @@
 <%= validation_error(@user.errors['phone']) %><br />
 
 <%= f.label :sex, "Numero de Celular<span style=color:red;>*</span>".html_safe%>
-<br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:sex, "Masculino") %></span><em style="position:relative;float: right;right: 385px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Masculino</em>
-<span style="float:right;position: relative;right: 305px;"><%= f.radio_button(:sex, "Femenino") %></span><em style="position:relative;float: right;right: 225px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Femenino</em><br />
+<br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:sex, "Masculino") %></span><em style="position:relative;float: right;right: 335px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Masculino</em>
+<span style="float:right;position: relative;right: 220px;"><%= f.radio_button(:sex, "Femenino") %></span><em style="position:relative;float: right;right: 110px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Femenino</em><br />
 <%= validation_error(@user.errors['sex']) %><br />
 
 <%= f.label :avatar, "Foto de su perfil:"%>
@@ -81,7 +81,7 @@
 </div>
 
 <% if params[:controller] == 'users' or params[:controller] == 'creatives'or params[:controller] == 'tutors'and (params[:action] == 'creative' or params[:action] == 'tutor' or params[:action] == 'create_creative' or params[:action] == 'create_tutor'  or params[:action] == 'edit' or params[:action] == 'update_tutor' or params[:action] == 'update_creative' or params[:action] == 'update_visitor') %>
-  <h3>Academic Information</h3>
+  <h3>Informacion Academica</h3>
 
   <%= f.label :occupation, "ocupación<span style=color:red;>*</span>".html_safe%>
   <div class="input-container"><%= f.select :occupation,%w(student employee independent unemployed) %></div>
@@ -160,7 +160,7 @@
   <%= validation_error(@user.errors['outstanding_releave']) %><br />
 
   <div class="input-container"><%= f.check_box :formal_duites %></div>
-  <em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: 30px;">Deberes formales, pero tienen horarios de trabajo flexibles<span style=color:red;>*</span></em>
+  <em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: -70px;">Deberes formales, pero tienen horarios de trabajo flexibles<span style=color:red;>*</span></em>
   <%= validation_error(@user.errors["formal_duites"]) %><br />
 <% end %>
 
