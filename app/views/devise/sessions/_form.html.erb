@@ -2,8 +2,8 @@
     <div style="float: right;position: relative;right: 14px;top: -6px;">
         <%=link_to image_tag('/images/close button.png'), " ", :class => "close" , :style => "cursor: pointer;margin : -14px -21px;"%>
     </div>
-    <div id="error" style="display :none;color :red; font-size: 14px;position: relative;z-index: 1001;">Invalid Email/Password</div>
-    <div id="error1" style="display :none;color :red;font-size: 14px;position: relative;z-index: 1001;">You need to sign in or sign up before continuing. </div>
+    <div id="error" style="display :none;color :red; font-size: 14px;position: relative;z-index: 1001;">Invalid Email / Contraseña</div>
+    <div id="error1" style="display :none;color :red;font-size: 14px;position: relative;z-index: 1001;">Tienes que iniciar sesión o regístrate para continuar. </div>
     <%= form_for(resource, :as => resource_name, :url => user_session_path,:remote => true) do |f| %>
       <table id="new_login">
           <tr>
@@ -13,7 +13,7 @@
               <td></td>
           </tr>
           <tr>
-              <td><%= f.label :email,"Email:" %></td>
+              <td><%= f.label :email,"Correo Electrónico:" %></td>
           </tr>
           <tr>
               <td><%= f.email_field :email %></td>

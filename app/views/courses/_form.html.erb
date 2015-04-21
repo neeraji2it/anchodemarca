@@ -1,5 +1,5 @@
 <div id="course_form">
-  <label for="project_type" style="font-size:18px;color: #414141;">Category:</label>
+  <label for="project_type" style="font-size:18px;color: #414141;">Categoría:</label>
   <%= select_tag :course_category_id, options_for_select([["Seleccionar",""]]+Category.find_all_by_parent_id(nil).collect{|category| [category.category, category.id]},:selected => (params[:course] ? params[:course][:category_id] : '')), :onchange => "course_category(this)"%>
 </div>
 <br /><br /><br />

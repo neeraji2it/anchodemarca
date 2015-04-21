@@ -7,11 +7,11 @@
       <div>
 
         <%= form_tag project_images_path(@project), :method => :post, :multipart => true, :id => "add_more_images_form", :name => "add_more_images_form" do %>
-          Add new images
+          Añadir nuevas imágenes
           <div id="image_fields">
             <div style="margin-bottom: 5px;"><%= file_field_tag "image_images[]"  %></div>
           </div>
-          <button class="button" style="margin:0px;">Add</button> <%= link_to_function "Add more+","", :id =>"add_more_images_link", :style => 'color: black;' %>
+          <button class="button" style="margin:0px;">Añadir</button> <%= link_to_function "añadir más+","", :id =>"add_more_images_link", :style => 'color: black;' %>
         <% end %>
       </div>
     </td>

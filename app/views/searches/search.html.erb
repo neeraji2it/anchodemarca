@@ -8,10 +8,10 @@
   <% if @users && params[:query] %>
     <table border="1" width="100%">
       <tr style="color: green;">
-        <td><%= t("title.name") %></td>
-        <td><%= t("title.email") %></td>
-        <td><%= t("title.role") %></td>
-        <td><%= t("title.surname") %></td>
+        <td>Nombre</td>
+        <td>Correo Electrónico</td>
+        <td>papel</td>
+        <td>Apellidos</td>
       </tr>
       <% @users.each do |user| %>
         <tr>

@@ -26,16 +26,16 @@
       </tr>
       <tr>
         <td>
-          <%= select_tag :categories, options_for_select([["Select",""]]+User.select("DISTINCT company_name").where(:role => 'client').collect{|c| [c.company_name.to_s.upcase, c.company_name]}, params[:categories]), :onChange => "client_company(this)" %>
+          <%= select_tag :categories, options_for_select([["seleccionar",""]]+User.select("DISTINCT company_name").where(:role => 'client').collect{|c| [c.company_name.to_s.upcase, c.company_name]}, params[:categories]), :onChange => "client_company(this)" %>
         </td>
         <td>
-          <%= select_tag :categories, options_for_select([["Select",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "client_categories(this)" %>
+          <%= select_tag :categories, options_for_select([["seleccionar",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "client_categories(this)" %>
         </td>
         <td>
-          <%= select_tag :categories, options_for_select([["Select",""],["1-100","100"],["101-500","500"],["All","all"]], params[:categories]), :onChange => "client_budget(this)" %>
+          <%= select_tag :categories, options_for_select([["seleccionar",""],["1-100","100"],["101-500","500"],["todos","all"]], params[:categories]), :onChange => "client_budget(this)" %>
         </td>
         <td>
-          <%= select_tag :categories, options_for_select([["Select",""],["Available","available"],["Next Month","next month"],["Expired","expired"]]), :onChange => "client_date(this)" %>
+          <%= select_tag :categories, options_for_select([["seleccionar",""],["disponible","available"],["próximo Mes","next month"],["expirado","expired"]]), :onChange => "client_date(this)" %>
         </td>
       </tr>
     </table>
@@ -50,10 +50,10 @@
       </tr>
       <tr>
         <td>
-          <%= select_tag :categories, options_for_select([["Select",""]]+User.where(:role => 'creative').collect{|c| [c.surname.to_s.upcase, c.surname]}, params[:categories]), :onChange => "creative_views(this)" %>
+          <%= select_tag :categories, options_for_select([["seleccionar",""]]+User.where(:role => 'creative').collect{|c| [c.surname.to_s.upcase, c.surname]}, params[:categories]), :onChange => "creative_views(this)" %>
         </td>
         <td>
-          <%= select_tag :categories, options_for_select([["Select",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "creative_categories(this)" %>
+          <%= select_tag :categories, options_for_select([["seleccionar",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "creative_categories(this)" %>
         </td>
         <td>
           <%= select_tag :categories, options_for_select(TOP, params[:categories]), :onChange => "creative_likes(this)" %>
@@ -74,13 +74,13 @@
       </tr>
       <tr>
         <td>
-          <%= select_tag :categories, options_for_select([["Select",""]]+User.where(:role => 'tutor').collect{|c| [c.surname.to_s.upcase, c.surname]}, params[:categories]), :onChange => "tutor_views(this)"  %>
+          <%= select_tag :categories, options_for_select([["seleccionar",""]]+User.where(:role => 'tutor').collect{|c| [c.surname.to_s.upcase, c.surname]}, params[:categories]), :onChange => "tutor_views(this)"  %>
         </td>
         <td>
-          <%= select_tag :categories, options_for_select([["Select",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "tutor_categories(this)" %>
+          <%= select_tag :categories, options_for_select([["seleccionar",""]]+Category.all.collect{|c| [c.category.to_s.upcase, c.category]}, params[:categories]), :onChange => "tutor_categories(this)" %>
         </td>
         <td>
-          <%= select_tag :categories, options_for_select([["Select",""]]) %>
+          <%= select_tag :categories, options_for_select([["seleccionar",""]]) %>
         </td>
         <td>
           <%= select_tag :categories, options_for_select(TOP, params[:categories]), :onChange => "tutor_reputation(this)" %>

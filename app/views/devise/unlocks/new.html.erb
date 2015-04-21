@@ -1,15 +1,15 @@
 <div id="div-regForm">
-  <div class="form-title">Resend unlock instructions</div>
+  <div class="form-title">Reenviar desbloquear instrucciones</div>
   <%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
     <div id="error"><%= devise_error_messages! %></div>
     <table>
       <tr>
-        <td><%= f.label :email %></td>
+        <td><%= f.label :email, "Correo Electrónico" %></td>
         <td><div class="input-container"><%= f.email_field :email %></div></td>
       </tr>
       <tr>
         <td></td>
-        <td><%= f.submit "Resend unlock instructions",:class=>"greenButton" %></td>
+        <td><%= f.submit "enviar",:class=>"greenButton" %></td>
       </tr>
     </table>
   <% end %>

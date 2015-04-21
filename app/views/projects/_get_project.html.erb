@@ -5,36 +5,36 @@
     <%= f.hidden_field :categories, :value => @project.categories %>
     <table width="100%">
       <tr>
-        <td>Topic:</td>
+        <td>Titulo de la convocatoria:</td>
         <td><%= f.text_field :topic %>
           <%= validation_error(@project.errors['topic'])%></td>
       </tr>
       <tr>
-        <td>Payment:</td>
+        <td>Pago:</td>
         <td><%= f.text_field :payment,  :size => "6", :maxlength => 6,:style => "width:67px;", :onkeyup => "payment_validate(this,6)" %></td>
       </tr>
       <tr>
-        <td>Start Date:</td>
+        <td>Fecha de comienzo:</td>
         <td><%= f.text_field :start_date, :value => (@project.start_date ? @project.start_date.strftime("%Y-%m-%d %H:%M") : "")%>
           <%= validation_error(@project.errors['start_date'])%></td>
       </tr>
       <tr>
-        <td>End Date:</td>
+        <td>Fecha de terminación:</td>
         <td><%= f.text_field :end_date, :value => (@project.end_date ? @project.end_date.strftime("%Y-%m-%d %H:%M") : " "), :readonly => true %>
           <%= validation_error(@project.errors['end_date'])%></td>
       </tr>
       <tr>
-        <td>Description:</td>
+        <td>Descripción:</td>
         <td><%= f.text_area :description,:cols => 30,:rows => 4 %>
           <%= validation_error(@project.errors['description'])%></td>
       </tr>
       <tr>
-        <td>Community:</td>
+        <td>Comunidad:</td>
         <td><%= f.text_field :community %>
           <%= validation_error(@project.errors['community'])%></td>
       </tr>
       <tr>
-        <td valign="top">Images:</td>
+        <td valign="top">Imagenes:</td>
         <td>
           <br />
           <%= f.fields_for :images do |builder| %>
@@ -49,24 +49,24 @@
         <td><%= !@project.new_record? ? (image_tag(@project.images.first.image.url(:original), :width => "40", :height => "32", :style=> 'margin:2px 3px;')) : " "%></td>
       </tr>
       <tr>
-        <td>Allow Vote for creative pieces:</td>
-        <td><%= f.select :allow_vote,%w(yes no) %></td>
+        <td>Permitir que se bote por las propuestas de los creativos:</td>
+        <td><%= f.select :allow_vote,%w(Si No) %></td>
       </tr>
       <tr>
-        <td>Allow other customers to view the project:</td>
-        <td><%= f.select :allow_customers,%w(yes no) %></td>
+        <td>Permitir que otras empresas puedan ver este proyecto.:</td>
+        <td><%= f.select :allow_customers,%w(Si No) %></td>
       </tr>
       <tr>
-        <td>Allow creative comments, visitors, tutors and clients on the pieces:</td>
-        <td><%= f.select :creative_comment_pieces,%w(yes no) %></td>
+        <td> Permitir comentarios en las propuestas:</td>
+        <td><%= f.select :creative_comment_pieces,%w(Si No) %></td>
       </tr>
       <tr>
-        <td>Allow creative comments, visitors, tutors and clients on the project:</td>
-        <td><%= f.select :creative_comment_project,%w(yes no) %></td>
+        <td>Permitir comentarios en el proyecto:</td>
+        <td><%= f.select :creative_comment_project,%w(Si No) %></td>
       </tr>
       <tr>
         <td></td>
-        <td><%= @project.new_record? ? (f.submit "Create",:class =>"classname", :style => 'background-color: #D08411;') : (f.submit "Update",:class =>"classname", :style => 'background-color: #D08411;') %></td>
+        <td><%= @project.new_record? ? (f.submit "crear",:class =>"classname", :style => 'background-color: #D08411;') : (f.submit "actualización",:class =>"classname", :style => 'background-color: #D08411;') %></td>
       </tr>
     </table>
   <% end %>

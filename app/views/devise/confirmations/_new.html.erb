@@ -1,16 +1,16 @@
 <div id="div-regForm">
-  <div class="form-title">Resend confirmation instructions</div>
+  <div class="form-title">Vuelva a enviar instrucciones de confirmación</div>
 
   <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }, :remote => true ,:id=>"regForm") do |f| %>
     <div id="error"><%= devise_error_messages! %></div>
     <table>
       <tr>
-        <td><%= f.label :email %></td>
+        <td><%= f.label :email, "Correo Electrónico" %></td>
         <td><div class="input-container"><%= f.email_field :email %></div></td>
       </tr>
       <tr>
         <td></td>
-        <td><%= f.submit "Resend confirmation instructions",:class=>"greenButton" %></td>
+        <td><%= f.submit "enviar",:class=>"greenButton" %></td>
       </tr>
     </table>
   <% end %>

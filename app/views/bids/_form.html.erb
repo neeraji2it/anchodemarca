@@ -2,11 +2,11 @@
   <div style="margin: -12px -6px;float :right;">
     <%=link_to_function image_tag("close.jpeg",:width => 30,:height => 30, :style => "cursor: pointer;left: -6px;position: relative;top: 12px;"), "#", :id => 'hide'%>
   </div>
-  <span style="color: red;font-size: 12px;">&nbsp;* All fields are required.</span>
+  <span style="color: red;font-size: 12px;">&nbsp;* Todos los campos son obligatorios.</span>
   <%= form_for @bid, :url=> project_bids_path(@project),:html => {:multipart => true, :method => 'post'},:remote => true do |f| %>
     <table cellspacing="4" cellpadding="0" style="margin-left: 0px;">
       <tr>
-        <td>Upload Designs:<span style=color:red;>*</span></td>
+        <td>Subir diseños:<span style=color:red;>*</span></td>
         <td>
           <%= f.fields_for :images do |picture| %>
             <%= picture.file_field :image %>
@@ -15,16 +15,16 @@
           </td>
         <% end %>
       </tr>
-      <tr><td></td><td style="float: left;position: relative;top: -6px;">(<em style="font-size: 10px;">Only allow Designs:</em>&nbsp;<span style="color: red;font-size: 10px;">'png', 'jpg', 'jpeg','gif'</span>)</td></tr>
+      <tr><td></td><td style="float: left;position: relative;top: -6px;">(<em style="font-size: 10px;">Sólo permiten diseños:</em>&nbsp;<span style="color: red;font-size: 10px;">'png', 'jpg', 'jpeg','gif'</span>)</td></tr>
       <tr>
-        <td valign="top">Comment:<span style=color:red;>*</span></td>
+        <td valign="top">comentario:<span style=color:red;>*</span></td>
         <td><%= f.text_area :comment,:cols => 25, :rows => 2 %>
           <%= validation_error(@bid.errors["comment"]) %>
         </td>
       </tr>
       <tr>
         <td></td>
-        <td><%= f.submit 'Upload Proposal', :class => 'classname'%></td>
+        <td><%= f.submit 'Subir Propuesta', :class => 'classname'%></td>
         <td></td>
       </tr>
     </table>

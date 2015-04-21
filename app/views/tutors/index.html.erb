@@ -10,7 +10,7 @@
         <% i = User.where("role = 'tutor'").count %>
         <%= number_with_delimiter(i) %><br />
         <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS GRATUITOS</label><br />
-        <% i = Course.where("course_type = 'Free'").count %>
+        <% i = Course.where("course_type = 'libre'").count %>
         <%= number_with_delimiter(i) %><br />
         <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS VIGENTES</label><br />
         <% i = Course.count %>

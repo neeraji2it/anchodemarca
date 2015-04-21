@@ -1,40 +1,40 @@
 <div id="course_form">
-  <h4>Course Creation</h4><br />
+  <h4>de creación de cursos</h4><br />
   <%= form_for @course, :html => {:multipart => true} do |f| %>
     <%= f.hidden_field :category_id, :value => @course.category_id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :categories, :value => @course.categories %>
     <table style="margin-left: 0px;" style="line-height:30px;" cellpadding="10%">
       <tr>
-        <td>Course Title:</td>
+        <td>Titulo Del Curso:</td>
         <td><%= f.text_field :title %></td>
         <td><%= validation_error(@course.errors["title"])%></td>
       </tr>
       <tr>
-        <td>Description:</td>
+        <td>descripción:</td>
         <td><%= f.text_area :description, :cols => 25, :rows => 4%></td>
         <td><%= validation_error(@course.errors["description"])%></td>
       </tr>
       <tr>
-        <td>Hours:</td>
+        <td>horas:</td>
         <td><%= f.text_field :course_hours %></td>
         <td><%= validation_error(@course.errors["course_hours"])%></td>
       </tr>
       <tr>
-        <td>Start Date:</td>
+        <td> Fecha de comienzo:</td>
         <td><%= f.text_field :from_date, :value => (@course.from_date ? @course.from_date.strftime("%Y-%m-%d") : " "), :readonly => true  %></td>
         <td><%= validation_error(@course.errors["from_date"])%></td>
       </tr>
       <tr>
-        <td>End Date:</td>
+        <td>Fecha de terminación:</td>
         <td><%= f.text_field :to_date, :value => (@course.to_date ? @course.to_date.strftime("%Y-%m-%d") : " "), :readonly => true %></td>
         <td><%= validation_error(@course.errors["to_date"])%></td>
       </tr>
       <tr>
-        <td>Course Type:</td>
+        <td>Tipo de curso:</td>
         <td>
-          <%= f.radio_button(:course_type, "Free")%>&nbsp;Free
-          <%= f.radio_button(:course_type, "Paid", :checked => false)%>&nbsp;Paid
+          <%= f.radio_button(:course_type, "libre")%>&nbsp;libre
+          <%= f.radio_button(:course_type, "pagado", :checked => false)%>&nbsp;pagado
         <td><%= validation_error(@course.errors["course_type"])%></td>
         </td>
       </tr>
@@ -42,7 +42,7 @@
         <td></td>
         <td>
           <div id="paid_form" style="display:none">
-            Amount:
+            cantidad:
             <%= f.text_field :price,  :size => "6", :maxlength => 6,:style => "width:67px;", :onkeyup => "price_validate(this,6)" %>
           </div>
         </td>
@@ -50,7 +50,7 @@
       </tr>
 
       <tr>
-        <td>Images:</td>
+        <td>Imagenes:</td>
         <td>
           <%= f.fields_for :images do |picture| %>
             <%= picture.file_field :image %></td>
@@ -65,7 +65,7 @@
       </tr>
       <tr>
         <td></td>
-        <td><%= @course.new_record? ? (f.submit "Create", :class => 'classname', :style => 'background-color: #692555;') : (f.submit "Update", :class => 'classname', :style => 'background-color: #692555;') %></td>
+        <td><%= @course.new_record? ? (f.submit "crear", :class => 'classname', :style => 'background-color: #692555;') : (f.submit "actualización", :class => 'classname', :style => 'background-color: #692555;') %></td>
       </tr>
     </table>
   <% end %>
@@ -73,7 +73,7 @@
 <script>
   $(":radio[name='course[course_type]']").change(function() {
     var newVal = $(":radio[name='course[course_type]']:checked").val();
-    if (newVal == "Free") {
+    if (newVal == "libre") {
       $("#course_price").val('');
       $("#paid_form").hide();
     } else {

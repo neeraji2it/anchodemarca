@@ -5,13 +5,13 @@
   <%= form_for @user_comment, :url => user_user_comments_path(@user),:remote => true do |f| %>
     <table>
       <tr>
-        <td valign="top">Comment:</td>
+        <td valign="top">Comentario:</td>
         <td><%= f.text_area :comment, :cols => 25, :rows => 3 %>
           <%= validation_error(@user_comment.errors['comment'])%></td>
       </tr>
       <tr>
         <td></td>
-        <td><%= f.submit "Comment"%></td>
+        <td><%= f.submit "Comentario"%></td>
       </tr>
     </table>
   <% end %>

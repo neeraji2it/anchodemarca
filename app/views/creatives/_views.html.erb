@@ -1,9 +1,9 @@
 <div class="slide_content">
   <table border="1">
     <tr>
-      <th>Surname</th>
-      <th>Email</th>
-      <th>Role</th>
+      <th>Apellidos</th>
+      <th>Correo Electrónico</th>
+      <th>papel</th>
     </tr>
     <% if @users.present? %>
       <% for user in @users %>
@@ -14,7 +14,7 @@
         </tr>
       <% end %>
     <% else %>
-      <span style="color: red;float: left;font-size: 20px;left: 170px;position: relative;top: 70px;">No Users</span>
+      <span style="color: red;float: left;font-size: 20px;left: 170px;position: relative;top: 70px;">No hay usuarios</span>
     <% end %>
   </table>
 </div>

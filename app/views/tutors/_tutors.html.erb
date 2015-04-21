@@ -8,7 +8,6 @@
         </td>
         <td style="margin-left: 20px; width:300px;">
           <h4 style="margin:0px; padding:0px;"><%= current_user.user_name%> / <%= current_user.surname %></h4>
-          Diseñadora Grafica/Publicista
           <br />
           <% if !current_user.country_id.blank? and !current_user.city_id.blank? %>
             <%= current_user.city.city%> , <%= current_user.country.country %>
@@ -124,7 +123,7 @@
                     </tr>
                     <tr>
                       <td colspan="2"> No to Intesates</td>
-                      <td><%= link_to "Edit", edit_course_path(course), :style => 'color: black;'%></td>
+                      <td><%= link_to "editar", edit_course_path(course), :style => 'color: black;'%></td>
                     </tr>
                   </table>
                 </div>

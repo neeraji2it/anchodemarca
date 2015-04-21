@@ -4,18 +4,18 @@ class Winner < ActionMailer::Base
   def winner_proposal(bid)
     @bid = bid
     mail( :to       => bid.user.email,
-      :subject  => "Winner of Project" )
+      :subject  => "Ganador del Proyecto" )
   end
 
   def winner_project(bid)
     @bid = bid
     mail( :to       => bid.project.user.email,
-      :subject  => "Winner of Project" )
+      :subject  => "Ganador del Proyecto" )
   end
   
   def create_subscriber(user)
     @user = user
-    mail(:to => "info@anchodemarca.org", :subject => "New '#{user.role}' has subscribed")
+    mail(:to => "info@anchodemarca.org", :subject => "nuevo '#{user.role}' ha suscrito")
   end
   
 end
