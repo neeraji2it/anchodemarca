@@ -2,8 +2,8 @@
     <div style="float: right;position: relative;right: 14px;top: -6px;">
         <%=link_to image_tag('/images/close button.png'), " ", :class => "close" , :style => "cursor: pointer;margin : -14px -21px;"%>
     </div>
-    <div id="error" style="display :none;color :red; font-size: 14px;position: relative;z-index: 1001;">Invalid Email / Contraseña</div>
-    <div id="error1" style="display :none;color :red;font-size: 14px;position: relative;z-index: 1001;">Tienes que iniciar sesión o regístrate para continuar. </div>
+    <div id="error" style="display :none;color :red; font-size: 14px;position: relative;z-index: 1001;left: -20px;top: 5px;">Invalid Email / Contraseña</div>
+    <div id="error1" style="display :none;color :red;font-size: 14px;position: relative;z-index: 1001;width: 220px;left: -7px;">Tienes que iniciar sesión o regístrate para continuar. </div>
     <%= form_for(resource, :as => resource_name, :url => user_session_path,:remote => true) do |f| %>
       <table id="new_login">
           <tr>
@@ -13,19 +13,19 @@
               <td></td>
           </tr>
           <tr>
-              <td><%= f.label :email,"Correo Electrónico:" %></td>
+              <td style="float: left;left: 148px;position: relative;"><%= f.label :email,"Correo Electrónico:" %></td>
           </tr>
           <tr>
               <td><%= f.email_field :email %></td>
           </tr>
           <tr>
-              <td style="float: left;left: 120px;position: relative;"><%= f.label :password,"Contrasena:" %></td>
+              <td style="float: left;left: 128px;position: relative;"><%= f.label :password,"Contrasena:" %></td>
           </tr>
           <tr>
               <td><%= f.password_field :password %></td>
           </tr>
           <tr>
-              <td><%= f.submit "",:id=>"greenButton"%><%= link_to "¿Olvidó su contraseña?", new_password_path(resource_name) %><br /></td>
+              <td style="float: left;left: 8px;position: relative;"><%= f.submit "",:id=>"greenButton"%><%= link_to "¿Olvidó su contraseña?", new_password_path(resource_name) %><br /></td>
           </tr>
           <tr>
               <td style="color :white;">

@@ -1,4 +1,4 @@
 CLIENT_DOCUMENT_TYPES = [["Seleccionar", ""],["Cedula", "Cedula"], ["Nit", "Nit"], ["No. Pasaporte","No. Pasaporte"]]
 CREATIVE_DOCUMENT_TYPES = [["Seleccionar", ""],["Cedula", "Cedula"], ["Tarjeta de Identidad", "Tarjeta de Identidad"], ["No. Pasaporte","No. Pasaporte"]]
-RETRIVED_TITLE = [["Seleccionar", ""],["Graphic designer","Graphic designer"], ["Advertiser","Advertiser"],["Plastic Arts","Plastic Arts"],["Arts","Arts"],["Photographer","Photographer"],["Industrial Designer","Industrial Designer"],["Art Director","Art Director"],["Social Communication","Social Communication"]]
-TOP = [["Select",""],["Top 10","top"],["All","all"]]
+RETRIVED_TITLE = [["Seleccionar", ""],["disenador grafico","disenador grafico"], ["publicista","publicista"],["artista plastico","artista plastico"],["artista","artista"],["fotografo","fotografo"],["disenador industrial","disenador industrial"],["director de arte","director de arte"],["comunicador social","comunicador social"]]
+TOP = [["Seleccionar",""],["superior 10","top"],["Todos","all"]]

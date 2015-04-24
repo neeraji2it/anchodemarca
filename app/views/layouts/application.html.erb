@@ -1,129 +1,129 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel= "shortcut icon" href = "/images/ancho.jpeg"></link>
-    <title>AnchoDeMarca</title>
-    <%= stylesheet_link_tag 'layout','stylemodal','style','devise','profile', 'application',"jquery.notifyBar", "/javascripts/timepicker/jquery-ui-timepicker-addon", "/javascripts/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css", "/javascripts/jcarousel/css/style.css" %>
-    <%= javascript_include_tag "jquery.min","jquery.remotipart","jquery.iframe-transport",
-      'rails', 'application','anchodemarca','rating_ballot.js',"jquery.notifyBar","/javascripts/jcarousel/jquery.jcarousel.js", "/javascripts/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js",
-      "timepicker/jquery-ui-timepicker-addon", "/javascripts/jcarousel/jquery.jcarousel.min.js" %>
-    <%= csrf_meta_tag %>
-    <% ['notice', 'error', 'warning'].each do |f|%>
-      <% if flash[f.to_sym]%>
-        <script type="text/javascript" >
-          jQuery(function() {
-            jQuery.notifyBar({
-              cls: "<%= f %>",
-              html: "<%=  flash[f.to_sym] %>",
-              delay: 3000,
-              animationSpeed: "normal"
-            });
-          });
-        </script>
-      <%end%>
-    <%end%>
-  </head>
-  <body>
-    <div id="banner" onload="doOnLoad()">
-      <%= link_to image_tag('home.png', :style => 'margin-left:49px; margin-top:25px;'), '/' %>
-      <div class="menubanner">
-        <div class="menubanneritem"> <%= link_to "Quienes Somos", about_us_home_index_path %></div>
-        <div class="menubanneritem"> <%= link_to "Como Funciona", how_it_works_home_index_path %>  </div>
-        <div class="menubanneritem"> <%= link_to "Beneficios AM", benifits_of_am_home_index_path %>   </div>
-        <div class="menubanneritem"> <%= link_to "Nuestros Servicios", our_services_home_index_path %>  </div>
-      </div>
-    </div>
-    <div class="content">
-      <% if !(params[:controller] == 'users' and (params[:action] == 'creative' or params[:action] == 'client' or params[:action] == 'tutor' or params[:action] == 'visitor' or params[:action] == 'create_creative' or params[:action] == 'create_tutor' or params[:action] == 'create_visitor' or params[:action] == 'create_client' )) %>
-        <div class="menusupgris">
-          <% if current_user %>
-            <div class="menusupgrisitem">
-              <%= current_user.role == 'visitor' ? ("") : (current_user.role == 'tutor' ? (link_to image_tag("/images/bot-formacion-on.png", :border=>'0', :width=>"166", :height=>"53"), tutors_tutors_path):(current_user.role == 'client' ? (link_to image_tag("/images/bot-cliente-on.png", :border=>'0', :width=>"153", :height=>"53"), clients_clients_path) : (link_to image_tag("/images/bot-creativo-on.png", :border=>'0', :width=>"156", :height=>"53"), creatives_creatives_path))) %>
-              &nbsp;&nbsp;&nbsp;<%= current_user.role == 'visitor' ? ("") : (current_user.role == 'tutor' ? (link_to image_tag("/images/postear_curso.png"), new_course_path):(current_user.role == 'client' ? (link_to "Crear proyecto", new_project_path, :class => 'classname', :style => 'position: relative;top: -20px;background-color: #D08411;') : (link_to "Subir Portafolio", new_creative_folio_path, :class => 'classname', :style => 'position: relative;top: -20px;'))) %>&nbsp;&nbsp;&nbsp;
-              <%= link_to image_tag('/images/bot-search.png'), search_searches_path %>
+    <head>
+        <link rel= "shortcut icon" href = "/images/ancho.jpeg"></link>
+        <title>Información Academica</title>
+        <%= stylesheet_link_tag 'layout','stylemodal','style','devise','profile', 'application',"jquery.notifyBar", "/javascripts/timepicker/jquery-ui-timepicker-addon", "/javascripts/jquery-ui-1.8.16.custom/css/custom-theme/jquery-ui-1.8.16.custom.css", "/javascripts/jcarousel/css/style.css" %>
+        <%= javascript_include_tag "jquery.min","jquery.remotipart","jquery.iframe-transport",
+          'rails', 'application','anchodemarca','rating_ballot.js',"jquery.notifyBar","/javascripts/jcarousel/jquery.jcarousel.js", "/javascripts/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.min.js",
+          "timepicker/jquery-ui-timepicker-addon", "/javascripts/jcarousel/jquery.jcarousel.min.js" %>
+        <%= csrf_meta_tag %>
+        <% ['notice', 'error', 'warning'].each do |f|%>
+          <% if flash[f.to_sym]%>
+            <script type="text/javascript" >
+              jQuery(function () {
+                  jQuery.notifyBar({
+                      cls: "<%= f %>",
+                      html: "<%=  flash[f.to_sym] %>",
+                      delay: 3000,
+                      animationSpeed: "normal"
+                  });
+              });
+            </script>
+          <%end%>
+        <%end%>
+    </head>
+    <body>
+        <div id="banner" onload="doOnLoad()">
+            <%= link_to image_tag('home.png', :style => 'margin-left:49px; margin-top:25px;'), '/' %>
+            <div class="menubanner">
+                <div class="menubanneritem"> <%= link_to "Quienes Somos", about_us_home_index_path %></div>
+                <div class="menubanneritem"> <%= link_to "Como Funciona", how_it_works_home_index_path %>  </div>
+                <div class="menubanneritem"> <%= link_to "Beneficios AM", benifits_of_am_home_index_path %>   </div>
+                <div class="menubanneritem"> <%= link_to "Nuestros Servicios", our_services_home_index_path %>  </div>
             </div>
-            <div class="<%= current_user.role == 'visitor' ? ("menugrisaccountclient") : (current_user.role == 'tutor' ? ("menugrisaccounttutor") : ((current_user.role == 'client' ? "menugrisaccountclient" : 'menugrisaccountcreative'))) %>">
-              <div class="menu">
-                <ul>
-                  <li><%= current_user.user_name %></li>
-                  <li style="float: right;"><%= link_to "cuenta", "" %>
-                    <ul>
-                      <li><%= current_user.role == 'visitor' ? (link_to "Mi encuesta",visitors_visitors_path) : (current_user.role == 'tutor' ? (link_to "Mi encuesta",tutors_tutors_path) : (current_user.role == 'client' ? (link_to "Mi encuesta",clients_clients_path) : (link_to "Mi encuesta",creatives_creatives_path))) %></li>
-                      <li><%= current_user.role == 'visitor' ? (link_to "Editar perfil",edit_visitor_path(current_user)) : (current_user.role == 'tutor' ? (link_to "Editar perfil",edit_tutor_path(current_user)) : (current_user.role == 'client' ? (link_to "Editar perfil",edit_client_path(current_user)) : (link_to "Editar perfil",edit_creative_path(current_user)))) %></li>
-                      <li><%= link_to "Cerrar sesión",logout_path %></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          <%else%>
-            <div class="menusupgrisitem">
-              <%= params[:controller] == 'clients' ? (link_to image_tag("/images/bot-cliente-on.png", :border=>'0', :width=>"153", :height=>"53"), clients_path) : (link_to image_tag("/images/bot-cliente.png", :border=>'0', :width=>"125", :height=>"37"), clients_path)%>
-              <%= params[:controller] == 'creatives' ? (link_to image_tag("/images/bot-creativo-on.png", :border=>'0', :width=>"156", :height=>"53"), creatives_path) : (link_to image_tag("/images/bot-creativo.png", :border=>'0', :width=>"130", :height=>"37"), creatives_path)%>
-              <%= params[:controller] == 'tutors' ? (link_to image_tag("/images/bot-formacion-on.png", :border=>'0', :width=>"166", :height=>"53"), tutors_path) : (link_to image_tag("/images/bot-formacion.png", :border=>'0', :width=>"136", :height=>"37"), tutors_path) %>
-              <%= (params[:controller] == 'home' && params[:action] == 'search') ? (link_to image_tag("/images/bot-search-on.png", :border=>'0', :width=>"153", :height=>"53"), search_home_index_path) : (link_to image_tag("/images/bot-search.png", :border=>'0', :width=>"102", :height=>"37"), search_home_index_path)%>
-            </div>
-            <div class="menugrislogin">
-              <div class="menu">
-                <div id="menu_i"></div>    <div id="menu_d"></div>
-                <ul>
-                  <li style="float: right;left: -70px;position: relative;"><%= link_to "Registrar", '#registro', :name => 'modal' %></li>
-                  <li style="float: right;"><%= link_to "Entrar", '#login', :name => 'modal' %></li>
-                </ul>
-              </div>
-            </div>
-          <% end %>
         </div>
-      <% end %>
-      <div id='ajax_loader_big_div' style='z-index:1000000;'>
-        <img alt=""  src="/images/284.gif" style="width:80px;height:80px;z-index:1000000;"/>
-      </div>
-      <%= yield %>
-      <div class="footer">
-        <%= image_tag(("/images/footer.png"), :border => 'none', :height => '73px;', :width => '927px;') %>
-      </div>
-    </div>
-    <!-- LIGHTBOX TO LOGIN AND REGISTER  SECTIONS-->
-    <div id="boxes">
-      <div id="login" class="window" style="background: url(/images/lbloginback.png) repeat scroll 0% 0% transparent; text-align: center; top: 186.5px; left: 330px; display: block;width: 245px; height: 267px;display: none;">
-        <%= render :partial => 'devise/sessions/form' %>
-        <br />
-        <br />
-      </div>
-      <div id="registro" class="window" style="background:url(/images/lbregistroback.png); width:965px; height:444px; text-align: center;">
-        <br /><%=image_tag("/images/registrarsecomo.png") %><br /><br />
-        <a href="/users/client" class="menuregistro">
-          <%=image_tag("/images/botoncliente.png") %>
-          <span style="top:62px; left:76px;"> <%=image_tag("/images/botoncliente_act.png") %></span>
-        </a>
-        <a href="/users/creative" class="menuregistro">
-          <%=image_tag("/images/botoncreativo.png") %>
-          <span style="top:59px; left:267px;"> <%=image_tag("/images/botoncreativo_act.png") %></span>
-        </a>
-        <a href="/users/tutor" class="menuregistro">
-          <%=image_tag("/images/botontutor.png") %>
-          <span style="top:65px; left:465px;"> <%=image_tag("/images/botontutor_act.png") %></span>
-        </a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/users/visitor" class="menuregistro">
-          <%= image_tag("/images/botonvisitante.png") %>
-          <span style="top:68px; left:702px;"> <%=image_tag("/images/botonvisitante_act.png") %></span>
-        </a>
-        <br /><br /><br />
-        <a href="#"class="close"><%= "Cerrar "%></a>
-      </div>
-    </div>
-    <div id='overlay' style='filter:alpha(opacity=50);'></div>
-    <div align='center' id='popup_box'>
-      <div style='float: right; margin-top: -40px;margin-right:-40px'>
-      </div>
-      <div id='popup_body' style='float:right'></div>
-    </div>
+        <div class="content">
+            <% if !(params[:controller] == 'users' and (params[:action] == 'creative' or params[:action] == 'client' or params[:action] == 'tutor' or params[:action] == 'visitor' or params[:action] == 'create_creative' or params[:action] == 'create_tutor' or params[:action] == 'create_visitor' or params[:action] == 'create_client' )) %>
+              <div class="menusupgris">
+                  <% if current_user %>
+                    <div class="menusupgrisitem">
+                        <%= current_user.role == 'visitor' ? ("") : (current_user.role == 'tutor' ? (link_to image_tag("/images/bot-formacion-on.png", :border=>'0', :width=>"166", :height=>"53"), tutors_tutors_path):(current_user.role == 'client' ? (link_to image_tag("/images/bot-cliente-on.png", :border=>'0', :width=>"153", :height=>"53"), clients_clients_path) : (link_to image_tag("/images/bot-creativo-on.png", :border=>'0', :width=>"156", :height=>"53"), creatives_creatives_path))) %>
+                        &nbsp;&nbsp;&nbsp;<%= current_user.role == 'visitor' ? ("") : (current_user.role == 'tutor' ? (link_to image_tag("/images/postear_curso.png"), new_course_path):(current_user.role == 'client' ? (link_to "Crear proyecto", new_project_path, :class => 'classname', :style => 'position: relative;top: -20px;background-color: #D08411;') : (link_to "Subir Portafolio", new_creative_folio_path, :class => 'classname', :style => 'position: relative;top: -20px;'))) %>&nbsp;&nbsp;&nbsp;
+                        <%= link_to image_tag('/images/bot-search.png'), search_searches_path, :style => 'position: relative;top: -8px;' %>
+                    </div>
+                    <div class="<%= current_user.role == 'visitor' ? ("menugrisaccountclient") : (current_user.role == 'tutor' ? ("menugrisaccounttutor") : ((current_user.role == 'client' ? "menugrisaccountclient" : 'menugrisaccountcreative'))) %>">
+                        <div class="menu">
+                            <ul>
+                                <li><%= current_user.user_name %></li>
+                                <li style="float: right;"><%= link_to "cuenta", "" %>
+                                    <ul>
+                                        <li><%= current_user.role == 'visitor' ? (link_to "Mi encuesta",visitors_visitors_path) : (current_user.role == 'tutor' ? (link_to "Mi encuesta",tutors_tutors_path) : (current_user.role == 'client' ? (link_to "Mi encuesta",clients_clients_path) : (link_to "Mi encuesta",creatives_creatives_path))) %></li>
+                                        <li><%= current_user.role == 'visitor' ? (link_to "Editar perfil",edit_visitor_path(current_user)) : (current_user.role == 'tutor' ? (link_to "Editar perfil",edit_tutor_path(current_user)) : (current_user.role == 'client' ? (link_to "Editar perfil",edit_client_path(current_user)) : (link_to "Editar perfil",edit_creative_path(current_user)))) %></li>
+                                        <li><%= link_to "Cerrar sesión",logout_path %></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                  <%else%>
+                    <div class="menusupgrisitem">
+                        <%= params[:controller] == 'clients' ? (link_to image_tag("/images/bot-cliente-on.png", :border=>'0', :width=>"153", :height=>"53"), clients_path) : (link_to image_tag("/images/bot-cliente.png", :border=>'0', :width=>"125", :height=>"37"), clients_path)%>
+                        <%= params[:controller] == 'creatives' ? (link_to image_tag("/images/bot-creativo-on.png", :border=>'0', :width=>"156", :height=>"53"), creatives_path) : (link_to image_tag("/images/bot-creativo.png", :border=>'0', :width=>"130", :height=>"37"), creatives_path)%>
+                        <%= params[:controller] == 'tutors' ? (link_to image_tag("/images/bot-formacion-on.png", :border=>'0', :width=>"166", :height=>"53"), tutors_path) : (link_to image_tag("/images/bot-formacion.png", :border=>'0', :width=>"136", :height=>"37"), tutors_path) %>
+                        <%= (params[:controller] == 'home' && params[:action] == 'search') ? (link_to image_tag("/images/bot-search-on.png", :border=>'0', :width=>"153", :height=>"53"), search_home_index_path) : (link_to image_tag("/images/bot-search.png", :border=>'0', :width=>"102", :height=>"37"), search_home_index_path)%>
+                    </div>
+                    <div class="menugrislogin">
+                        <div class="menu">
+                            <div id="menu_i"></div>    <div id="menu_d"></div>
+                            <ul>
+                                <li style="float: right;left: -70px;position: relative;"><%= link_to "Registrar", '#registro', :name => 'modal' %></li>
+                                <li style="float: right;"><%= link_to "Entrar", '#login', :name => 'modal' %></li>
+                            </ul>
+                        </div>
+                    </div>
+                  <% end %>
+              </div>
+            <% end %>
+            <div id='ajax_loader_big_div' style='z-index:1000000;'>
+                <img alt=""  src="/images/284.gif" style="width:80px;height:80px;z-index:1000000;"/>
+            </div>
+            <%= yield %>
+            <div class="footer">
+                <%= image_tag(("/images/footer.png"), :border => 'none', :height => '73px;', :width => '927px;') %>
+            </div>
+        </div>
+        <!-- LIGHTBOX TO LOGIN AND REGISTER  SECTIONS-->
+        <div id="boxes">
+            <div id="login" class="window" style="background: url(/images/lbloginback.png) repeat scroll 0% 0% transparent; text-align: center; top: 186.5px; left: 330px; display: block;width: 245px; height: 267px;display: none;">
+                <%= render :partial => 'devise/sessions/form' %>
+                <br />
+                <br />
+            </div>
+            <div id="registro" class="window" style="background:url(/images/lbregistroback.png); width:965px; height:444px; text-align: center;">
+                <br /><%=image_tag("/images/registrarsecomo.png") %><br /><br />
+                <a href="/users/client" class="menuregistro">
+                    <%=image_tag("/images/botoncliente.png") %>
+                    <span style="top:62px; left:75px;"> <%=image_tag("/images/botoncliente_act.png") %></span>
+                </a>
+                <a href="/users/creative" class="menuregistro">
+                    <%=image_tag("/images/botoncreativo.png") %>
+                    <span style="top:59px; left:266px;"> <%=image_tag("/images/botoncreativo_act.png") %></span>
+                </a>
+                <a href="/users/tutor" class="menuregistro">
+                    <%=image_tag("/images/botontutor.png") %>
+                    <span style="top:65px; left:463px;"> <%=image_tag("/images/botontutor_act.png") %></span>
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/users/visitor" class="menuregistro">
+                    <%= image_tag("/images/botonvisitante.png") %>
+                    <span style="top:68px; left:700px;"> <%=image_tag("/images/botonvisitante_act.png") %></span>
+                </a>
+                <br /><br /><br />
+                <a href="#"class="close"><%= "Cerrar "%></a>
+            </div>
+        </div>
+        <div id='overlay' style='filter:alpha(opacity=50);'></div>
+        <div align='center' id='popup_box'>
+            <div style='float: right; margin-top: -40px;margin-right:-40px'>
+            </div>
+            <div id='popup_body' style='float:right'></div>
+        </div>
 
-    <div id='overlay' style='filter:alpha(opacity=50);'></div>
-    <div align='center' id='popup_box1'>
-      <div style='float: right; margin-top: -40px;margin-right:-40px'>
-      </div>
-      <div id='popup_body1' style='float:right'></div>
-    </div>
-  </body>
+        <div id='overlay' style='filter:alpha(opacity=50);'></div>
+        <div align='center' id='popup_box1'>
+            <div style='float: right; margin-top: -40px;margin-right:-40px'>
+            </div>
+            <div id='popup_body1' style='float:right'></div>
+        </div>
+    </body>
 </html>

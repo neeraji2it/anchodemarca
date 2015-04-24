@@ -84,11 +84,11 @@
   <h3>Informacion Academica</h3>
 
   <%= f.label :occupation, "ocupación<span style=color:red;>*</span>".html_safe%>
-  <div class="input-container"><%= f.select :occupation,%w(student employee independent unemployed) %></div>
+  <div class="input-container"><%= f.select :occupation,%w(estudiante empleado independiente desempleado) %></div>
   <%= validation_error(@user.errors['occupation']) %><br />
 
   <%= f.label :currently_studying, "actualmente Estudiando<span style=color:red;>*</span>".html_safe%>
-  <div class="input-container"><%= f.select :currently_studying, %w(Yes No) %></div><br />
+  <div class="input-container"><%= f.select :currently_studying, %w(Si No) %></div><br />
 
   <%= f.label :retrived_title, "recuperar Título<span style=color:red;>*</span>".html_safe%>
   <div class="input-container"><%= f.select :retrived_title, options_for_select(RETRIVED_TITLE, :selected => f.object.retrived_title)%></div>
@@ -135,33 +135,6 @@
   <%= f.label :position, "posición<span style=color:red;>*</span>".html_safe%>
   <div class="input-container"><%= f.text_field :position%></div>
   <%= validation_error(@user.errors['position']) %><br />
-<% end %>
-
-<% if params[:controller] == 'users' or params[:controller] == 'creatives' or params[:controller] == 'tutors' and (params[:action] == 'creative' or params[:action] == 'tutor' or params[:action] == 'create_creative' or params[:action] == 'create_tutor' or params[:action] == 'edit' or params[:action] == 'update_creative' or params[:action] == 'update_tutor') %>
-
-  <%= f.label :creative_am, "Trabajar un creativo en AM<span style=color:red;>*</span>".html_safe%>
-  <br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:creative_am, "Si") %></span><em style="position:relative;float: right;right: 395px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Si</em>
-  <span style="float:right;position: relative;right: 305px;"><%= f.radio_button(:creative_am, "No") %></span><em style="position:relative;float: right;right: 260px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">No</em><br />
-  <%= validation_error(@user.errors['creative_am']) %><br />
-
-  <%= f.label :participate_in_trining, "Participe en la educación / talleres<span style=color:red;>*</span>".html_safe%>
-  <br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:participate_in_trining, "Si") %></span><em style="position:relative;float: right;right: 395px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Si</em>
-  <span style="float:right;position: relative;right: 305px;"><%= f.radio_button(:participate_in_trining, "No") %></span><em style="position:relative;float: right;right: 260px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">No</em><br />
-  <%= validation_error(@user.errors['participate_in_trining']) %><br />
-
-  <%= f.label :invite_private_calls, "Invitado a llamadas privadas<span style=color:red;>*</span>".html_safe%>
-  <br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:invite_private_calls, "Si") %></span><em style="position:relative;float: right;right: 395px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Si</em>
-  <span style="float:right;position: relative;right: 305px;"><%= f.radio_button(:invite_private_calls, "No") %></span><em style="position:relative;float: right;right: 260px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">No</em><br />
-  <%= validation_error(@user.errors['invite_private_calls']) %><br />
-
-  <%= f.label :outstanding_releave, "Mi identidad será excepcional si gano<span style=color:red;>*</span>".html_safe%>
-  <br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:outstanding_releave, "Si") %></span><em style="position:relative;float: right;right: 395px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Si</em>
-  <span style="float:right;position: relative;right: 305px;"><%= f.radio_button(:outstanding_releave, "No") %></span><em style="position:relative;float: right;right: 260px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">No</em><br />
-  <%= validation_error(@user.errors['outstanding_releave']) %><br />
-
-  <div class="input-container"><%= f.check_box :formal_duites %></div>
-  <em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: -70px;">Deberes formales, pero tienen horarios de trabajo flexibles<span style=color:red;>*</span></em>
-  <%= validation_error(@user.errors["formal_duites"]) %><br />
 <% end %>
 
 <%= f.label :text_accept, "Términos y Condiciones<span style=color:red;>*</span>".html_safe%>
