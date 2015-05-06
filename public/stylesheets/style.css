@@ -50,18 +50,11 @@ select{
     text-align: center;
 }
 /*********end content divs*/
-#banner{
-    background:url(/images/banner.jpg) repeat-x;
-    margin:auto;
-    width:1000px;
-    height:140px;
-    padding-top:0px;
-}
 .menubanner{
     width:1000px;
     height:25px;
     padding-left:0;
-    padding-top:30px;
+    padding-top:2px;
     text-align:center;
 }
 .menubanneritem{
@@ -254,6 +247,24 @@ select{
 .menuregistro img {
     border: 0px;
 }
+
+.clinet-reg img, .creative-reg img{
+   position: relative;
+   left: -16px;
+}
+
+.tutor-reg img{
+    left: 3px;
+    position: relative;
+    top: -6px;
+}
+
+.visitor-reg img{
+    left: 45px;
+    position: relative;
+    top: -6px; 
+}
+
 .menuregistro span {
     position: absolute;
     text-decoration: none;

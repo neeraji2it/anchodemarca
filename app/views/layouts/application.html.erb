@@ -24,8 +24,8 @@
         <%end%>
     </head>
     <body>
-        <div id="banner" onload="doOnLoad()">
-            <%= link_to image_tag('home.png', :style => 'margin-left:49px; margin-top:25px;'), '/' %>
+        <div onload="doOnLoad()">
+            <%= link_to image_tag('ancho.jpg', :style => 'width: 100%;height: 109px;'), '/' %>
             <div class="menubanner">
                 <div class="menubanneritem"> <%= link_to "Quienes Somos", about_us_home_index_path %></div>
                 <div class="menubanneritem"> <%= link_to "Como Funciona", how_it_works_home_index_path %>  </div>
@@ -92,21 +92,21 @@
             </div>
             <div id="registro" class="window" style="background:url(/images/lbregistroback.png); width:965px; height:444px; text-align: center;">
                 <br /><%=image_tag("/images/registrarsecomo.png") %><br /><br />
-                <a href="/users/client" class="menuregistro">
+                <a href="/users/client" class="menuregistro clinet-reg">
                     <%=image_tag("/images/botoncliente.png") %>
-                    <span style="top:62px; left:75px;"> <%=image_tag("/images/botoncliente_act.png") %></span>
+                    <span style="top:61px; left:98px;"> <%=image_tag("/images/botoncliente_act.png") %></span>
                 </a>
-                <a href="/users/creative" class="menuregistro">
+                <a href="/users/creative" class="menuregistro creative-reg">
                     <%=image_tag("/images/botoncreativo.png") %>
-                    <span style="top:59px; left:266px;"> <%=image_tag("/images/botoncreativo_act.png") %></span>
+                    <span style="top:58px; left:290px;"> <%=image_tag("/images/botoncreativo_act.png") %></span>
                 </a>
-                <a href="/users/tutor" class="menuregistro">
+                <a href="/users/tutor" class="menuregistro tutor-reg">
                     <%=image_tag("/images/botontutor.png") %>
-                    <span style="top:65px; left:463px;"> <%=image_tag("/images/botontutor_act.png") %></span>
+                    <span style="top:64px; left:486px;"> <%=image_tag("/images/botontutor_act.png") %></span>
                 </a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/users/visitor" class="menuregistro">
+                <a href="/users/visitor" class="menuregistro visitor-reg">
                     <%= image_tag("/images/botonvisitante.png") %>
-                    <span style="top:68px; left:700px;"> <%=image_tag("/images/botonvisitante_act.png") %></span>
+                    <span style="top:67px; left:680px;"> <%=image_tag("/images/botonvisitante_act.png") %></span>
                 </a>
                 <br /><br /><br />
                 <a href="#"class="close"><%= "Cerrar "%></a>

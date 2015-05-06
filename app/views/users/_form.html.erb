@@ -45,7 +45,7 @@
 <div class="input-container"><%= f.text_field :document_num %></div>
 <%= validation_error(@user.errors['document_num']) %><br />
 
-<%= f.label :Country, "Pais<span style=color:red;>*</span>".html_safe%>
+<%= f.label :Country, "Departamento<span style=color:red;>*</span>".html_safe%>
 <% if @user.new_record? %>
   <div class="input-container"><%= f.select :country_id, options_for_select(Country.find(:all).collect{|country| [country.country, country.id]}) %></div>
 <% else %>
@@ -67,7 +67,7 @@
 <div class="input-container"><%= f.text_field :phone %></div>
 <%= validation_error(@user.errors['phone']) %><br />
 
-<%= f.label :sex, "Numero de Celular<span style=color:red;>*</span>".html_safe%>
+<%= f.label :sex, "Sexo<span style=color:red;>*</span>".html_safe%>
 <br /><span style="float:right;position: relative;right: 445px;"><%= f.radio_button(:sex, "Masculino") %></span><em style="position:relative;float: right;right: 335px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Masculino</em>
 <span style="float:right;position: relative;right: 220px;"><%= f.radio_button(:sex, "Femenino") %></span><em style="position:relative;float: right;right: 110px;color: #575756;font-weight: bold;font-family: Tahoma,Geneva,sans-serif;">Femenino</em><br />
 <%= validation_error(@user.errors['sex']) %><br />
@@ -128,16 +128,16 @@
 
 <% elsif params[:controller] == 'users' or params[:controller] == 'clients' and (params[:action] == 'client' or params[:action] == 'create_client' or params[:action] == 'edit' or params[:action] == 'update_client') %>
   <h3> Información su Empresa</h3>
-  <%= f.label :company_name, "Nombre De La Empresa<span style=color:red;>*</span>".html_safe%>
+  <%= f.label :company_name, "Nombre de la Empresa<span style=color:red;>*</span>".html_safe%>
   <div class="input-container"><%= f.text_field :company_name %></div>
   <%= validation_error(@user.errors['company_name']) %><br />
 
-  <%= f.label :position, "posición<span style=color:red;>*</span>".html_safe%>
+  <%= f.label :position, "Cargo en la empresa<span style=color:red;>*</span>".html_safe%>
   <div class="input-container"><%= f.text_field :position%></div>
   <%= validation_error(@user.errors['position']) %><br />
 <% end %>
 
-<%= f.label :text_accept, "Términos y Condiciones<span style=color:red;>*</span>".html_safe%>
+<%= f.label :text_accept, "Términos y Condiciones".html_safe%>
 <div class="input-container"><%= f.text_area :text_accept, :cols => 25, :rows => 3 %></div>
 <%= validation_error(@user.errors["text_accept"]) %><br />
 
@@ -145,8 +145,8 @@
 <em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: 135px;">Acepto los términos y condiciones<span style=color:red;>*</span></em>
 <%= validation_error(@user.errors["receive_news"]) %><br />
 
-<div class="input-container"><%= f.check_box :i_accept %></div>
-<em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: 85px;">Deseo recibir los boletines de La Utileria<span style=color:red;>*</span></em>
+<div class="input-container"><%= f.check_box :i_accept, checked: true %></div>
+<em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: 85px;">Deseo recibir los boletines de La Utileria</em>
 <%= validation_error(@user.errors["i_accept"]) %><br />
 <button type="submit" value="Save" name="commit" style="background: none; border: none; margin: 2px 115px;"><%=  image_tag("/images/buttonregister.png", :border=>'0', :width=>"191", :height=>"38") %></button>
 <script>
