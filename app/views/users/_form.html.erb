@@ -1,4 +1,4 @@
-<h3>Información Básica </h3>
+<h3>Información Básica- Persona Contacto </h3>
 <%= f.label :name,"Nombre<span style=color:red;>*</span>".html_safe %>
 <div class="input-container"><%= f.text_field :name %></div>
 <%= validation_error(@user.errors['name']) %><br />
@@ -15,7 +15,7 @@
   <%= f.label :email,"Correo Electrónico<span style=color:red;>*</span>".html_safe %>
   <div class="input-container"><%= f.email_field :email %></div>
   <%= validation_error(@user.errors['email']) %><br />
-  <%= f.label :password,"Clave<span style=color:red;>*</span>".html_safe %>
+  <%= f.label :password,"Clave- Para esta comunidad<span style=color:red;>*</span>".html_safe %>
   <div class="input-container"><%= f.password_field :password %></div>
   <%= validation_error(@user.errors['password']) %><br />
 
@@ -31,12 +31,12 @@
 <% if params[:controller] == 'users' && params[:action] == 'client' or params[:action] == 'create_client' or params[:controller] == 'clients' %>
   <%= f.label :document_type, "Tipo de documento<span style=color:red;>*</span>".html_safe%>
   <div class="input-container">
-    <%= f.select :document_type, options_for_select(CLIENT_DOCUMENT_TYPES, :selected => f.object.document_type) %>
+      <%= f.select :document_type, options_for_select(CLIENT_DOCUMENT_TYPES, :selected => f.object.document_type) %>
   </div>
 <% elsif params[:controller] == 'users' && params[:action] == 'creative' or params[:action] == 'tutor' or params[:action] == 'visitor' or params[:action] == 'create_visitor' or params[:action] == 'create_creative' or params[:action] == 'create_tutor' or params[:controller] == 'creatives' or params[:controller] == 'tutors' or params[:controller] == 'visitors'%>
   <%= f.label :document_type, "Tipo de documento<span style=color:red;>*</span>".html_safe%>
   <div class="input-container">
-    <%= f.select :document_type, options_for_select(CREATIVE_DOCUMENT_TYPES, :selected => f.object.document_type) %>
+      <%= f.select :document_type, options_for_select(CREATIVE_DOCUMENT_TYPES, :selected => f.object.document_type) %>
   </div>
 <% end %>
 <%= validation_error(@user.errors['document_type']) %><br />
@@ -55,15 +55,15 @@
 
 <%= f.label :city, "Ciudad<span style=color:red;>*</span>".html_safe%>
 <div class="input-container" id="city_id_container">
-  <% if @user.new_record? %>
-    <%= f.select :city_id,options_for_select(City.where("id = '#{1}'").collect{|city| [city.city, city.id]}) %>
-  <% else %>
-    <%= f.select :city_id, options_for_select(City.find(:all).collect{|city| [city.city, city.id]}, :selected => current_user.city_id) %>
-  <% end %>
+    <% if @user.new_record? %>
+      <%= f.select :city_id,options_for_select(City.where("id = '#{1}'").collect{|city| [city.city, city.id]}) %>
+    <% else %>
+      <%= f.select :city_id, options_for_select(City.find(:all).collect{|city| [city.city, city.id]}, :selected => current_user.city_id) %>
+    <% end %>
 </div>
 <%= validation_error(@user.errors['city_id']) %><br />
 
-<%= f.label :phone , "Cell Phone<span style=color:red;>*</span>".html_safe %><br />
+<%= f.label :phone , "Celular<span style=color:red;>*</span>".html_safe %>
 <div class="input-container"><%= f.text_field :phone %></div>
 <%= validation_error(@user.errors['phone']) %><br />
 
@@ -74,24 +74,32 @@
 
 <%= f.label :avatar, "Foto de su perfil:"%>
 <div class="input-container" id="img_preview">
-  <%= image_tag(@user.avatar.url(:original),:width => '30px', :height => '30px',:hidden => true, :id => 'img_show1')%>
-  <%= image_tag(@user.avatar.url(:original),:width => '30px', :height => '30px', :id => 'img_show')%></div>
+    <%= image_tag(@user.avatar.url(:original),:width => '30px', :height => '30px',:hidden => true, :id => 'img_show1')%>
+    <%= image_tag(@user.avatar.url(:original),:width => '30px', :height => '30px', :id => 'img_show')%></div>
 <div class="input-container"><%= f.file_field :avatar, :id => 'small_img', :onChange => 'readURL(this)' %>
-  <br /><em id="error_img" style="font-size: 11px;margin-left: 120px;color: red;">nota: Imagen debe estar en el formato &nbsp; "jpg","jpeg","gif","png","bmp","tiff" </em>
+    <br /><em id="error_img" style="font-size: 11px;margin-left: 120px;color: red;">nota: Imagen debe estar en el formato &nbsp; "jpg","jpeg","gif","png","bmp","tiff" </em>
 </div>
 
 <% if params[:controller] == 'users' or params[:controller] == 'creatives'or params[:controller] == 'tutors'and (params[:action] == 'creative' or params[:action] == 'tutor' or params[:action] == 'create_creative' or params[:action] == 'create_tutor'  or params[:action] == 'edit' or params[:action] == 'update_tutor' or params[:action] == 'update_creative' or params[:action] == 'update_visitor') %>
-  <h3>Informacion Academica</h3>
+  <h3>Formacian Academica</h3>
 
-  <%= f.label :occupation, "ocupación<span style=color:red;>*</span>".html_safe%>
+  <%= f.label :occupation, "Ocupación<span style=color:red;>*</span>".html_safe%>
   <div class="input-container"><%= f.select :occupation,%w(estudiante empleado independiente desempleado) %></div>
   <%= validation_error(@user.errors['occupation']) %><br />
 
-  <%= f.label :currently_studying, "actualmente Estudiando<span style=color:red;>*</span>".html_safe%>
+  <%= f.label :currently_studying, "Estudiando Actualmente<span style=color:red;>*</span>".html_safe%>
   <div class="input-container"><%= f.select :currently_studying, %w(Si No) %></div><br />
 
-  <%= f.label :retrived_title, "recuperar Título<span style=color:red;>*</span>".html_safe%>
-  <div class="input-container"><%= f.select :retrived_title, options_for_select(RETRIVED_TITLE, :selected => f.object.retrived_title)%></div>
+  <%= f.label :retrived_title, "Area de Trabajo<span style=color:red;>*</span>".html_safe%>
+  <%  [ "Artista", "Utilero nato","Decorador","Disenador Grafico","Director de Arte","Artista Plastico","Disenador de Escenografias","Ilustrador","Fotografo","Disenador Industrial","Arquitecto","Disenador de Interiores","Jardines / Landscaping"].each do |category| %><br/>
+    <% if @user.retrived_title.to_s.split(", ").include?(category) or (params[:user] && params[:user][:retrived_title] && params[:user][:retrived_title].include?(category)) %>
+      <%= check_box_tag("user[retrived_title][]", "#{category}", true) %>
+      <%= category %>
+    <% else %>
+      <%= check_box_tag("user[retrived_title][]", "#{category}") %>
+      <%= category %>
+    <% end %>
+  <% end %><br />
   <%= validation_error(@user.errors['retrived_title']) %><br />
 
   <% if params[:controller] == 'users' or params[:controller] == 'tutors'and (params[:action] == 'tutor' or params[:action] == 'create_tutor' or params[:action] == 'edit' or params[:action] == 'update_tutor' or  params[:action] == 'update_visitor') %>
@@ -104,8 +112,8 @@
   <% end %>
 <% end %>
 <% if params[:controller] == 'users' or params[:controller] == 'creatives' and (params[:action] == 'creative' or params[:action] == 'create_creative' or params[:action] == 'edit' or params[:action] == 'update_creative') %>
-  <%= f.label :skills, "Seleccione sus habilidades<span style=color:red;>*</span>".html_safe%>
-  <%  [ "Disenadores", "Desarrolladores","Testers","Otros"].each do |category| %><br/>
+  <%= f.label :skills, "Habilidades o trabajo con" %>
+  <%  [ "Diseno de muebles","Entorno digital","Papel / Origami","Materiales reciclados","Madera","Metal","Vidrio","Plastico","Telas","Pintura","Graffiti","Barro","Mezcla de materiales","Otros materiales","Illuminacion"].each do |category| %><br/>
     <% if @user.skills.to_s.split(", ").include?(category) or (params[:user] && params[:user][:skills] && params[:user][:skills].include?(category)) %>
       <%= check_box_tag("user[skills][]", "#{category}", true) %>
       <%= category %>
@@ -128,33 +136,40 @@
 
 <% elsif params[:controller] == 'users' or params[:controller] == 'clients' and (params[:action] == 'client' or params[:action] == 'create_client' or params[:action] == 'edit' or params[:action] == 'update_client') %>
   <h3> Información su Empresa</h3>
-  <%= f.label :company_name, "Nombre de la Empresa<span style=color:red;>*</span>".html_safe%>
+  <%= f.label :company_name, "Razon Social - Dependencia<span style=color:red;>*</span>".html_safe%>
   <div class="input-container"><%= f.text_field :company_name %></div>
   <%= validation_error(@user.errors['company_name']) %><br />
 
-  <%= f.label :position, "Cargo en la empresa<span style=color:red;>*</span>".html_safe%>
+  <%= f.label :position, "Cargo<span style=color:red;>*</span>".html_safe%>
   <div class="input-container"><%= f.text_field :position%></div>
   <%= validation_error(@user.errors['position']) %><br />
+
+  <%= f.label :position, "Telefono fijo<span style=color:red;>*</span>".html_safe%>
+  <div class="input-container"><%= f.text_field :landline %></div>
+  <%= validation_error(@user.errors['position']) %><br />
+
+  <%= f.label :position, "Extension" %>
+  <div class="input-container"><%= f.text_field :extension %></div><br />
 <% end %>
 
 <%= f.label :text_accept, "Términos y Condiciones".html_safe%>
 <div class="input-container"><%= f.text_area :text_accept, :cols => 25, :rows => 3 %></div>
 <%= validation_error(@user.errors["text_accept"]) %><br />
 
-<div class="input-container"><%= f.check_box :receive_news %></div>
+<div class="input-container"><%= f.check_box :receive_news, checked: true %></div>
 <em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: 135px;">Acepto los términos y condiciones<span style=color:red;>*</span></em>
 <%= validation_error(@user.errors["receive_news"]) %><br />
 
 <div class="input-container"><%= f.check_box :i_accept, checked: true %></div>
-<em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: 85px;">Deseo recibir los boletines de La Utileria</em>
+<em style="color:#575756; font-family: Tahoma,Geneva,sans-serif;font-weight: bold;font-size: 15px;float: right;position: relative;top:-19px;right: 95px;">Deseo recibir los boletines de La Utileria</em>
 <%= validation_error(@user.errors["i_accept"]) %><br />
 <button type="submit" value="Save" name="commit" style="background: none; border: none; margin: 2px 115px;"><%=  image_tag("/images/buttonregister.png", :border=>'0', :width=>"191", :height=>"38") %></button>
 <script>
-  $(document).ready(function() {
-    $("input[type='submit']").attr("disabled", false);
-    $("form").submit(function() {
-      $("input[type='submit']").attr("disabled", true).val("Please wait...");
-      return true;
-    });
+  $(document).ready(function () {
+      $("input[type='submit']").attr("disabled", false);
+      $("form").submit(function () {
+          $("input[type='submit']").attr("disabled", true).val("Please wait...");
+          return true;
+      });
   });
 </script>

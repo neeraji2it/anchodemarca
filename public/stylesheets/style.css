@@ -229,9 +229,8 @@ select{
 
 .ancho-icons{
     display: inline-block;
-    left: 30px;
     position: relative;
-    width: 17%;
+    width: 100%;
 }
 .footer{
     background:transparent;

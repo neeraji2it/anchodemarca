@@ -1,134 +1,99 @@
 <div class="content">
-  <div class="seccionbarracliente"> </div>
-  <div class="contents">
-    <div class="content_left"><br />
-      <div class="seccioneshomefiltros"><br />
-        <label>OPORTUNIDADES POR</label><br />
-        <div class="input-container"><%= select_tag :view, options_for_select([["Seleccionar", ""],["Cliente","client"],["Proyectos sociales", "Social"],["Empresa","task"],["Presupuesto","budget"],["Fecha de expiracion","expiration date"]]), :onchange=>"select_file_type(this.value)" %><br /><br />
-          <div id="client-category">
-            <%= select_tag :category, options_for_select(["Seleccionar",""]) %>
-          </div>
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">Marcas registeradas</label><br />
-          <% i = Project.count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS REALIZADOS</label><br />
-          <% i = Project.where("end_date <= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS EN TRATAMIENTO</label><br />
-          <% i = Project.where("end_date >= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS SOCIALES REALIZADOS</label><br />
-          <% i = Project.where("payment = 0 ").count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS SOCIALES DISPONIBLES</label><br />
-          <% i = Project.where("payment = 0 and end_date >= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
-          <%= number_with_delimiter(i) %>
+    <div class="seccionbarracliente"> </div>
+    <div class="contents">
+        <div class="content_left"><br />
+            <div class="seccioneshomefiltros"><br />
+                <label>OPORTUNIDADES POR</label><br />
+                <div class="input-container"><%= select_tag :view, options_for_select([["Seleccionar", ""],["Cliente","client"],["Proyectos sociales", "Social"],["Empresa","task"],["Presupuesto","budget"],["Fecha de expiracion","expiration date"]]), :onchange=>"select_file_type(this.value)" %><br /><br />
+                    <div id="client-category">
+                        <%= select_tag :category, options_for_select(["Seleccionar",""]) %>
+                    </div>
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">Marcas registeradas</label><br />
+                    <% i = Project.count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS REALIZADOS</label><br />
+                    <% i = Project.where("end_date <= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS EN TRATAMIENTO</label><br />
+                    <% i = Project.where("end_date >= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS SOCIALES REALIZADOS</label><br />
+                    <% i = Project.where("payment = 0 ").count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">TRABAJOS SOCIALES DISPONIBLES</label><br />
+                    <% i = Project.where("payment = 0 and end_date >= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
+                    <%= number_with_delimiter(i) %>
+                </div>
+            </div>
         </div>
-      </div>
+        <div id="client_views"></div>
+        <div id="client_categories"></div>
+        <%= render :partial => 'client' %>
     </div>
-    <div id="client_views"></div>
-    <div id="client_categories"></div>
-    <%= render :partial => 'client' %>
-  </div>
-  <div class="seccionbarracreativo"> </div>
-  <div class="contents">
-    <div class="seccioneshomefiltros"><br />
-      <div class="content_left"><br />
-        <label>PERFILES POR</label><br />
-        <div class="input-container"><%= select_tag :view, options_for_select([["Seleccionar", ""],["Empresa","task"],["Reputacion","reputation"],["Preferidos","likes"],["Popularidad","views"]]), :onchange=>"select_type(this.value)" %><br /><br />
-          <div id="creative-category">
-            <%= select_tag :category, options_for_select(["Seleccionar",""]) %>
-          </div>
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">Creativos registeradas</label><br />
-          <% i = User.where("role = 'creative'").count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">PIEZAS POSTEADAS</label><br />
-          <% i = Bid.count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">PIEZAS CONCURSANDO</label><br />
-          <% i = Bid.count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">PIEZAS PROYECTOS SOCIALES</label><br />
-          <%= number_with_delimiter(count) %>
+    <div class="seccionbarracreativo"> </div>
+    <div class="contents">
+        <div class="seccioneshomefiltros"><br />
+            <div class="content_left"><br />
+                <label>PERFILES POR</label><br />
+                <div class="input-container"><%= select_tag :view, options_for_select([["Seleccionar", ""],["Empresa","task"],["Reputacion","reputation"],["Preferidos","likes"],["Popularidad","views"]]), :onchange=>"select_type(this.value)" %><br /><br />
+                    <div id="creative-category">
+                        <%= select_tag :category, options_for_select(["Seleccionar",""]) %>
+                    </div>
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">Creativos registeradas</label><br />
+                    <% i = User.where("role = 'creative'").count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">PIEZAS POSTEADAS</label><br />
+                    <% i = Bid.count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">PIEZAS CONCURSANDO</label><br />
+                    <% i = Bid.count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">PIEZAS PROYECTOS SOCIALES</label><br />
+                    <%= number_with_delimiter(count) %>
+                </div>
+            </div>
         </div>
-      </div>
+        <div id="creative_views"></div>
+        <div id="creative_categories"></div>
+        <%= render :partial => 'creative' %>
     </div>
-    <div id="creative_views"></div>
-    <div id="creative_categories"></div>
-    <%= render :partial => 'creative' %>
-  </div>
-  <div class="seccionbarraformacion"> </div>
-  <div class="contents">
-    <div class="seccioneshomefiltros"><br />
-      <div class="content_left"><br />
-        <label>FORMACION POR</label><br />
-        <div class="input-container"><%= select_tag :view, options_for_select([["Seleccionar", ""],["Temas de Interes","topic"],["Nombre del Docente","name"],["Reputacion","reputation"],["Fecha","date"]]), :onchange=>"file_type(this.value)" %><br /><br />
-          <div id="tutor-category">
-            <%= select_tag :category, options_for_select(["Seleccionar",""]) %>
-          </div>
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">Tutor registeradas</label><br />
-          <% i = User.where("role = 'tutor'").count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS GRATUITOS</label><br />
-          <% i = Course.where("course_type = 'Free'").count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS VIGENTES</label><br />
-          <% i = Course.count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS REALIZADOS</label><br />
-          <% i = Course.where("to_date >= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
-          <%= number_with_delimiter(i) %><br />
-          <label style="float: left;font-size: 10px;position: relative;top: 6px;">ESTUDIANTES ATENDIDOS</label><br />
-          <% i = Participate.where("course_id IS NOT NULL").count %>
-          <%= number_with_delimiter(i) %><br />
+    <div class="seccionbarraformacion"> </div>
+    <div class="contents">
+        <div class="seccioneshomefiltros"><br />
+            <div class="content_left"><br />
+                <label>FORMACION POR</label><br />
+                <div class="input-container"><%= select_tag :view, options_for_select([["Seleccionar", ""],["Temas de Interes","topic"],["Nombre del Docente","name"],["Reputacion","reputation"],["Fecha","date"]]), :onchange=>"file_type(this.value)" %><br /><br />
+                    <div id="tutor-category">
+                        <%= select_tag :category, options_for_select(["Seleccionar",""]) %>
+                    </div>
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">Tutor registeradas</label><br />
+                    <% i = User.where("role = 'tutor'").count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS GRATUITOS</label><br />
+                    <% i = Course.where("course_type = 'Free'").count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS VIGENTES</label><br />
+                    <% i = Course.count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">CURSOS REALIZADOS</label><br />
+                    <% i = Course.where("to_date >= '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}'").count %>
+                    <%= number_with_delimiter(i) %><br />
+                    <label style="float: left;font-size: 10px;position: relative;top: 6px;">ESTUDIANTES ATENDIDOS</label><br />
+                    <% i = Participate.where("course_id IS NOT NULL").count %>
+                    <%= number_with_delimiter(i) %><br />
+                </div>
+            </div>
         </div>
-      </div>
+        <div id="tutor_views"></div>
+        <div id="tutor_categories"></div>
+        <%= render :partial => 'tutor' %>
     </div>
-    <div id="tutor_views"></div>
-    <div id="tutor_categories"></div>
-    <%= render :partial => 'tutor' %>
-  </div>
-  <div class="fincontenidos"></div>
+    <div class="fincontenidos"></div>
 </div>
-<div class="news">
-  <hr /><br />
-  <%= image_tag("/images/news.png") %>
-  <br />
-  <br />
-  <div class="newscols">
-    <b style="font-size: 12px;color: black;">LOREM IPSUM</b><br /><br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    <br />
-    <br />
-    <b style="font-size: 12px;color: black;">LOREM IPSUM</b><br /><br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  </div>
-  <div class="newscols">
-    <b style="font-size: 12px;color: black;">LOREM IPSUM</b><br /><br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    <br />
-    <br />
-    <b style="font-size: 12px;color: black;">LOREM IPSUM</b><br /><br />
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  </div>
-</div><br /><br />
-<div>
-  <div class="ancho-icons">
-    <p>SIGUENOS  EN:</p><hr />
-    <span style="margin: 2px 15px;">
-      <%= link_to image_tag('twitter.jpeg', :border=>'0', :width=>"40", :height=>"40"), 'http://twitter.com/' ,:target => '_blank' %>
-      &nbsp; <%= link_to image_tag('facebook.jpeg', :border=>'0', :width=>"40", :height=>"40"),"http://www.facebook.com/" ,:target => '_blank' %>
-      &nbsp;<%= link_to image_tag('blog.jpeg', :border=>'0', :width=>"40", :height=>"40"), "http://blog.com/",:target => '_blank' %>
-    </span>
-  </div>
-  <div class="ancho-icons" style = "margin-left: 2%;margin-top: 2%;padding-top: 10px;">
-    <% if Rails.env == 'production' %>
-      <script type="text/javascript">
-        smowtion_size = "728x90";
-        smowtion_section = "2654142";
-      </script>
-      <script type="text/javascript" src="http://ads.smowtion.com/ad.js?s=2654142&z=728x90">
-      </script>
-    <% end %>
-  </div>
-</div><br />
+<%#*<div>%>
+<%#*<div class="ancho-icons">%>
+<%#*<p><b>Aliados Estratégicos:</b></p><hr />%>
+<%#= link_to image_tag(("/images/casa.jpg"), :border => 'none', :width => 100), 'https://www.facebook.com/CNikon', :target => '_blank' %>
+<%#= link_to image_tag(("/images/cafe.png"), :border => 'none', :width => 100), 'https://www.facebook.com/cafe.lautileria', :target => '_blank' %>
+<%#*</div>%>
+<%#*</div>%>

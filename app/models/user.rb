@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_many :rated_bids, :through => :ratings, :source => :bids
   # Setup accessible (or protected) attributes for your model
   attr_accessor :i_accept
-  attr_accessible :name,:user_name,:post_work,:total,:subscription,:post_class,:recommenations, :surname,:email, :password, :password_confirmation, :remember_me, :date_of_birth, :document_type,:document_num,:country_id,:city_id,:avatar,:company_name,:position,:text_accept,:i_accept,:receive_news,:retrived_title,:currently_studying,:occupation,:current_occupation,:skills,:laboral_disposition,:schedule,:sex,:phone
+  attr_accessible :name,:user_name,:landline,:extension,:post_work,:total,:subscription,:post_class,:recommenations, :surname,:email, :password, :password_confirmation, :remember_me, :date_of_birth, :document_type,:document_num,:country_id,:city_id,:avatar,:company_name,:position,:text_accept,:i_accept,:receive_news,:retrived_title,:currently_studying,:occupation,:current_occupation,:skills,:laboral_disposition,:schedule,:sex,:phone
   validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"new error message here" 
   validates :name, :surname,:document_type,:user_name,:country_id,:city_id,:date_of_birth,:sex, :presence => { message: "no puede estar en blanco" }
   validates :phone, :length => {:minimum => 10, :maximum => 15}, :format => { :with => /\A\S[0-9\+\/\(\)\s\-]*\z/i }, :allow_nil  => true
@@ -35,8 +35,7 @@ class User < ActiveRecord::Base
   validates_acceptance_of :receive_news, presence => {message: "no puede estar en blanco"}
   validates_acceptance_of :laboral_disposition, :presence => { :if => :schedule_required?, message: "no puede estar en blanco" }
   validates :retrived_title,:currently_studying, :occupation, :presence => { :if => :retrived_title_required?, message: "no puede estar en blanco" }
-  validates :skills, :presence => { :if => :layout_work_required?, message: "no puede estar en blanco" }
-  validates :company_name,:position, :presence => { :if => :company_name_required?, message: "no puede estar en blanco" }
+  validates :company_name, :landline,:position, :presence => { :if => :company_name_required?, message: "no puede estar en blanco" }
   validates :schedule, :presence => { :if => :schedule_required?, message: "no puede estar en blanco" }
   #  after_create :subscriber
 
@@ -57,10 +56,6 @@ class User < ActiveRecord::Base
     !self.role.nil? and ['creative','tutor'].include?(self.role)
   end
   
-  def layout_work_required?
-    !self.role.nil? and ['creative'].include?(self.role)
-  end
-
   def company_name_required?
     !self.role.nil? and ['client'].include?(self.role)
   end
